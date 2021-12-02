@@ -1,6 +1,6 @@
 package model;
 
-public class Ticket<ticketId> {
+public class Ticket {
     int ticketId;
     Showing showing;
     Seat seat;

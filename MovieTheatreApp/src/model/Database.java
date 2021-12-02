@@ -7,6 +7,7 @@ import java.util.Date;
 public class Database {
 
     private static ArrayList<Movie> movieDB;
+    private static Seat[][] seatDB;
     private static ArrayList<User> RegUserDB;
 
     private Database() { }
@@ -29,6 +30,19 @@ public class Database {
         }
 
         return movieDB;
+    }
+
+    public static Seat[][] getSeatDB() {
+
+        seatDB = new Seat[5][5];
+
+        for(int i = 0; i < seatDB.length; i++){
+            for(int j = 0; j < seatDB[i].length; j++){
+                seatDB[i][j] = new Seat((char)(65+i), j);
+            }
+        }
+
+        return seatDB;
     }
 
     public static ArrayList<User> getRegUserDB() {
