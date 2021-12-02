@@ -2,11 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
-public class Movie {
+public class Theatre {
 
-    int movieId;
-    String title;
-    String description;
+    int theatreId;
     ArrayList<Showing> showings;
+    ArrayList<Seat> seats;
 
 }
