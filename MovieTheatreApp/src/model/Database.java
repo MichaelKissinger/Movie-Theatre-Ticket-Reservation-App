@@ -23,7 +23,6 @@ public class Database {
         return movieDB;
     }
 
-
     public static void getMovieDB() {
 
         //movieDB = new ArrayList<Movie>();
@@ -56,7 +55,6 @@ public class Database {
 
     public static ArrayList<User> getRegUserDB() {
         RegUserDB = new ArrayList<User>();
-
 
         return RegUserDB;
     }
