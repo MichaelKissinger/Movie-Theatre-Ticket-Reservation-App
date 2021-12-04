@@ -60,6 +60,58 @@ public class JDBCConnect {
         return showingList;
     }
 
+    public ArrayList<User> userSetStatement() throws SQLException {
+        ArrayList<User> userList = new ArrayList<User>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM USER");
+
+            while (results.next()) {
+                int userId = results.getInt("UserId");
+                String email = results.getString("Email");
+
+
+                User myUser = new User(userId, email);
+                userList.add(myUser);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    public ArrayList<RegisteredUser> registeredUserSetStatement() throws SQLException {
+        ArrayList<RegisteredUser> registeredUserList = new ArrayList<RegisteredUser>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM USER");
+
+            while (results.next()) {
+                int userId = results.getInt("UserId");
+                String email = results.getString("Email");
+                String name = results.getString("Name");
+                String address = results.getString("Address");
+                String paymentOption  = results.getString("PaymentMethod");
+                String password = results.getString("Password");
+                Boolean activeStatus  = results.getBoolean("ActiveStatus");
+                Date lastPaymentDate  = results.getDate("LastPaymentDate");
+                Float paymentNumber  = results.getFloat("PaymentNumber");
+
+                RegisteredUser myUser = new RegisteredUser(userId, email, name,
+                        address, paymentOption, password,
+                        activeStatus, lastPaymentDate, paymentNumber);
+                        registeredUserList.add(myUser);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return registeredUserList;
+    }
+
+
+
 
 
 }

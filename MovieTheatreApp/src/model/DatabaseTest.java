@@ -9,9 +9,12 @@ public class DatabaseTest {
         System.out.println(myDatabase.getMovieDB());
 
         for (Movie m: myDatabase.getMovieDB()) {
-            m.getShowings();
+            System.out.println(m.getShowings());
         }
 
+        System.out.println(myDatabase.getUserDB());
+
+        System.out.println(myDatabase.getRegisteredUserDB());
 
     }
 }
