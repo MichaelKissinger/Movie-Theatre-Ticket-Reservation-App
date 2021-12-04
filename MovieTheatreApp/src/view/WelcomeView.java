@@ -40,19 +40,13 @@ public class WelcomeView extends JFrame implements ActionListener {
 
             }
         });
-
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LoginView theTerminal = new LoginView();
-
-                // Shows the GUI
-                theTerminal.setVisible(true);
-                theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                setVisible(false);
-            }
-        });
     }
+
+    public void addLoginButtonListener(ActionListener listenerForLoginButton) {
+        loginButton.addActionListener(listenerForLoginButton);
+    }
+
+    //public void addGuestButtonListener(ActionListener listenerForGuestButton) { }
 
 
     @Override
