@@ -48,7 +48,6 @@ public class Database {
     public static ArrayList<User> getRegUserDB() {
         RegUserDB = new ArrayList<User>();
 
-
         return RegUserDB;
     }
 
