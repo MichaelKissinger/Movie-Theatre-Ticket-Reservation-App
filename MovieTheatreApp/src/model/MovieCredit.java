@@ -23,9 +23,6 @@ public class MovieCredit
         setExpiryDate(cal.getTime());
     }
 
-    // TO-DO: METHODS FOR ASSIGNING CREDIT CODE AND ID!!!
-
-
     public int getMovieCreditId() {
         return movieCreditId;
     }

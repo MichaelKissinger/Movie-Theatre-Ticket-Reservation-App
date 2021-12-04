@@ -26,6 +26,7 @@ public class Movie {
         setDescription(synopsis);
         setMovieId(id);
         showings = new ArrayList<Showing>();
+
     }
 
     public void addShowing(Showing theShowing)
