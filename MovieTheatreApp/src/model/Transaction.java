@@ -23,6 +23,7 @@ public class Transaction
 
         // FIGURE OUT HOW TO SET TO CURRENT DATE?TIME!!!!
 //        purcahseDate = new Date();
+        purchaseDate = new Date();
     }
 
     public void addTicket(Ticket t)

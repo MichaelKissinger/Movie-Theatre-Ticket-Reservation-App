@@ -11,7 +11,7 @@ public class Theatre {
     public Theatre(int id)
     {
         this.theatreId = id;
-        movieList = getMovies();
+        movieList = Database.loadMovies();
     }
 
     public Movie searchMovies(String title)
@@ -28,12 +28,16 @@ public class Theatre {
 
     public ArrayList<Movie> displayAllMovies()
     {
+        for (Movie m: movieList)
+        {
+            System.out.println(m);
+
+        }
         return movieList;
     }
 
     public ArrayList<Movie> getMovies()
     {
-        // Get movies from DB
-        return null;
+        return  movieList;
     }
 }
