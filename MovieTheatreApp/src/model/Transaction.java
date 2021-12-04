@@ -11,14 +11,28 @@ public class Transaction
     double totalCost;
     Date purchaseDate;
     Card paymentCard;
-
+    ArrayList<Seat> selectedSeats;
 
 
     // Revisit after creating User
-    public Transaction(ArrayList<Ticket> tickets)
+    public Transaction(User customer)
     {
-        setTickets(tickets);
-        totalCost = tickets.size() * tickets.get(0).getShowing().getTicketPrice();
+        setUser(customer);
+        totalCost = 0;
+        tickets = new ArrayList<Ticket>();
+
+        // FIGURE OUT HOW TO SET TO CURRENT DATE?TIME!!!!
+        purcahseDate = new Date();
+    }
+
+    public void addTicket(Ticket t)
+    {
+        tickets.add(t);
+        this.updateCost(t);
+    }
+    public void updateCost(Ticket t)
+    {
+      totalCost += t.getShowing().getTicketPrice();
     }
 
     @Override
@@ -31,6 +45,11 @@ public class Transaction
                 ", purchaseDate=" + purchaseDate +
                 ", paymentCard=" + paymentCard +
                 '}';
+    }
+
+    public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
+    {
+            setPaymentCard(new Card(name, number, expMonth, expYear, cvv));
     }
 
     public int getTransactionId() {

@@ -6,11 +6,25 @@ import java.util.Date;
 public class Showing {
 
     int showingId;
+    int ticketCount;
     Movie movie;
     Theatre theatre;
     Date showTime;
     double ticketPrice;
     Seat [][] seats;
+    ArrayList<Seat> selectedSeats;
+
+    public Showing(int id, Date showTime, double ticketPrice, Movie m, Theatre t)
+    {
+        setShowingId(id);
+        setShowTime(showTime);
+        setTicketPrice(ticketPrice);
+        setTicketCount(0);
+        setMovie(m);
+        setTheatre(t);
+        seats = Database.getSeatDB();
+        selectedSeats = new ArrayList<Seat>();
+    }
 
     public int getTicketCount() {
         return ticketCount;
@@ -20,30 +34,37 @@ public class Showing {
         this.ticketCount = ticketCount;
     }
 
-    int ticketCount;
-
-    public Showing(int id, Date showTime, double ticketPrice, Movie m, Theatre t)
-    {
-        setShowingId(id);
-        setShowTime(showTime);
-        setTicketPrice(ticketPrice);
-        setMovie(m);
-        setTheatre(t);
-        ticketCount = 0;
-
-        seats =
-        for (int i =0; i < 5; i++)
-        {
-            seats.add(new ArrayList<Seat>(5));
-        }
+    public void setSeats(Seat[][] seats) {
+        this.seats = seats;
     }
 
-    // NEED TO FINISH
-    public void pickSeat(int row, int col)
+    public ArrayList<Seat> getSelectedSeats() {
+        return selectedSeats;
+    }
+
+    public void setSelectedSeats(ArrayList<Seat> selectedSeats) {
+        this.selectedSeats = selectedSeats;
+    }
+
+    public void addSeat(int row, int col)
     {
-        seats.get(row).get(col).reserved = True;
-        reservedSeat = seats.get(row).get(col);
-        double price = getTicketPrice();
+        selectedSeats.add(seats[row][col]);
+    }
+
+    public void removeSeat(int row, int col)
+    {
+        selectedSeats.remove(seats[row][col]);
+    }
+
+    public Transaction checkout(User customer)
+    {
+        Transaction t = new Transaction(customer);
+        for (Seat s: selectedSeats)
+        {
+            t.addTicket(new Ticket(ticketCount++ , s, this));
+            s.setReserved(false);
+        }
+        return t;
     }
 
     public int getShowingId() {
@@ -86,13 +107,10 @@ public class Showing {
         this.ticketPrice = ticketPrice;
     }
 
-    public ArrayList<ArrayList<Seat>> getSeats() {
+    public Seat[][] getSeats() {
         return seats;
     }
 
-    public void setSeats(ArrayList<ArrayList<Seat>> seats) {
-        this.seats = seats;
-    }
 
 
     @Override
