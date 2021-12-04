@@ -2,22 +2,30 @@ package model;
 
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Database {
 
-    private static ArrayList<Movie> movieDB;
+    private static ArrayList<Movie> movieDB = new ArrayList<Movie>();
     private static Seat[][] seatDB;
     private static ArrayList<User> RegUserDB;
+    private static Date date = new Date();
 
     private Database() { }
 
+    public static ArrayList<Movie> loadMovies()
+    {
+        if ( movieDB == null)
+        {
+            Database.getMovieDB();
+        }
+        return movieDB;
+    }
 
+    public static void getMovieDB() {
 
-    public static ArrayList<Movie> getMovieDB() {
-
-        movieDB = new ArrayList<Movie>();
-
+        //movieDB = new ArrayList<Movie>();
         movieDB.add(new Movie("Starwars", "A long time ago..", 1));
         movieDB.add(new Movie("James Bond", "007", 2));
         movieDB.add(new Movie("Fast and Furious", "Cars and guns", 3));
@@ -25,13 +33,11 @@ public class Database {
         movieDB.add(new Movie("Ghostbusters", "spooky", 5));
 
         for(Movie movie: movieDB) {
-            movie.addShowing(new Showing(1, new Date(2021, 12, 01, 17, 30), 10.75, movie, new Theatre(1)));
-            movie.addShowing(new Showing(1, new Date(2021, 12, 01, 20, 00), 10.75, movie, new Theatre(1)));
-            movie.addShowing(new Showing(1, new Date(2021, 12, 02, 17, 30), 10.75, movie, new Theatre(1)));
-            movie.addShowing(new Showing(1, new Date(2021, 12, 02, 20, 00), 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, date, 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, date, 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, date, 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, date, 10.75, movie, new Theatre(1)));
         }
-
-        return movieDB;
     }
 
     public static Seat[][] getSeatDB() {
