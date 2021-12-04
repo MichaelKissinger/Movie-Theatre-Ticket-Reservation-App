@@ -13,23 +13,23 @@ public class LoginChecker {
         this.password = password;
     }
 
-    public boolean checkUsernamePassword() {
-        Boolean usernameCheck = false;
-        Boolean passwordCheck = false;
-        for(User a: database.getUsers()) {
-            if (a.getUserName().equals(username)){
-                usernameCheck = true;
-            }
-            if (a.getPassword().equals(password)){
-                passwordCheck = true;
-                break;
-            }
-        }
-        if (usernameCheck && passwordCheck) {
-            return true;
-
-        } else {
-            return false;
-        }
-    }
+//    public boolean checkUsernamePassword() {
+//        Boolean usernameCheck = false;
+//        Boolean passwordCheck = false;
+//        for(User a: database.getUsers()) {
+//            if (a.getUserName().equals(username)){
+//                usernameCheck = true;
+//            }
+//            if (a.getPassword().equals(password)){
+//                passwordCheck = true;
+//                break;
+//            }
+//        }
+//        if (usernameCheck && passwordCheck) {
+//            return true;
+//
+//        } else {
+//            return false;
+//        }
+//    }
 }

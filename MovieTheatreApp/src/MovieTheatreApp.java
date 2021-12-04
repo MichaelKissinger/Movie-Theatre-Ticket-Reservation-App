@@ -16,5 +16,6 @@ public class MovieTheatreApp {
         // Shows the GUI
         theTerminal.setVisible(true);
         theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
 }
