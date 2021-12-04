@@ -9,7 +9,7 @@ public class LoginView extends JFrame implements ActionListener {
 
     private JTextField inputField, inputField2;
     private JButton enterButton;
-    private JLabel loginLabel, passwordLabel;
+    private JLabel loginLabel, passwordLabel, blankLabel, errorLabel;
 
     public LoginView() {
         setSize(400, 300);
@@ -19,46 +19,57 @@ public class LoginView extends JFrame implements ActionListener {
         JPanel buttonPanel = new JPanel();
         JPanel inputPanel = new JPanel();
 
-        inputPanel.setLayout(new GridLayout(3, 2));
+        inputPanel.setLayout(new GridLayout(4, 2));
 
         loginLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
 
-
-        inputPanel.add(loginLabel);
-        inputPanel.add(passwordLabel);
-
         inputField = new JTextField(10);
         inputField2 = new JTextField(10);
 
+        enterButton = new JButton("ENTER");
+
+        blankLabel = new JLabel("");
+        errorLabel = new JLabel("");
+        errorLabel.setForeground(Color.RED);
+
+        inputPanel.add(loginLabel);
+        inputPanel.add(passwordLabel);
         inputPanel.add(inputField);
         inputPanel.add(inputField2);
+        inputPanel.add(enterButton);
+        inputPanel.add(blankLabel);
+        inputPanel.add(errorLabel);
 
         displayPanel.add("North", buttonPanel);
-
-
-        enterButton = new JButton("ENTER");
-        inputPanel.add(enterButton);
-
         displayPanel.add("South", inputPanel);
 
         add(displayPanel);
 
-        enterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String userNameEntry = inputField.getText();
-                String userPasswordEntry = inputField2.getText();
-
-                TerminalView theTerminal = new TerminalView();
-                // Shows the GUI
-                theTerminal.setVisible(true);
-                theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                setVisible(false);
-
-            }
-        });
     }
+
+    public void addAuthenticationListener(ActionListener listenerForAuthentication) {
+        enterButton.addActionListener(listenerForAuthentication);
+    }
+
+    public String getUsername(){
+        return inputField.getText();
+    }
+
+    public String getPassword(){
+        return inputField2.getText();
+    }
+
+    public void setErrorLabel(String error) { errorLabel.setText(error); }
+
+    public void authentication(Boolean authenticated) {
+        TerminalView theTerminal = new TerminalView();
+        // Shows the GUI
+        theTerminal.setVisible(true);
+        theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(false);
+    }
+
 
 
     @Override
