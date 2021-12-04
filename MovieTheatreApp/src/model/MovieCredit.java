@@ -14,7 +14,7 @@ public class MovieCredit
         setAmount(amount);
 
         // MAKE IT +1 YEAR TODAY
-        setExpiryDate();
+//        setExpiryDate();
     }
 
     // TO-DO: METHODS FOR ASSIGNING CREDIT CODE AND ID!!!

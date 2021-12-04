@@ -37,6 +37,18 @@ public class TerminalView extends JFrame implements ActionListener {
         buttonPanel.add(option5);
         buttonPanel.add(option6);
 
+        option2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                SeatView theSeats = new SeatView();
+                // Shows the GUI
+                theSeats.setVisible(true);
+                theSeats.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                setVisible(false);
+            }
+        });
+
 
         displayPanel.add("North", buttonPanel);
 
@@ -95,5 +107,7 @@ public class TerminalView extends JFrame implements ActionListener {
     public void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
     }
+
+
 
 }

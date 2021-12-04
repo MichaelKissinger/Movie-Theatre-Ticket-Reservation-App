@@ -22,7 +22,7 @@ public class Transaction
         tickets = new ArrayList<Ticket>();
 
         // FIGURE OUT HOW TO SET TO CURRENT DATE?TIME!!!!
-        purcahseDate = new Date();
+//        purcahseDate = new Date();
     }
 
     public void addTicket(Ticket t)
