@@ -12,6 +12,8 @@ public class Database {
 
     private Database() { }
 
+
+
     public static ArrayList<Movie> getMovieDB() {
 
         movieDB = new ArrayList<Movie>();
