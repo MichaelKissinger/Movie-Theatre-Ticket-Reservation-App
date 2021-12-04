@@ -11,7 +11,7 @@ public class Theatre {
     public Theatre(int id)
     {
         this.theatreId = id;
-        movieList = Database.loadMovies();
+//        movieList = Database.loadMovies();
     }
 
     public Movie searchMovies(String title)

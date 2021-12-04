@@ -6,24 +6,23 @@ import java.util.Date;
 public class Showing {
 
     int showingId;
-    int ticketCount;
-    Movie movie;
-    Theatre theatre;
+    int movieId;
     Date showTime;
     double ticketPrice;
+    int theatreId;
+
+    Movie movie;
+    Theatre theatre;
+    int ticketCount;
     Seat [][] seats;
     ArrayList<Seat> selectedSeats;
 
-    public Showing(int id, Date showTime, double ticketPrice, Movie m, Theatre t)
-    {
-        setShowingId(id);
-        setShowTime(showTime);
-        setTicketPrice(ticketPrice);
-        setTicketCount(0);
-        setMovie(m);
-        setTheatre(t);
-        seats = Database.getSeatDB();
-        selectedSeats = new ArrayList<Seat>();
+    public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) {
+        this.showingId = showingId;
+        this.movieId = movieId;
+        this.showTime = showTime;
+        this.ticketPrice = ticketPrice;
+        this.theatreId = theatreId;
     }
 
     public int getTicketCount() {
@@ -110,8 +109,6 @@ public class Showing {
     public Seat[][] getSeats() {
         return seats;
     }
-
-
 
     @Override
     public String toString() {

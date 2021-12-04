@@ -1,5 +1,6 @@
 import controller.WelcomeController;
 import view.LoginView;
+import view.TerminalView;
 import view.WelcomeView;
 
 import javax.swing.*;
