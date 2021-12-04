@@ -20,9 +20,6 @@ public class Transaction
         setUser(customer);
         totalCost = 0;
         tickets = new ArrayList<Ticket>();
-
-        // FIGURE OUT HOW TO SET TO CURRENT DATE?TIME!!!!
-//        purcahseDate = new Date();
         purchaseDate = new Date();
     }
 

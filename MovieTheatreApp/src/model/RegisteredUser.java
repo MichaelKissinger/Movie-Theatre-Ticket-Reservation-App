@@ -20,6 +20,8 @@ public class RegisteredUser extends User {
 
     // TO-DO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
 
+
+
     public String getName() {
         return name;
     }
