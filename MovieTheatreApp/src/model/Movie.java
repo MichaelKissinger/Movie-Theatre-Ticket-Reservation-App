@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,23 +11,21 @@ public class Movie {
     String description;
     ArrayList<Showing> showings;
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "movieId=" + movieId +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", showings=" + showings +
-                '}';
-    }
+    private JDBCConnect myJDBC;
 
-    public Movie(String title, String synopsis, int id)
+
+    public Movie(int movieId, String title, String synopsis)
     {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        setMovieId(movieId);
         setTitle(title);
         setDescription(synopsis);
-        setMovieId(id);
-        showings = new ArrayList<Showing>();
 
+    }
+
+    public void initializeShowings() throws SQLException {
+        showings = myJDBC.showingSetStatement(movieId);
     }
 
     public void addShowing(Showing theShowing)
@@ -64,6 +63,16 @@ public class Movie {
 
     public void setShowings(ArrayList<Showing> showings) {
         this.showings = showings;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "movieId=" + movieId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", showings=" + showings +
+                '}';
     }
 
 
