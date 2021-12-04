@@ -23,10 +23,10 @@ public class Database {
         movieDB.add(new Movie("Ghostbusters", "spooky", 5));
 
         for(Movie movie: movieDB) {
-            movie.addShowing(new Showing(1, new Date(2021, 12, 01, 17, 30), 10.75), movie, new Theatre());
-            movie.addShowing(new Showing(1, new Date(2021, 12, 01, 20, 00), 10.75), movie, new Theatre());
-            movie.addShowing(new Showing(1, new Date(2021, 12, 02, 17, 30), 10.75), movie, new Theatre());
-            movie.addShowing(new Showing(1, new Date(2021, 12, 02, 20, 00), 10.75), movie, new Theatre());
+            movie.addShowing(new Showing(1, new Date(2021, 12, 01, 17, 30), 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, new Date(2021, 12, 01, 20, 00), 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, new Date(2021, 12, 02, 17, 30), 10.75, movie, new Theatre(1)));
+            movie.addShowing(new Showing(1, new Date(2021, 12, 02, 20, 00), 10.75, movie, new Theatre(1)));
         }
 
         return movieDB;
