@@ -9,6 +9,7 @@ public class User
     protected ArrayList<MovieCredit> userCredit;
     protected ArrayList<Transaction> previousPurchases;
 
+
     public User(int userId, String email) {
         setUserId(userId);
         setEmail(email);
