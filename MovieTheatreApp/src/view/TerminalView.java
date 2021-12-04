@@ -29,13 +29,14 @@ public class TerminalView extends JFrame implements ActionListener {
         option6 = new JButton("Quit application");
 
         option6.addActionListener(this);
+//
+//        buttonPanel.add(option1);
+//        buttonPanel.add(option2);
+//        buttonPanel.add(option3);
+//        buttonPanel.add(option4);
+//        buttonPanel.add(option5);
+//        buttonPanel.add(option6);
 
-        buttonPanel.add(option1);
-        buttonPanel.add(option2);
-        buttonPanel.add(option3);
-        buttonPanel.add(option4);
-        buttonPanel.add(option5);
-        buttonPanel.add(option6);
 
         option2.addActionListener(new ActionListener() {
             @Override
@@ -103,6 +104,31 @@ public class TerminalView extends JFrame implements ActionListener {
             System.exit(0);
         }
     }
+    public void addSearchMovieListener(ActionListener e){
+        option1.addActionListener(e);
+    }
+
+    public void addBuyMovieTicketListener(ActionListener e){
+        option2.addActionListener(e);// goes to seats vioew
+    }
+
+    public void addCancelTicketListener(ActionListener e){
+        option3.addActionListener(e);
+    }
+
+    public void registerListener(ActionListener e){
+        option4.addActionListener(e);
+    }
+
+    public void viewEmailListener(ActionListener e){
+        option5.addActionListener(e);
+    }
+
+
+
+
+
+
 
     public void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
