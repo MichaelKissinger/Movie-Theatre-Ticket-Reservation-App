@@ -15,7 +15,6 @@ public class RegisteredUser extends User {
         super(userId, email);
         setAddress(address);
         setPassword(password);
-
     }
 
     // TO-DO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
