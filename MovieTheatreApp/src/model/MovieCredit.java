@@ -4,8 +4,10 @@ import java.util.Date;
 
 public class MovieCredit
 {
+    // CONSIDER: make user able to pay with existing credit- checks credit list for a credit with sufficient funds for the payment at hand
     int movieCreditId;
     String creditCode;
+    Date creationDate;
     Date expiryDate;
     double amount;
 
