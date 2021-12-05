@@ -36,7 +36,9 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" object-ref="schemas/MOVIESYSTEM/tables/TRANSACTION" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="03fa3040-3022-4876-a06b-008737d9c7b8" />
@@ -44,6 +46,9 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.SHOWING" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.USER" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.MovieCredits" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.TRANSACTION" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.TICKETS" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.CARD" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.SEATS" active-filter-id="EMPTY_FILTER" />
   </component>

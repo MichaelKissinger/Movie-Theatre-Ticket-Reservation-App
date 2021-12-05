@@ -35,7 +35,7 @@ public class Database {
         registeredUserDB = myJDBC.registeredUserSetStatement();
     }
 
-    public static ArrayList<Movie> getMovieDB() {
+    public ArrayList<Movie> getMovieDB() {
         return movieDB;
     }
 

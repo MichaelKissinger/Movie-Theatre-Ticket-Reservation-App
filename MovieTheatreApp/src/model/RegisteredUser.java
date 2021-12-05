@@ -11,6 +11,7 @@ public class RegisteredUser extends User {
     private Date lastPaymentDate;
 
 
+
     public RegisteredUser(int userId, String email, Boolean isRegistered, String name,
                           String address, String password,
                           Boolean activeStatus, Date lastPaymentDate) {
@@ -63,7 +64,6 @@ public class RegisteredUser extends User {
     public void setLastPaymentDate(Date lastPaymentDate) {
         this.lastPaymentDate = lastPaymentDate;
     }
-
 
     @Override
     public String toString() {

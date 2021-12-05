@@ -7,10 +7,6 @@ public class Seat {
     int col;
     boolean reserved;
 
-    public Seat(){
-        setShowingId(1);
-        setReserved(false);
-    }
     public Seat(int showingId, String row, int col, boolean reserved)
     {
         setShowingId(showingId);
