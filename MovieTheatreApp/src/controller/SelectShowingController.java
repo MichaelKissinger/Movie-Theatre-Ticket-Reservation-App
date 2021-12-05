@@ -3,7 +3,6 @@ package controller;
 import model.Movie;
 import model.Showing;
 import model.User;
-import view.SelectMovieView;
 import view.SelectShowingView;
 
 import javax.swing.*;
@@ -30,7 +29,7 @@ public class SelectShowingController {
         selectShowingView.addProceedButtonListener(e -> {
             int index = selectShowingView.getListIndex();
             showing = movie.getShowings().get(index);
-            SeatController seatController = new SeatController(user, showing);
+            SelectedSeatController selectedSeatController = new SelectedSeatController(user, showing);
             selectShowingView.setVisible(false);
 
 

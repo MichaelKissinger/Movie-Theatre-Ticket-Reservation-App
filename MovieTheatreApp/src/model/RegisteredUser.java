@@ -27,6 +27,7 @@ public class RegisteredUser extends User {
         this.paymentNumber = paymentNumber;
     }
 
+    // FOR TESTING
     public RegisteredUser(int userId, String email, String address, String userPasswordEntry) {
         super(userId, email);
         this.address = address;
