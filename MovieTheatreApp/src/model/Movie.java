@@ -21,8 +21,6 @@ public class Movie {
         setDescription(synopsis);
 
         initializeShowings();
-
-        showings = new ArrayList<Showing>();
     }
 
     public void initializeShowings() throws SQLException {

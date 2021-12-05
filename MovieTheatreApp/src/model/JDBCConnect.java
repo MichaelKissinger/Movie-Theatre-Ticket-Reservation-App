@@ -110,7 +110,6 @@ public class JDBCConnect {
     }
 
 
-
     public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
         ArrayList<Seat> seatList = new ArrayList<Seat>();
         try {
@@ -131,5 +130,33 @@ public class JDBCConnect {
         }
         return seatList;
     }
+
+    public ArrayList<MovieCredit> creditSetStatement(int userId) throws SQLException {
+        ArrayList<MovieCredit> creditList = new ArrayList<MovieCredit>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM SEATS WHERE ShowingID = \"" + userId + "\";");
+
+            while (results.next()) {
+                int movieCreditId = results.getInt("CreditID");
+                String creditCode = results.getString("CreditCode");
+                Date expiryDate = results.getDate("ExpiryDate");
+                double amount = results.getDouble("Amount");
+
+                MovieCredit myMovieCredit = new MovieCredit(movieCreditId, creditCode, expiryDate,
+                amount, userId);
+                creditList.add(myMovieCredit);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return creditList;
+    }
+
+
+
+
+
 }
 

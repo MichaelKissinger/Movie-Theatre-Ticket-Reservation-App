@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User
@@ -7,20 +8,23 @@ public class User
     protected int userId;
     protected String email;
     protected Boolean isRegistered;
-//    protected ArrayList<MovieCredit> userCredit;
+    protected ArrayList<MovieCredit> userCredit;
     protected ArrayList<Transaction> previousPurchases;
 
+    private JDBCConnect myJDBC;
 
-    public User(int userId, String email, Boolean isRegistered) {
+    public User(int userId, String email, Boolean isRegistered) throws SQLException {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
         setUserId(userId);
         setEmail(email);
         this.isRegistered = isRegistered;
-        previousPurchases = new ArrayList<Transaction>();
-//        userCredit = new ArrayList<MovieCredit>();
+
+        initializeUserCredits();
     }
 
-    public void initializeUserCredits() {
-
+    public void initializeUserCredits() throws SQLException {
+        this.userCredit = myJDBC.creditSetStatement(userId);
     }
 
     // TO_DO: ADD/ REMOVE CREDIT AND TRANSACTION METHODS!!!
