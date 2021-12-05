@@ -11,7 +11,7 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "");
         } catch (Exception e) {
             e.printStackTrace();
         }
