@@ -6,13 +6,25 @@ public class Seat {
     char row;
     int col;
 
-    public Seat(char row, int col)
+
+
+    int showingID;
+
+    public Seat(int id, char row, int col)
     {
         setReserved(false);
         setRow(row);
         setCol(col);
+        setShowingID(id);
     }
 
+    public int getShowingID() {
+        return showingID;
+    }
+
+    public void setShowingID(int showingID) {
+        this.showingID = showingID;
+    }
 
     public boolean isReserved() {
         return reserved;

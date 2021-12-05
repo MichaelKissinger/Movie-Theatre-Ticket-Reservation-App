@@ -11,7 +11,6 @@ public class Transaction
     double totalCost;
     Date purchaseDate;
     Card paymentCard;
-    ArrayList<Seat> selectedSeats;
 
 
     // Revisit after creating User
