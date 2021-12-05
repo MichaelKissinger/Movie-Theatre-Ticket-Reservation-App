@@ -21,8 +21,6 @@ public class Movie {
         setDescription(synopsis);
 
         initializeShowings();
-
-        showings = new ArrayList<Showing>();
     }
 
     public void initializeShowings() throws SQLException {
@@ -70,6 +68,5 @@ public class Movie {
     public String toString() {
         return this.getTitle();
     }
-
 
 }

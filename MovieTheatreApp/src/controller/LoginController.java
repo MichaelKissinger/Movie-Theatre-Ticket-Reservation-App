@@ -6,6 +6,7 @@ import model.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class LoginController {
 
@@ -35,8 +36,12 @@ public class LoginController {
 
             boolean auth = authenticateUser(userNameEntry, userPasswordEntry);
             if(auth){
-//                User registeredUser = new RegisteredUser(1, "email", "address", userPasswordEntry);
-//                TerminalController terminalController = new TerminalController(registeredUser);
+                User registeredUser = new RegisteredUser(1, "email", "address", userPasswordEntry);
+                try {
+                    TerminalController terminalController = new TerminalController(registeredUser);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 loginView.setVisible(false);
             }
             else {
