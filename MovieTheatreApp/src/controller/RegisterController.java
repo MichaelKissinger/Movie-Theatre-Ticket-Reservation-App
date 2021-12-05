@@ -21,6 +21,8 @@ public class RegisterController {
         RegisterView registerView = new RegisterView();
         registerView.setVisible(true);
         registerView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
         registerView.addRegisterButtonListener(e->{
             boolean errCheck = true;
 
@@ -103,12 +105,14 @@ public class RegisterController {
         registerView.addCancelButtonListener(e->{
             try{
                 TerminalController terminalController = new TerminalController(this.user);
+                registerView.setVisible(false);
             } catch(SQLException err){
                 err.printStackTrace();
             }
-            registerView.setVisible(false);
+
 
         });
+
 
     }
 
