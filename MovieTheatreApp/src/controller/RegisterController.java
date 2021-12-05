@@ -6,6 +6,7 @@ import view.RegisterView;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.NumberFormat;
 
 public class RegisterController {
@@ -74,6 +75,15 @@ public class RegisterController {
             if(errCheck==true) {
                 registerView.setVisible(false);
             }
+
+        });
+        registerView.addCancelButtonListener(e->{
+            try{
+                TerminalController terminalController = new TerminalController(this.user);
+            } catch(SQLException err){
+                err.printStackTrace();
+            }
+            registerView.setVisible(false);
 
         });
 

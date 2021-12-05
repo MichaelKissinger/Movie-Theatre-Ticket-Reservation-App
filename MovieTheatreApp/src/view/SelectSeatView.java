@@ -134,7 +134,7 @@ public class SelectSeatView extends JFrame implements ActionListener {
         }
 
         selectedSeats.add(((JButton)e.getSource()).getText());
-        ((JButton) e.getSource()).setBackground(Color.GRAY);
+        ((JButton) e.getSource()).setBackground(Color.lightGray);
 
         this.updateText();
     }
