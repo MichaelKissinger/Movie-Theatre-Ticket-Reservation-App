@@ -24,22 +24,25 @@ public class SelectMovieView extends JFrame {
         JPanel buttonPanel = new JPanel();
         JPanel inputPanel = new JPanel();
 
-        buttonPanel.setLayout(new GridLayout(2, 3));
+        buttonPanel.setLayout(new GridLayout(1, 2));
+        displayPanel.setLayout(new BorderLayout());
 
         backButton = new JButton("Back");
         proceedButton = new JButton("Proceed");
 
         buttonPanel.add(backButton);
         buttonPanel.add(proceedButton);
-
-
+        JLabel title = new JLabel("Please select a movie");
+        inputPanel.add(title);
 
         display = new JList(movies.toArray());
         display.setVisibleRowCount(20);
         display.setFixedCellHeight(20);
         display.setFixedCellWidth(500);
+        JScrollPane sp = new JScrollPane(display);
 
-        displayPanel.add("Center", display);
+
+        displayPanel.add("Center", sp);
         displayPanel.add("South", buttonPanel);
         displayPanel.add("North", inputPanel);
         add(displayPanel);
