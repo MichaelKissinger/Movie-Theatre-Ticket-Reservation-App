@@ -52,32 +52,22 @@ CREATE TABLE USER(
     Password varchar(15),
     ActiveStatus BOOL,
     LastPaymentDate DATETIME,
+    Card varchar(16),
     PRIMARY KEY(UserID));
     
-Insert INTO USER(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate)
+Insert INTO USER(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate, Card)
 Values
-(True, "Kody", "CALGARY SOMEWHERE", "kodykou@ucalgary.ca", "fakepassword", True, "2020-12-20 00:00:00"),
-(True, "Jared", "CALGARY SOMEWHEREELSE", "JARED@uc.ca", "fakepassword1", False, "2019-12-20 00:00:00"),
-(True, "Mike", "Calgarylowercased", "mikek@ucalgary.ca", "fakepassword2", True, "2021-10-20 00:00:00"),
-(True, "Nic", "calgary4thspelling", "nickl@ucalgary.ca", "fakepassword3", False, NULL),
-(False, "", "", "nonregistereduser@ucalgary.ca", "", False, NULL );
-    
-CREATE TABLE CARD(
-	CardID int not null auto_increment,
-    UserID int,
-    CardNumber varchar(16),
-    PRIMARY KEY(CardID), 
-    FOREIGN KEY(UserID) REFERENCES USER(UserID));
+(True, "Kody", "CALGARY SOMEWHERE", "kodykou@ucalgary.ca", "fakepassword", True, "2020-12-20 00:00:00", "1000200030004000"),
+(True, "Jared", "CALGARY SOMEWHEREELSE", "JARED@uc.ca", "fakepassword1", True, "2021-12-20 00:00:00", "4321123489891122"),
+(True, "Mike", "Calgarylowercased", "mikek@ucalgary.ca", "fakepassword2", True, "2021-10-20 00:00:00","2000400080009000"),
+(True, "Nic", "calgary4thspelling", "nickl@ucalgary.ca", "fakepassword3", False, NULL, "1000300020004000"),
+(False, "", "", "nonregistereduser@ucalgary.ca", "", False, NULL, Null );
 
-
-INSERT INTO CARD(UserID, CardNumber) VALUES
-(1, "1000200030004000"),
-(1,"1000300020004000"),
-(3, "2000400080009000"),
-(2, "4321123489891122");
-
-
-    
+UPDATE USER SET ActiveStatus = 
+Case
+When (current_timestamp <( SELECT DATE_ADD(LastPaymentDate, INTERVAL 1 YEAR))) THEN true 
+Else false 
+END;
 
     
 CREATE TABLE TRANSACTION(
@@ -87,8 +77,7 @@ CREATE TABLE TRANSACTION(
     PurchaseDate DATETIME, 
     CardID int,
     PRIMARY KEY(TransactionID),
-    FOREIGN KEY(UserID) REFERENCES USER(UserID),
-    FOREIGN KEY(CardID) REFERENCES CARD(CardID)
+    FOREIGN KEY(UserID) REFERENCES USER(UserID)
     );
 INSERT INTO TRANSACTION(UserID, Cost, PurchaseDate, CardID)
 VALUES
@@ -123,7 +112,6 @@ Values
 ("Error compensation", "2024-12-25 00:00:00", 50.00, 1),
 ("Refund", "2023-12-25 00:00:00", 12.00, 3);
 
-    
     
 INSERT INTO Seats(ShowingID, rownum, colnum, TransactionID)
 VALUES(1, 'A',1, null),
