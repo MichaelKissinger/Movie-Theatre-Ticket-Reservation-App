@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ public class RegisteredUser extends User {
 
     public RegisteredUser(int userId, String email, Boolean isRegistered, String name,
                           String address, String password,
-                          Boolean activeStatus, Date lastPaymentDate) {
+                          Boolean activeStatus, Date lastPaymentDate) throws SQLException {
         super(userId, email, isRegistered);
         this.name = name;
         this.address = address;

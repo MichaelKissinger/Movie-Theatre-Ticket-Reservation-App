@@ -36,9 +36,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" object-ref="schemas/MOVIESYSTEM/tables/TRANSACTION" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="03fa3040-3022-4876-a06b-008737d9c7b8" />
