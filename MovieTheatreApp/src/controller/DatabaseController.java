@@ -6,17 +6,14 @@ import model.Showing;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DatabaseController {
 
     ArrayList<Movie> movieList;
 
-
     public DatabaseController() throws SQLException {
         // PULL ALL MOVIES INTO MOVIE LIST
-        Database myDatabase = new Database();
-        movieList = myDatabase.getMovieDB();
+        movieList = Database.getMovieDB();
     }
 
     public String displayAllMovies(){

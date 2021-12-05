@@ -57,7 +57,8 @@ public class TransactionController {
         Transaction transaction = new Transaction(user);
 
         for(int index: purchasedSeatsIndex){
-            showing.getSeats().get(index).setTransactionID();
+            //showing.getSeats().get(index).setTransactionID();
+            return;
         }
         // TO_DO:
         // Create Transaction Object and Push to DB
