@@ -3,7 +3,6 @@ package controller;
 import model.Movie;
 import model.User;
 import view.SelectMovieView;
-import view.SelectShowingView;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -11,13 +10,13 @@ import java.sql.SQLException;
 public class SelectMovieController {
     private User user;
     private Movie movie;
-    MovieController movieController;
+    DatabaseController databaseController;
 
-    public SelectMovieController(User user, MovieController movieController) {
+    public SelectMovieController(User user, DatabaseController databaseController) {
 
         this.user = user;
 
-        SelectMovieView selectMovieView = new SelectMovieView(movieController.getMovieList());
+        SelectMovieView selectMovieView = new SelectMovieView(databaseController.getMovieList());
         selectMovieView.setVisible(true);
         selectMovieView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,7 +31,7 @@ public class SelectMovieController {
 
         selectMovieView.addProceedButtonListener(e -> {
             int index = selectMovieView.getListIndex();
-            movie = movieController.getMovieList().get(index);
+            movie = databaseController.getMovieList().get(index);
             SelectShowingController selectShowingController = new SelectShowingController(this.user, movie);
             selectMovieView.setVisible(false);
         });

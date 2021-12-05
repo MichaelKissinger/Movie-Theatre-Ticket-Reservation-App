@@ -8,26 +8,26 @@ import java.sql.SQLException;
 
 public class TerminalController {
     TerminalView terminalView;
-    MovieController movieController;
+    DatabaseController databaseController;
     User user;
 
     public TerminalController(User user) throws SQLException {
         this.user = user;
         terminalView = new TerminalView();
-        movieController = new MovieController();
+        databaseController = new DatabaseController();
         // Shows the GUI
         terminalView.setVisible(true);
         terminalView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         terminalView.addSearchMovieListener(e -> {
-            SelectMovieController selectMovieController = new SelectMovieController(user, movieController);
             terminalView.setFlag("Search");
             terminalView.clearDisplay();
-            terminalView.addText(movieController.displayAllMovies());
+            terminalView.addText("Search for a movie and press enter: \n\n");
+            terminalView.addText(databaseController.displayAllMovies());
         });
 
         terminalView.addBuyMovieTicketListener(e -> {
-            SelectMovieController selectMovieController = new SelectMovieController(user, movieController);
+            SelectMovieController selectMovieController = new SelectMovieController(user, databaseController);
             terminalView.setVisible(false);
         });
 
@@ -36,8 +36,13 @@ public class TerminalController {
         });
 
         terminalView.addRegisterListener(e->{
+            if (user.getRegistered()){
+                terminalView.displayErrorMessage("You are already registered");
+            }else{
             RegisterController registerController = new RegisterController(user);
             terminalView.setVisible(false);
+            }
+
 
         });
 
@@ -46,6 +51,19 @@ public class TerminalController {
         });
 
         terminalView.addEnterButtonListener(e -> {
+            String flag = terminalView.getFlag();
+
+            switch(flag){
+                case "Search": {
+                    String search = terminalView.getStringInput();
+                    terminalView.clearDisplay();
+                    terminalView.addText(databaseController.displayMovieShowingsByTitle(search));
+                }
+
+                case "" : {
+
+                }
+            }
 
         });
     }

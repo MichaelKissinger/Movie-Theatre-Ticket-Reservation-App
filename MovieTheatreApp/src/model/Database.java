@@ -15,6 +15,7 @@ public class Database {
     private static Date date = new Date();
 
     private JDBCConnect myJDBC;
+
     public Database() throws SQLException {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();

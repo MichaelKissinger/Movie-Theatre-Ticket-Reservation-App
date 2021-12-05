@@ -1,12 +1,9 @@
 package view;
 
-import controller.MovieController;
 import model.Movie;
-import model.Showing;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.*;
 
