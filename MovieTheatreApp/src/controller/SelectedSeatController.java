@@ -16,10 +16,12 @@ public class SelectedSeatController {
 
     public SelectedSeatController(User user, Showing showing) {
 
+//        showing.
+
         this.user = user;
         this.showing = showing;
         this.purchasedSeatsIndex = new ArrayList<Integer>();
-        SelectSeatView selectSeatView = new SelectSeatView(showing.getTicketPrice());
+        SelectSeatView selectSeatView = new SelectSeatView(showing.getTicketPrice(), showing.getSeats());
         selectSeatView.setVisible(true);
         selectSeatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
