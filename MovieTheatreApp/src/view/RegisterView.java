@@ -1,26 +1,26 @@
 package view;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 import java.awt.FlowLayout;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import java.awt.event.ActionListener;
 
-public class RegisterView extends JPanel {
+public class RegisterView extends JFrame {
     private JTextField name;
     private JTextField address;
     private JPasswordField password;
     private JTextField creditCardNumber;
     private JTextField cvv;
+    private JSpinner month;
+    private JSpinner year;
+    private JButton registerButton;
+    private JTextField cardHolderName;
 
     /**
      * Create the panel.
      */
     public RegisterView() {
+        setSize(800,650);
         setLayout(new BorderLayout(0, 0));
 
         JPanel labelPanel = new JPanel();
@@ -32,12 +32,13 @@ public class RegisterView extends JPanel {
         JPanel buttonPanel = new JPanel();
         add(buttonPanel, BorderLayout.SOUTH);
 
-        JButton registerButton = new JButton("Register");
+        registerButton = new JButton("Register");
         buttonPanel.add(registerButton);
+
 
         JPanel basePanel = new JPanel();
         add(basePanel, BorderLayout.CENTER);
-        basePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 40));
+        basePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 30));
 
         JLabel noteLabel = new JLabel("To register an account, please provide the required information in the form below: ");
         basePanel.add(noteLabel);
@@ -72,29 +73,36 @@ public class RegisterView extends JPanel {
         password.setColumns(40);
         passwordPanel.add(password);
 
+
+
+
         JLabel cardLabel = new JLabel("Credit Card Number: ");
 
         creditCardNumber = new JTextField();
         creditCardNumber.setColumns(40);
 
         JPanel cardPanel = new JPanel();
-        basePanel.add(cardPanel);
 
-        cardPanel.add(cardLabel);
-        cardPanel.add(creditCardNumber);
+        JPanel cardPanel1 = new JPanel();
+        cardPanel1.add(cardLabel);
+        cardPanel1.add(creditCardNumber);
+//        cardPanel.add(cardLabel);
+//        cardPanel.add(creditCardNumber);
+        basePanel.add(cardPanel1);
 
-        JLabel monthLabel = new JLabel("Credit Card Expiry Month");
+        JLabel monthLabel = new JLabel("Expiry Month");
         cardPanel.add(monthLabel);
 
-        JSpinner month = new JSpinner();
-        month.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+        month = new JSpinner();
+        month.setModel(new SpinnerNumberModel(0, 0, 12, 1));
         cardPanel.add(month);
 
-        JLabel yearLabel = new JLabel("New label");
+        JLabel yearLabel = new JLabel("Expiry year");
         cardPanel.add(yearLabel);
 
-        JSpinner year = new JSpinner();
-        year.setModel(new SpinnerNumberModel(21, 21, 99, 1));
+        year = new JSpinner();
+        year.setModel(new SpinnerNumberModel(20, 20, 99, 1));
+
         cardPanel.add(year);
 
         JLabel cvvLabel = new JLabel("CVV");
@@ -103,6 +111,14 @@ public class RegisterView extends JPanel {
         cvv = new JTextField();
         cardPanel.add(cvv);
         cvv.setColumns(3);
+        basePanel.add(cardPanel);
+        cardHolderName = new JTextField();
+        cardHolderName.setColumns(40);
+        JPanel holderName = new JPanel();
+        holderName.add(new JLabel("Card Holder Name: "));
+        holderName.add(cardHolderName);
+        basePanel.add(holderName);
+
 
         JLabel noteLabel1 = new JLabel("* Please note a $20.00 annual account fee will be deducted upfront upon registration");
         basePanel.add(noteLabel1);
@@ -111,5 +127,47 @@ public class RegisterView extends JPanel {
         basePanel.add(noteLabel2);
 
     }
+
+    public void addRegisterButtonListener(ActionListener e) {
+        registerButton.addActionListener(e);
+    }
+
+    public String getName(){
+        return this.name.getText();
+    }
+
+    public String getAddress(){
+        return this.address.getText();
+    }
+    public String getPassword(){
+        return String.valueOf(this.password.getPassword());
+    }
+    public String getCard(){
+        return this.creditCardNumber.getText();
+    }
+
+    public int getMonth(){
+        return (int)this.month.getValue();
+    }
+
+    public int getYear(){
+        return (int)this.year.getValue();
+    }
+
+    public String getCvv(){
+        return this.cvv.getText();
+    }
+
+    public String getCardHolderName(){
+        return this.cardHolderName.getText();
+    }
+
+    public void alert(String msg){
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
+
+
+
 
 }

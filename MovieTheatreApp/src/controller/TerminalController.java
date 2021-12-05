@@ -36,6 +36,8 @@ public class TerminalController {
         });
 
         terminalView.addRegisterListener(e->{
+            RegisterController registerController = new RegisterController(user);
+            terminalView.setVisible(false);
 
         });
 
