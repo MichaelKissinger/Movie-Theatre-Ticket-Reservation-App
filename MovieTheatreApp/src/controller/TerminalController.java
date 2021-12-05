@@ -36,8 +36,13 @@ public class TerminalController {
         });
 
         terminalView.addRegisterListener(e->{
+            if (user.getRegistered()){
+                terminalView.displayErrorMessage("You are already registered");
+            }else{
             RegisterController registerController = new RegisterController(user);
             terminalView.setVisible(false);
+            }
+
 
         });
 
