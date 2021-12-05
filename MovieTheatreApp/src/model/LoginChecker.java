@@ -15,7 +15,12 @@ public class LoginChecker {
         return null;
     }
 
-    public boolean AuthenticateOrdinaryUser(String email){
-        return true;
+    public static User AuthenticateOrdinaryUser(String email) throws SQLException {
+        for(User user: Database.getUserDB()) {
+            if (user.getEmail().equals(email)){
+                return user;
+            }
+        }
+        return null;
     }
 }

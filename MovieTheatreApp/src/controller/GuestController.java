@@ -1,5 +1,6 @@
 package controller;
 
+import model.LoginChecker;
 import model.User;
 import view.GuestView;
 
@@ -15,15 +16,16 @@ public class GuestController {
 
         guestView.addEnterListener(e -> {
             String email = guestView.getEmail();
-
-            // TO-DO
-                // Validate Email
-                // Check User exists in DB using email
-                // If yes - Get user
-                // If no - create a new user
-
             try {
-                ordinaryUser = new User(1, "email", false);
+                ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            if(ordinaryUser == null){
+                // CREATE USER HERE
+                // ASSIGN NEW USER TO ordinaryUSER
+            }
+            try {
                 TerminalController terminalController = new TerminalController(ordinaryUser);
                 guestView.setVisible(false);
             } catch (SQLException ex) {
