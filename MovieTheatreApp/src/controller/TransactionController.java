@@ -1,6 +1,7 @@
 package controller;
 
 import model.Showing;
+import model.Transaction;
 import model.User;
 import view.PaymentView;
 import view.TransactionConfirmationView;
@@ -36,6 +37,7 @@ public class TransactionController {
             PaymentView paymentView = new PaymentView();
             paymentView.setVisible(true);
             paymentView.addPurchaseButtonListener(e -> {
+                this.createTransaction();
                 paymentView.setVisible(false);
                 TransactionConfirmationView transactionConfirmationView = new TransactionConfirmationView();
                 transactionConfirmationView.setVisible(true);
@@ -52,6 +54,11 @@ public class TransactionController {
     }
 
     public void createTransaction() {
+        Transaction transaction = new Transaction(user);
+
+        for(int index: purchasedSeatsIndex){
+            showing.getSeats().get(index).setTransactionID();
+        }
         // TO_DO:
         // Create Transaction Object and Push to DB
         // Iterate through purchasedSeatsIndex and get seat from showing and update transaction ID
