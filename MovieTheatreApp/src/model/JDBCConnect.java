@@ -11,7 +11,7 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,7 +117,8 @@ public class JDBCConnect {
             while (results.next()) {
                 String rownum = results.getString("rownum");
                 int colnum = results.getInt("colnum");
-                int transactionID = results.getInt("TransactionID");
+//                int transactionID = results.getInt("TransactionID");
+                int transactionID = 0;
 
                 Seat mySeat = new Seat(showingId, rownum, colnum, transactionID);
                 seatList.add(mySeat);
