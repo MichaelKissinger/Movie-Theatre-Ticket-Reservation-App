@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class RegisteredUser extends User {
@@ -10,6 +11,8 @@ public class RegisteredUser extends User {
     private Boolean activeStatus;
     private Date lastPaymentDate;
     private Float paymentNumber;
+
+
 
     public RegisteredUser(int userId, String email, String name,
                           String address, String paymentOption, String password,
@@ -22,6 +25,12 @@ public class RegisteredUser extends User {
         this.activeStatus = activeStatus;
         this.lastPaymentDate = lastPaymentDate;
         this.paymentNumber = paymentNumber;
+    }
+
+    public RegisteredUser(int userId, String email, String address, String userPasswordEntry) {
+        super(userId, email);
+        this.address = address;
+        this.password = userPasswordEntry;
     }
 
     // TO-DO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!

@@ -16,24 +16,24 @@ public class Database {
 
     //private JDBCConnect myJDBC;
     public Database() throws SQLException {
-        myJDBC = new JDBCConnect();
-        myJDBC.createConnection();
-        initializeMovies();
-        initializeUsers();
-        initializeRegisteredUsers();
+//        myJDBC = new JDBCConnect();
+//        myJDBC.createConnection();
+//        initializeMovies();
+//        initializeUsers();
+//        initializeRegisteredUsers();
     }
 
 //    public void initializeMovies() throws SQLException {
 //        movieDB = myJDBC.movieSetStatement();
 //    }
 
-    public void initializeUsers() throws SQLException {
-        userDB = myJDBC.userSetStatement();
-    }
-
-    public void initializeRegisteredUsers() throws SQLException {
-        registeredUserDB = myJDBC.registeredUserSetStatement();
-    }
+//    public void initializeUsers() throws SQLException {
+//        userDB = myJDBC.userSetStatement();
+//    }
+//
+//    public void initializeRegisteredUsers() throws SQLException {
+//        registeredUserDB = myJDBC.registeredUserSetStatement();
+//    }
 
     public static ArrayList<Movie> getMovieDB() {
         return movieDB;

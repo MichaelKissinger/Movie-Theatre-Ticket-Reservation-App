@@ -2,6 +2,7 @@ package model;
 
 public class Card {
     int cardId;
+    int userId;
     String cardHolderName;
     int cardNumber;
     int expiryMonth;

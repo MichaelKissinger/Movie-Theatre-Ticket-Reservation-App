@@ -13,9 +13,9 @@ public class Transaction
     Card paymentCard;
 
     // Revisit after creating User
-    public Transaction(User customer)
+    public Transaction(User user)
     {
-        setUser(customer);
+        setUser(user);
         totalCost = 0;
         tickets = new ArrayList<Ticket>();
         purchaseDate = new Date();

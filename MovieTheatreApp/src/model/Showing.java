@@ -13,7 +13,7 @@ public class Showing {
 //    Movie movie;
 //    Theatre theatre;
 //    int ticketCount;
-//    Seat [][] seats;
+    Seat [][] seats;
 //    ArrayList<Seat> selectedSeats;
 
     public Showing(int showingId, int movieId, Date showTime, double ticketPrice) {

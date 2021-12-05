@@ -8,7 +8,8 @@ public class Seat {
     int col;
 
     public Seat(){
-
+        setShowingId(1);
+        setReserved(false);
     }
     public Seat(int showingId, char row, int col)
     {
@@ -16,7 +17,7 @@ public class Seat {
         setReserved(false);
         setRow(row);
         setCol(col);
-        setShowingId(id);
+        setShowingId(showingId);
     }
 
     public int getShowingId() {
