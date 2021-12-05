@@ -19,17 +19,6 @@ public class MovieController {
         showingController = new ShowingController();
         Database myDatabase = new Database();
         movieList = myDatabase.getMovieDB();
-
-//        movieList = new ArrayList<Movie>();
-//        movieList.add(new Movie(1, "Starwars", "starwars"));
-//        movieList.add(new Movie(2, "James Bond", "007"));
-//        movieList.add(new Movie(3, "Spiderman", "spider"));
-//        Date date = new Date();
-//        for(Movie movie: movieList) {
-//            movie.addShowing(new Showing(1, movie.getMovieId(), date, 10.75));
-//            movie.addShowing(new Showing(2, movie.getMovieId(), date, 10.75));
-//            movie.addShowing(new Showing(3, movie.getMovieId(), date, 10.75));
-//        }
     }
 
     public String displayAllMovies(){

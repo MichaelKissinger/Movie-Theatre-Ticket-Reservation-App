@@ -69,5 +69,4 @@ public class Movie {
         return this.getTitle();
     }
 
-
 }

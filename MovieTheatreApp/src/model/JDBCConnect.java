@@ -11,7 +11,7 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,7 +70,6 @@ public class JDBCConnect {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
                 Boolean isRegistered = results.getBoolean("IsRegistered");
-
                 User myUser = new User(userId, email, isRegistered);
                 userList.add(myUser);
             }
@@ -108,7 +107,6 @@ public class JDBCConnect {
         }
         return registeredUserList;
     }
-
 
     public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
         ArrayList<Seat> seatList = new ArrayList<Seat>();
