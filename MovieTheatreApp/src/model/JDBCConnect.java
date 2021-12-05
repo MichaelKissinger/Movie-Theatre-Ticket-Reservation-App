@@ -69,15 +69,8 @@ public class JDBCConnect {
             while (results.next()) {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
-<<<<<<< HEAD
-
-
-                User myUser = new User(userId, email);
-=======
                 Boolean isRegistered = results.getBoolean("IsRegistered");
-
                 User myUser = new User(userId, email, isRegistered);
->>>>>>> main
                 userList.add(myUser);
             }
             myStmt.close();
@@ -96,18 +89,6 @@ public class JDBCConnect {
             while (results.next()) {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
-<<<<<<< HEAD
-                String name = results.getString("Name");
-                String address = results.getString("Address");
-                String password = results.getString("Password");
-                Boolean activeStatus  = results.getBoolean("ActiveStatus");
-                Date lastPaymentDate  = results.getDate("LastPaymentDate");
-
-                RegisteredUser myUser = new RegisteredUser(userId, email, name,
-                        address, password,
-                        activeStatus, lastPaymentDate);
-                        registeredUserList.add(myUser);
-=======
                 Boolean isRegistered = results.getBoolean("IsRegistered");
                 String name = results.getString("Name");
                 String address = results.getString("Address");
@@ -119,7 +100,6 @@ public class JDBCConnect {
                         address, password,
                         activeStatus, lastPaymentDate);
                 registeredUserList.add(myUser);
->>>>>>> main
             }
             myStmt.close();
         } catch (SQLException e) {
@@ -127,10 +107,6 @@ public class JDBCConnect {
         }
         return registeredUserList;
     }
-<<<<<<< HEAD
-=======
-
-
 
     public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
         ArrayList<Seat> seatList = new ArrayList<Seat>();
@@ -152,6 +128,5 @@ public class JDBCConnect {
         }
         return seatList;
     }
->>>>>>> main
 }
 
