@@ -11,7 +11,7 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,9 +117,9 @@ public class JDBCConnect {
             while (results.next()) {
                 String rownum = results.getString("rownum");
                 int colnum = results.getInt("colnum");
-                Boolean reserved = results.getBoolean("reserved");
+                int transactionID = results.getInt("TransactionID");
 
-                Seat mySeat = new Seat(showingId, rownum, colnum, reserved);
+                Seat mySeat = new Seat(showingId, rownum, colnum, transactionID);
                 seatList.add(mySeat);
             }
             myStmt.close();
@@ -133,7 +133,7 @@ public class JDBCConnect {
         ArrayList<MovieCredit> creditList = new ArrayList<MovieCredit>();
         try {
             Statement myStmt = dbConnect.createStatement();
-            ResultSet results = myStmt.executeQuery("SELECT * FROM SEATS WHERE ShowingID = \"" + userId + "\";");
+            ResultSet results = myStmt.executeQuery("SELECT * FROM MovieCredits WHERE UserID = \"" + userId + "\";");
 
             while (results.next()) {
                 int movieCreditId = results.getInt("CreditID");

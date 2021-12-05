@@ -12,7 +12,7 @@ public class SelectedSeatController {
 
     private User user;
     private Showing showing;
-    private ArrayList<Integer> purchasedSeatsIndex;
+    private ArrayList<Integer> purchasedSeats;
 
     public SelectedSeatController(User user, Showing showing) {
 
@@ -25,7 +25,7 @@ public class SelectedSeatController {
 
         selectSeatView.addFinishedButtonListener(e -> {
             for(String seat: selectSeatView.getSelectedSeats()){
-                purchasedSeatsIndex.add(getSeatIndex(seat));
+                purchasedSeats.add(getSeatIndex(seat));
             }
             TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex);
             selectSeatView.setVisible(false);

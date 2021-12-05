@@ -5,14 +5,13 @@ public class Seat {
     int showingId;
     String row;
     int col;
-    boolean reserved;
+    int transactionID;
 
-    public Seat(int showingId, String row, int col, boolean reserved)
-    {
-        setShowingId(showingId);
-        setRow(row);
-        setCol(col);
-        setReserved(reserved);
+    public Seat(int showingId, String row, int col, int transactionID) {
+        this.showingId = showingId;
+        this.row = row;
+        this.col = col;
+        this.transactionID = transactionID;
     }
 
     public int getShowingId() {
@@ -23,12 +22,12 @@ public class Seat {
         this.showingId = showingId;
     }
 
-    public boolean isReserved() {
-        return reserved;
+    public int getTransactionID() {
+        return transactionID;
     }
 
-    public void setReserved(boolean reserved) {
-        this.reserved = reserved;
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
     }
 
     public String getRow() {
