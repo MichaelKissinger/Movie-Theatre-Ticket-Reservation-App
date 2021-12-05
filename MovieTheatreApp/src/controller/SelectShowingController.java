@@ -6,6 +6,7 @@ import model.User;
 import view.SelectShowingView;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class SelectShowingController {
 
@@ -22,7 +23,11 @@ public class SelectShowingController {
         selectShowingView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         selectShowingView.addBackButtonListener(e -> {
-            TerminalController terminalController = new TerminalController(this.user);
+            try {
+                TerminalController terminalController = new TerminalController(this.user);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             selectShowingView.setVisible(false);
         });
 

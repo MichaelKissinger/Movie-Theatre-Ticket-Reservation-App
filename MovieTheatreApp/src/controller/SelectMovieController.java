@@ -6,6 +6,7 @@ import view.SelectMovieView;
 import view.SelectShowingView;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class SelectMovieController {
     private User user;
@@ -21,7 +22,11 @@ public class SelectMovieController {
         selectMovieView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         selectMovieView.addBackButtonListener(e -> {
-            TerminalController terminalController = new TerminalController(this.user);
+            try {
+                TerminalController terminalController = new TerminalController(this.user);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             selectMovieView.setVisible(false);
         });
 

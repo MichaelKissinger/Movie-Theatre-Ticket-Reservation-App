@@ -17,6 +17,10 @@ public class User
         userCredit = new ArrayList<MovieCredit>();
     }
 
+    public void initializeUserCredits() {
+
+    }
+
     // TO_DO: ADD/ REMOVE CREDIT AND TRANSACTION METHODS!!!
 
     public int getUserId() {

@@ -14,7 +14,7 @@ public class Database {
     private static ArrayList<RegisteredUser> registeredUserDB;
     private static Date date = new Date();
 
-    //private JDBCConnect myJDBC;
+    private JDBCConnect myJDBC;
     public Database() throws SQLException {
 //        myJDBC = new JDBCConnect();
 //        myJDBC.createConnection();
@@ -23,9 +23,9 @@ public class Database {
 //        initializeRegisteredUsers();
     }
 
-//    public void initializeMovies() throws SQLException {
-//        movieDB = myJDBC.movieSetStatement();
-//    }
+    public void initializeMovies() throws SQLException {
+        movieDB = myJDBC.movieSetStatement();
+    }
 
 //    public void initializeUsers() throws SQLException {
 //        userDB = myJDBC.userSetStatement();

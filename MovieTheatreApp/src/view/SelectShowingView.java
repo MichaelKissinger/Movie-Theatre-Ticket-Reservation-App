@@ -24,17 +24,28 @@ public class SelectShowingView extends JFrame {
         JPanel buttonPanel = new JPanel();
         JPanel inputPanel = new JPanel();
 
-        buttonPanel.setLayout(new GridLayout(2, 3));
+        displayPanel.setLayout(new BorderLayout());
+        buttonPanel.setLayout(new GridLayout(1, 2));
+        displayPanel.setLayout(new BorderLayout());
 
         backButton = new JButton("Back");
         proceedButton = new JButton("Proceed");
 
         buttonPanel.add(backButton);
         buttonPanel.add(proceedButton);
+        JLabel title = new JLabel("Please select a showing");
+        inputPanel.add(title);
+        display = new JList(showings.toArray());
+        display.setVisibleRowCount(20);
+        display.setFixedCellHeight(20);
+        display.setFixedCellWidth(500);
+
+        JScrollPane sp = new JScrollPane(display);
+
+
+
 
         displayPanel.add("South", buttonPanel);
-
-        display = new JList(showings.toArray());
         displayPanel.add("Center", display);
         displayPanel.add("North", inputPanel);
         add(displayPanel);

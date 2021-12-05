@@ -4,13 +4,14 @@ import model.User;
 import view.*;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class TerminalController {
     TerminalView terminalView;
     MovieController movieController;
     User user;
 
-    public TerminalController(User user){
+    public TerminalController(User user) throws SQLException {
         this.user = user;
         terminalView = new TerminalView();
         movieController = new MovieController();

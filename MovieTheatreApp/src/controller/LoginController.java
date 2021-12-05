@@ -35,8 +35,8 @@ public class LoginController {
 
             boolean auth = authenticateUser(userNameEntry, userPasswordEntry);
             if(auth){
-                User registeredUser = new RegisteredUser(1, "email", "address", userPasswordEntry);
-                TerminalController terminalController = new TerminalController(registeredUser);
+//                User registeredUser = new RegisteredUser(1, "email", "address", userPasswordEntry);
+//                TerminalController terminalController = new TerminalController(registeredUser);
                 loginView.setVisible(false);
             }
             else {
