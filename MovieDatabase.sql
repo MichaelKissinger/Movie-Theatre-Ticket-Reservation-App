@@ -64,7 +64,7 @@ Values
 
 UPDATE USER SET ActiveStatus = 
 Case
-When (current_timestamp <( SELECT DATE_ADD(LastPaymentDate, INTERVAL 1 YEAR))) THEN true 
+when (current_timestamp <( SELECT DATE_ADD(LastPaymentDate, INTERVAL 1 YEAR))) THEN true 
 Else false 
 END;
 
