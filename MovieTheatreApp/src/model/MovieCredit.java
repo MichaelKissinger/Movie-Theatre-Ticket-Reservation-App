@@ -6,25 +6,25 @@ public class MovieCredit
 {
     // CONSIDER: make user able to pay with existing credit- checks credit list for a credit with sufficient funds for the payment at hand
     int movieCreditId;
-    int creditCode;
+    String creditCode;
     Date creationDate;
     Date expiryDate;
     double amount;
 
-    public MovieCredit(double amount)
-    {
-        setAmount(amount);
-        setCreationDate(new Date());
-        setCreditCode((int)Math.floor(Math.random()*1000000));
-        // MAKE IT +1 YEAR TODAY
-//        setExpiryDate();
-
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(creationDate);
-        cal.add(Calendar.YEAR, 1);
-        setExpiryDate(cal.getTime());
-
-    }
+//    public MovieCredit(double amount)
+//    {
+//        setAmount(amount);
+//        setCreationDate(new Date());
+//        setCreditCode((int)Math.floor(Math.random()*1000000));
+//        // MAKE IT +1 YEAR TODAY
+////        setExpiryDate();
+//
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(creationDate);
+//        cal.add(Calendar.YEAR, 1);
+//        setExpiryDate(cal.getTime());
+//
+//    }
 
     public int getMovieCreditId() {
         return movieCreditId;

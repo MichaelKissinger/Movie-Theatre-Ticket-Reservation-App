@@ -36,13 +36,20 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" object-ref="schemas/MOVIESYSTEM/tables/SHOWING" />
+      <object connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" object-ref="schemas/MOVIESYSTEM/tables/TRANSACTION" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="84bcb45c-1114-4e43-8b73-8067e8772887" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.SHOWING" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.MovieCredits" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.TRANSACTION" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.TICKETS" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.SEATS" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

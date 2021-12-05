@@ -21,7 +21,6 @@ public class Movie {
         setTitle(title);
         setDescription(synopsis);
         initializeShowings();
-
     }
 
     public void initializeShowings() throws SQLException {
