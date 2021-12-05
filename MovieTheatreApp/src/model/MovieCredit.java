@@ -34,13 +34,13 @@ public class MovieCredit
         this.movieCreditId = movieCreditId;
     }
 
-    public int getCreditCode() {
-        return creditCode;
-    }
-
-    public void setCreditCode(int creditCode) {
-        this.creditCode = creditCode;
-    }
+//    public int getCreditCode() {
+//        return creditCode;
+//    }
+//
+//    public void setCreditCode(int creditCode) {
+//        this.creditCode = creditCode;
+//    }
 
     public Date getExpiryDate() {
         return expiryDate;
