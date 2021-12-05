@@ -1,31 +1,43 @@
 package model;
 
+import java.security.PublicKey;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Showing {
 
-    int showingId;
-    int movieId;
-    Date showTime;
-    double ticketPrice;
-    int theatreId;
+    private int showingId;
+    private int movieId;
+    private Date showTime;
+    private double ticketPrice;
+    private int theatreId;
+    private ArrayList<Seat> seats;
+
+
+    private JDBCConnect myJDBC;
 
 //    Movie movie;
 //    Theatre theatre;
 //    int ticketCount;
-    Seat [][] seats;
+//    Seat [][] seats;
 //    ArrayList<Seat> selectedSeats;
 
-    public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) {
+    public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) throws SQLException {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
         this.showingId = showingId;
         this.movieId = movieId;
         this.showTime = showTime;
         this.ticketPrice = ticketPrice;
         this.theatreId = theatreId;
-        seats = new Seat[5][5];
+
+        initializeSeats();
     }
 
+    public void initializeSeats() throws SQLException {
+        seats = myJDBC.seatSetStatement(showingId);
+    }
 
     public int getShowingId() {
         return showingId;

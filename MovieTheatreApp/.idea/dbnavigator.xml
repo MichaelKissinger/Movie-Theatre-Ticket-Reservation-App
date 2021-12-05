@@ -25,13 +25,13 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="84bcb45c-1114-4e43-8b73-8067e8772887">
+      <connection connection-id="03fa3040-3022-4876-a06b-008737d9c7b8">
         <schema name="MOVIESYSTEM" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="84bcb45c-1114-4e43-8b73-8067e8772887">
+    <connection id="03fa3040-3022-4876-a06b-008737d9c7b8">
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
@@ -39,15 +39,13 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="84bcb45c-1114-4e43-8b73-8067e8772887" />
+    <connection id="03fa3040-3022-4876-a06b-008737d9c7b8" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.MOVIE" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.SHOWING" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.MovieCredits" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.TRANSACTION" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.TICKETS" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="84bcb45c-1114-4e43-8b73-8067e8772887" dataset="MOVIESYSTEM.SEATS" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.SHOWING" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.USER" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.CARD" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.SEATS" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -78,7 +76,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="84bcb45c-1114-4e43-8b73-8067e8772887" active="true">
+      <connection id="03fa3040-3022-4876-a06b-008737d9c7b8" active="true">
         <database>
           <name value="Connection" />
           <description value="" />

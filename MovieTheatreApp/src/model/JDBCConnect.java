@@ -69,9 +69,9 @@ public class JDBCConnect {
             while (results.next()) {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
+                Boolean isRegistered = results.getBoolean("IsRegistered");
 
-
-                User myUser = new User(userId, email);
+                User myUser = new User(userId, email, isRegistered);
                 userList.add(myUser);
             }
             myStmt.close();
@@ -90,18 +90,17 @@ public class JDBCConnect {
             while (results.next()) {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
+                Boolean isRegistered = results.getBoolean("IsRegistered");
                 String name = results.getString("Name");
                 String address = results.getString("Address");
-                String paymentOption  = results.getString("PaymentMethod");
                 String password = results.getString("Password");
-                Boolean activeStatus  = results.getBoolean("ActiveStatus");
-                Date lastPaymentDate  = results.getDate("LastPaymentDate");
-                Float paymentNumber  = results.getFloat("PaymentNumber");
+                Boolean activeStatus = results.getBoolean("ActiveStatus");
+                Date lastPaymentDate = results.getDate("LastPaymentDate");
 
-                RegisteredUser myUser = new RegisteredUser(userId, email, name,
-                        address, paymentOption, password,
-                        activeStatus, lastPaymentDate, paymentNumber);
-                        registeredUserList.add(myUser);
+                RegisteredUser myUser = new RegisteredUser(userId, email, isRegistered, name,
+                        address, password,
+                        activeStatus, lastPaymentDate);
+                registeredUserList.add(myUser);
             }
             myStmt.close();
         } catch (SQLException e) {
@@ -109,36 +108,27 @@ public class JDBCConnect {
         }
         return registeredUserList;
     }
+
+
+    public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
+        ArrayList<Seat> seatList = new ArrayList<Seat>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM SEATS WHERE ShowingID = \"" + showingId + "\";");
+
+            while (results.next()) {
+                String rownum = results.getString("rownum");
+                int colnum = results.getInt("colnum");
+                Boolean reserved = results.getBoolean("reserved");
+
+                Seat mySeat = new Seat(showingId, rownum, colnum, reserved);
+                seatList.add(mySeat);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seatList;
+    }
 }
-
-
-//    public ArrayList<RegisteredUser> registeredUserSetStatement() throws SQLException {
-//        ArrayList<RegisteredUser> registeredUserList = new ArrayList<RegisteredUser>();
-//        try {
-//            Statement myStmt = dbConnect.createStatement();
-//            ResultSet results = myStmt.executeQuery("SELECT * FROM USER");
-//
-//            while (results.next()) {
-//                int userId = results.getInt("UserId");
-//                String email = results.getString("Email");
-//                String name = results.getString("Name");
-//                String address = results.getString("Address");
-//                String paymentOption  = results.getString("PaymentMethod");
-//                String password = results.getString("Password");
-//                Boolean activeStatus  = results.getBoolean("ActiveStatus");
-//                Date lastPaymentDate  = results.getDate("LastPaymentDate");
-//                Float paymentNumber  = results.getFloat("PaymentNumber");
-//
-//                RegisteredUser myUser = new RegisteredUser(userId, email, name,
-//                        address, paymentOption, password,
-//                        activeStatus, lastPaymentDate, paymentNumber);
-//                registeredUserList.add(myUser);
-//            }
-//            myStmt.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return registeredUserList;
-//    }
-
 

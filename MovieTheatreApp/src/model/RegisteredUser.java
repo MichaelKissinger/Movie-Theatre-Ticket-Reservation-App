@@ -5,23 +5,19 @@ import java.util.Date;
 public class RegisteredUser extends User {
     private String name;
     private String address;
-    private String paymentOption;
     private String password;
     private Boolean activeStatus;
     private Date lastPaymentDate;
-    private Float paymentNumber;
 
-    public RegisteredUser(int userId, String email, String name,
-                          String address, String paymentOption, String password,
-                          Boolean activeStatus, Date lastPaymentDate, Float paymentNumber) {
-        super(userId, email);
+    public RegisteredUser(int userId, String email, Boolean isRegistered, String name,
+                          String address, String password,
+                          Boolean activeStatus, Date lastPaymentDate) {
+        super(userId, email, isRegistered);
         this.name = name;
         this.address = address;
-        this.paymentOption = paymentOption;
         this.password = password;
         this.activeStatus = activeStatus;
         this.lastPaymentDate = lastPaymentDate;
-        this.paymentNumber = paymentNumber;
     }
 
     // TO-DO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
@@ -40,14 +36,6 @@ public class RegisteredUser extends User {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getPaymentOption() {
-        return paymentOption;
-    }
-
-    public void setPaymentOption(String paymentOption) {
-        this.paymentOption = paymentOption;
     }
 
     public String getPassword() {
@@ -74,24 +62,15 @@ public class RegisteredUser extends User {
         this.lastPaymentDate = lastPaymentDate;
     }
 
-    public Float getPaymentNumber() {
-        return paymentNumber;
-    }
-
-    public void setPaymentNumber(Float paymentNumber) {
-        this.paymentNumber = paymentNumber;
-    }
 
     @Override
     public String toString() {
         return "RegisteredUser{" +
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", paymentOption=" + paymentOption +
                 ", password='" + password + '\'' +
                 ", activeStatus=" + activeStatus +
                 ", lastPaymentDate=" + lastPaymentDate +
-                ", paymentNumber=" + paymentNumber +
                 ", userId=" + userId +
                 ", email='" + email + '\'' +
                 '}' + '\n';
