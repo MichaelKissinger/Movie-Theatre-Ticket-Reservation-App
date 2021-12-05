@@ -10,7 +10,8 @@ public class Database {
 
     private static ArrayList<Movie> movieDB = new ArrayList<Movie>();
     private static Seat[][] seatDB;
-    private static ArrayList<User> RegUserDB;
+    private static ArrayList<User> userDB;
+    private static ArrayList<RegisteredUser> registeredUserDB;
     private static Date date = new Date();
 
     private JDBCConnect myJDBC;
@@ -19,10 +20,20 @@ public class Database {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         initializeMovies();
+        initializeUsers();
+        initializeRegisteredUsers();
     }
 
     public void initializeMovies() throws SQLException {
         movieDB = myJDBC.movieSetStatement();
+    }
+
+    public void initializeUsers() throws SQLException {
+        userDB = myJDBC.userSetStatement();
+    }
+
+    public void initializeRegisteredUsers() throws SQLException {
+        registeredUserDB = myJDBC.registeredUserSetStatement();
     }
 
     public static ArrayList<Movie> getMovieDB() {
@@ -33,7 +44,15 @@ public class Database {
         Database.movieDB = movieDB;
     }
 
-    //    public static ArrayList<Movie> loadMovies()
+    public static ArrayList<User> getUserDB() {
+        return userDB;
+    }
+
+    public static ArrayList<RegisteredUser> getRegisteredUserDB() {
+        return registeredUserDB;
+    }
+
+//    public static ArrayList<Movie> loadMovies()
 //    {
 //        if ( movieDB == null)
 //        {

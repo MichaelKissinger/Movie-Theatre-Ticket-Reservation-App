@@ -14,13 +14,13 @@ public class Movie {
     private JDBCConnect myJDBC;
 
 
-    public Movie(int movieId, String title, String synopsis)
-    {
+    public Movie(int movieId, String title, String synopsis) throws SQLException {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         setMovieId(movieId);
         setTitle(title);
         setDescription(synopsis);
+        initializeShowings();
 
     }
 
@@ -72,7 +72,7 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", showings=" + showings +
-                '}';
+                '}' + '\n';
     }
 
 
