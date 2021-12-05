@@ -7,24 +7,18 @@ public class MovieCredit
     // CONSIDER: make user able to pay with existing credit- checks credit list for a credit with sufficient funds for the payment at hand
     int movieCreditId;
     String creditCode;
-    Date creationDate;
     Date expiryDate;
     double amount;
+    int userId;
 
-//    public MovieCredit(double amount)
-//    {
-//        setAmount(amount);
-//        setCreationDate(new Date());
-//        setCreditCode((int)Math.floor(Math.random()*1000000));
-//        // MAKE IT +1 YEAR TODAY
-////        setExpiryDate();
-//
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(creationDate);
-//        cal.add(Calendar.YEAR, 1);
-//        setExpiryDate(cal.getTime());
-//
-//    }
+    public MovieCredit(int movieCreditId, String creditCode, Date expiryDate,
+                       double amount, int userId) {
+        this.movieCreditId = movieCreditId;
+        this.creditCode = creditCode;
+        this.expiryDate = expiryDate;
+        this.amount = amount;
+        this.userId = userId;
+    }
 
     public int getMovieCreditId() {
         return movieCreditId;
@@ -34,13 +28,13 @@ public class MovieCredit
         this.movieCreditId = movieCreditId;
     }
 
-//    public int getCreditCode() {
-//        return creditCode;
-//    }
-//
-//    public void setCreditCode(int creditCode) {
-//        this.creditCode = creditCode;
-//    }
+    public String getCreditCode() {
+        return creditCode;
+    }
+
+    public void setCreditCode(String creditCode) {
+        this.creditCode = creditCode;
+    }
 
     public Date getExpiryDate() {
         return expiryDate;
@@ -58,12 +52,22 @@ public class MovieCredit
         this.amount = amount;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
+    @Override
+    public String toString() {
+        return "MovieCredit{" +
+                "movieCreditId=" + movieCreditId +
+                ", creditCode='" + creditCode + '\'' +
+                ", expiryDate=" + expiryDate +
+                ", amount=" + amount +
+                ", userId=" + userId +
+                '}';
+    }
 }

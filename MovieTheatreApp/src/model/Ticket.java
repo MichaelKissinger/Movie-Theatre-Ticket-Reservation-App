@@ -3,18 +3,9 @@ package model;
 
 public class Ticket
 {
-    int ticketId;
-    Showing showing;
-    Seat seat;
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "ticketId=" + ticketId +
-                ", showing=" + showing +
-                ", seat=" + seat +
-                '}';
-    }
+    private int ticketId;
+    private Showing showing;
+    private Seat seat;
 
     public Ticket(int id, Seat theSeat, Showing theShowing)
     {
@@ -47,5 +38,13 @@ public class Ticket
         this.seat = seat;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", showing=" + showing +
+                ", seat=" + seat +
+                '}';
+    }
 
 }
