@@ -52,17 +52,30 @@ CREATE TABLE USER(
     Password varchar(15),
     ActiveStatus BOOL,
     LastPaymentDate DATETIME,
-    PaymentMethod varchar(10),
-    PaymentNumber float(20),
     PRIMARY KEY(UserID));
-Insert INTO USER(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate, PaymentMethod, PaymentNumber)
-Values
-(True, "Kody", "CALGARY SOMEWHERE", "kodykou@ucalgary.ca", "fakepassword", True, "2020-12-20 00:00:00", "Debit", "0000000000000000"),
-(True, "Jared", "CALGARY SOMEWHEREELSE", "JARED@uc.ca", "fakepassword1", False, "2019-12-20 00:00:00", "Credit", "100000000000000"),
-(True, "Mike", "Calgarylowercased", "mikek@ucalgary.ca", "fakepassword2", True, "2021-10-20 00:00:00", "Debit", "2002002000200200"),
-(True, "Nic", "calgary4thspelling", "nickl@ucalgary.ca", "fakepassword3", False, NULL, "", -1),
-(False, "", "", "nonregistereduser@ucalgary.ca", "", False, NULL, NULL, NULL );
     
+Insert INTO USER(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate)
+Values
+(True, "Kody", "CALGARY SOMEWHERE", "kodykou@ucalgary.ca", "fakepassword", True, "2020-12-20 00:00:00"),
+(True, "Jared", "CALGARY SOMEWHEREELSE", "JARED@uc.ca", "fakepassword1", False, "2019-12-20 00:00:00"),
+(True, "Mike", "Calgarylowercased", "mikek@ucalgary.ca", "fakepassword2", True, "2021-10-20 00:00:00"),
+(True, "Nic", "calgary4thspelling", "nickl@ucalgary.ca", "fakepassword3", False, NULL),
+(False, "", "", "nonregistereduser@ucalgary.ca", "", False, NULL );
+    
+CREATE TABLE CARD(
+	CardID int not null auto_increment,
+    UserID int,
+    CardNumber varchar(16),
+    PRIMARY KEY(CardID), 
+    FOREIGN KEY(UserID) REFERENCES USER(UserID));
+
+
+INSERT INTO CARD(UserID, CardNumber) VALUES
+(1, "1000200030004000"),
+(1,"1000300020004000"),
+(3, "2000400080009000"),
+(2, "4321123489891122");
+
 
     
 CREATE TABLE SEATS(
@@ -79,16 +92,16 @@ CREATE TABLE TRANSACTION(
     UserID int,
     Cost float,
     PurchaseDate DATETIME, 
-    PaymentMethod varchar(10),
-    PaymentNumber float(20),
+    CardID int,
     PRIMARY KEY(TransactionID),
-    FOREIGN KEY(UserID) REFERENCES USER(UserID)
+    FOREIGN KEY(UserID) REFERENCES USER(UserID),
+    FOREIGN KEY(CardID) REFERENCES CARD(CardID)
     );
-INSERT INTO TRANSACTION(UserID, Cost, PurchaseDate, PaymentMethod, PaymentNumber)
+INSERT INTO TRANSACTION(UserID, Cost, PurchaseDate, CardID)
 VALUES
-(1, 59,  "2021-12-01 00:00:00", "Debit", 0),
-(2,  43, "2021-12-04 00:00:00", "Credit", 100000000000000),
-(3, 21, "2021-05-03 00:00:00", "Debit", 2002002000200200);
+(1, 59,  "2021-12-01 00:00:00", 1),
+(2,  43, "2021-12-04 00:00:00", 4),
+(3, 21, "2021-05-03 00:00:00", 3);
 
 CREATE TABLE TICKETS(
 	TicketID int NOT NULL AUTO_INCREMENT,
