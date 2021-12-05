@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class RegisteredUser extends User {
@@ -8,6 +9,7 @@ public class RegisteredUser extends User {
     private String password;
     private Boolean activeStatus;
     private Date lastPaymentDate;
+
 
     public RegisteredUser(int userId, String email, Boolean isRegistered, String name,
                           String address, String password,

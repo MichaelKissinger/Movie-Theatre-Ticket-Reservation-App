@@ -8,14 +8,15 @@ public class Seat {
     boolean reserved;
 
     public Seat(){
-
+        setShowingId(1);
+        setReserved(false);
     }
     public Seat(int showingId, String row, int col, boolean reserved)
     {
         setShowingId(showingId);
         setRow(row);
         setCol(col);
-        setReserved(false);
+        setReserved(reserved);
     }
 
     public int getShowingId() {

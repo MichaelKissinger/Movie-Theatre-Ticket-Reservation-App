@@ -68,10 +68,10 @@ public class TerminalController {
 
                     // TO-DO: CHECK VALID SHOWING ID
 
-                    SeatView seatView = new SeatView();
+                    SelectSeatView selectSeatView = new SelectSeatView();
                     // Shows the GUI
-                    seatView.setVisible(true);
-                    seatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    selectSeatView.setVisible(true);
+                    selectSeatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                     terminalView.setVisible(false);
                     break;
                 }

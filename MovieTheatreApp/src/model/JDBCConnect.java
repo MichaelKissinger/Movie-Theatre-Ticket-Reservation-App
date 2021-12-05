@@ -110,6 +110,7 @@ public class JDBCConnect {
     }
 
 
+
     public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
         ArrayList<Seat> seatList = new ArrayList<Seat>();
         try {
