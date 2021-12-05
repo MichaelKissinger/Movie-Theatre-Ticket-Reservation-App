@@ -11,21 +11,23 @@ public class Movie {
     String description;
     ArrayList<Showing> showings;
 
-    //private JDBCConnect myJDBC;
+    private JDBCConnect myJDBC;
 
-    public Movie(int movieId, String title, String synopsis)
-    {
-        //myJDBC = new JDBCConnect();
-        //myJDBC.createConnection();
+    public Movie(int movieId, String title, String synopsis) throws SQLException {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
         setMovieId(movieId);
         setTitle(title);
         setDescription(synopsis);
+
+        initializeShowings();
+
         showings = new ArrayList<Showing>();
     }
 
-//    public void initializeShowings() throws SQLException {
-//        showings = myJDBC.showingSetStatement(movieId);
-//    }
+    public void initializeShowings() throws SQLException {
+        showings = myJDBC.showingSetStatement(movieId);
+    }
 
     public void addShowing(Showing theShowing)
     {

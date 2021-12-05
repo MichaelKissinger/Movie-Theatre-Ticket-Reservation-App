@@ -9,18 +9,20 @@ public class Showing {
     int movieId;
     Date showTime;
     double ticketPrice;
+    int theatreId;
 
 //    Movie movie;
 //    Theatre theatre;
 //    int ticketCount;
-//    Seat [][] seats;
+    Seat [][] seats;
 //    ArrayList<Seat> selectedSeats;
 
-    public Showing(int showingId, int movieId, Date showTime, double ticketPrice) {
+    public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) {
         this.showingId = showingId;
         this.movieId = movieId;
         this.showTime = showTime;
         this.ticketPrice = ticketPrice;
+        this.theatreId = theatreId;
         seats = new Seat[5][5];
     }
 
