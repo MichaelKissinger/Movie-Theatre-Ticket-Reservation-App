@@ -4,12 +4,12 @@ public class CreditCard {
     int cardId;
     int userId;
     String cardHolderName;
-    int cardNumber;
+    String cardNumber;
     int expiryMonth;
     int expiryYear;
     int cvv;
 
-    public CreditCard(String name, int number, int expMonth, int expYear, int cvv)
+    public CreditCard(String name, String number, int expMonth, int expYear, int cvv)
     {
         setCardHolderName(name);
         setCardNumber(number);
@@ -34,11 +34,11 @@ public class CreditCard {
         this.cardHolderName = cardHolderName;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
