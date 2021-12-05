@@ -1,12 +1,16 @@
 package controller;
 
 import model.CreditCard;
+import model.RegisteredUser;
 import model.User;
 import view.RegisterView;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class RegisterController {
     private User user;
@@ -20,26 +24,31 @@ public class RegisterController {
         registerView.addRegisterButtonListener(e->{
             boolean errCheck = true;
 
-            String address;
-            String name;
-            String password;
+            String address ="";
+            String name="";
+            String password="";
+            String cardholderName="";
+            int year=0;
+            int month = 0;
+            int cvv=0;
+            String card="";
 
             try{
                 if((registerView.getAddress().strip().equals(""))||
                         (registerView.getName().strip().equals(""))||
-                        (registerView.getPassword().strip().equals(""))){
+                        (registerView.getPassword().strip().equals(""))||
+                        (registerView.getCardHolderName().strip()).equals("")){
                     throw(new IllegalArgumentException());
                 }
                 address = registerView.getAddress();
                 name = registerView.getName();
                 password = registerView.getPassword();
+                cardholderName = registerView.getCardHolderName();
             }catch(IllegalArgumentException err){
                 registerView.alert("Please enter an address, name, and password");
                 errCheck = false;
             }
-            int year;
-            int month;
-            String card;
+
             System.out.println(registerView.getCard().length());
             try{
                 if(registerView.getCard().length()!=16){
@@ -65,15 +74,39 @@ public class RegisterController {
             }
 
             try{
-                int cvv = Integer.parseInt(registerView.getCvv());
+                cvv = Integer.parseInt(registerView.getCvv());
             }catch(NumberFormatException err){
                 errCheck = false;
                 registerView.alert("Please enter a cvv number");
             }
-            String cardHolderName = registerView.getCardHolderName();
             if(errCheck==true) {
+                CreditCard creditCard = new CreditCard(
+                        cardholderName,card, month, year, cvv);
+                //TODO authenticate creditcard
+                //TODO make transaction
+
+                try {
+                    RegisteredUser newUser = new RegisteredUser(user.getUserId(),
+                            user.getEmail(), true, name, address, password,
+                            true,java.util.Calendar.getInstance().getTime());
+                    System.out.println(newUser.toString());
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                //TODO UPDATE THE USER DATABASE BASED ON INFO ABOVE HERE
+
+
                 registerView.setVisible(false);
             }
+
+        });
+        registerView.addCancelButtonListener(e->{
+            try{
+                TerminalController terminalController = new TerminalController(this.user);
+            } catch(SQLException err){
+                err.printStackTrace();
+            }
+            registerView.setVisible(false);
 
         });
 

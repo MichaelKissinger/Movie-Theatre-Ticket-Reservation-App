@@ -22,7 +22,7 @@ public class SelectSeatView extends JFrame implements ActionListener {
 
     private double price;
 
-    public SelectSeatView(double price) {
+    public SelectSeatView(double price, ArrayList<Seat> seats) {
 
         selectedSeats = new ArrayList<String>();
         this.price = price;
@@ -32,11 +32,16 @@ public class SelectSeatView extends JFrame implements ActionListener {
 
         seatButtonList = new ArrayList<JButton>();
         for(int i=0; i < 25; i++){
-            seatButtonList.add(new JButton(String.valueOf((char)((i / 5) + 65)) + ((i % 5) + 1)));
+            JButton btn = new JButton(String.valueOf((char)((i / 5) + 65)) + ((i % 5) + 1));
+            if(seats.get(i).getTransactionID()!=0){
+                btn.setBackground(Color.red);
+            }else{
+                btn.addActionListener(this);
+
+            }
+            seatButtonList.add(btn);
         }
-        for(JButton button: seatButtonList){
-            button.addActionListener(this);
-        }
+
 
         JPanel displayPanel = new JPanel();
         JPanel seatPanel = new JPanel();
@@ -72,12 +77,14 @@ public class SelectSeatView extends JFrame implements ActionListener {
         bottomPanel.setLayout(new GridLayout(4, 1));
         display = new JTextArea(1, 15);
         display.setLineWrap(true);
+        display.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         bottomPanel.add(display);
 
         blankLabel = new JLabel(" ");
         bottomPanel.add(blankLabel);
 
         showPrice = new JTextArea(1, 8);
+        showPrice.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         bottomPanel.add(showPrice);
 
         doneButton = new JButton("Purchase");
@@ -120,12 +127,15 @@ public class SelectSeatView extends JFrame implements ActionListener {
         for(String seat: selectedSeats){
             if(seat.equals(((JButton)e.getSource()).getText())){
                 selectedSeats.remove(seat);
+                ((JButton) e.getSource()).setBackground(null);
                 this.updateText();
                 return;
             }
         }
 
         selectedSeats.add(((JButton)e.getSource()).getText());
+        ((JButton) e.getSource()).setBackground(Color.lightGray);
+
         this.updateText();
     }
 }

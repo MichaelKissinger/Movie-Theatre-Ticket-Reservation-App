@@ -13,7 +13,7 @@ public class RegisterView extends JFrame {
     private JTextField cvv;
     private JSpinner month;
     private JSpinner year;
-    private JButton registerButton;
+    private JButton registerButton, cancelButton;
     private JTextField cardHolderName;
 
     /**
@@ -33,6 +33,8 @@ public class RegisterView extends JFrame {
         add(buttonPanel, BorderLayout.SOUTH);
 
         registerButton = new JButton("Register");
+        cancelButton = new JButton("Cancel");
+        buttonPanel.add(cancelButton);
         buttonPanel.add(registerButton);
 
 
@@ -130,6 +132,10 @@ public class RegisterView extends JFrame {
 
     public void addRegisterButtonListener(ActionListener e) {
         registerButton.addActionListener(e);
+    }
+
+    public void addCancelButtonListener(ActionListener e){
+        cancelButton.addActionListener(e);
     }
 
     public String getName(){
