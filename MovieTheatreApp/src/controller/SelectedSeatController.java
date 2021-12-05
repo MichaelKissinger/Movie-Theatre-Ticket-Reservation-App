@@ -18,8 +18,8 @@ public class SelectedSeatController {
 
         this.user = user;
         this.showing = showing;
-        this.purchasedSeats = new ArrayList<Integer>();
-        SelectSeatView selectSeatView = new SelectSeatView();
+        this.purchasedSeatsIndex = new ArrayList<Integer>();
+        SelectSeatView selectSeatView = new SelectSeatView(showing.getTicketPrice());
         selectSeatView.setVisible(true);
         selectSeatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -27,10 +27,8 @@ public class SelectedSeatController {
             for(String seat: selectSeatView.getSelectedSeats()){
                 purchasedSeatsIndex.add(getSeatIndex(seat));
             }
-
-            //TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex)
-
-
+            TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex);
+            selectSeatView.setVisible(false);
         });
 
     }

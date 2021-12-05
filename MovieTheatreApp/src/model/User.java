@@ -45,7 +45,15 @@ public class User
         this.email = email;
     }
 
-//    public ArrayList<MovieCredit> getUserCredit() {
+    public Boolean getRegistered() {
+        return isRegistered;
+    }
+
+    public void setRegistered(Boolean registered) {
+        isRegistered = registered;
+    }
+
+    //    public ArrayList<MovieCredit> getUserCredit() {
 //        return userCredit;
 //    }
 

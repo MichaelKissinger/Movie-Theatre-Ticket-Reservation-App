@@ -37,9 +37,14 @@ public class LoginController {
 
             boolean auth = authenticateUser(userNameEntry, userPasswordEntry);
             if(auth){
-                User registeredUser = new RegisteredUser(1, "email", true, "name",
-                        "address", "password",
-                        true, new Date());
+                User registeredUser = null;
+                try {
+                    registeredUser = new RegisteredUser(1, "email", true, "name",
+                            "address", "password",
+                            true, new Date());
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 try {
                     TerminalController terminalController = new TerminalController(registeredUser);
                 } catch (SQLException ex) {

@@ -44,39 +44,7 @@ public class TerminalController {
         });
 
         terminalView.addEnterButtonListener(e -> {
-            String flag = terminalView.getFlag();
-            switch (flag){
-                case "Search": {
-                    String movieTitle = terminalView.getStringInput();
-                    String showings = movieController.getMovieByTitle(movieTitle);
-                    terminalView.clearDisplay();
-                    terminalView.addText(showings);
-                    break;
-                }
-                case "Select Movie": {
-                    String movieTitle = terminalView.getStringInput();
-                    String showings = movieController.getMovieByTitle(movieTitle);
-                    terminalView.clearDisplay();
-                    terminalView.addText("Enter the Showing Id of the Showing you would like to see: \n");
-                    terminalView.addText(showings);
-                    terminalView.setFlag("Select Showing");
-                    break;
-                }
-                case "Select Showing": {
 
-                    String showingId = terminalView.getStringInput();
-
-                    // TO-DO: CHECK VALID SHOWING ID
-
-                    SelectSeatView selectSeatView = new SelectSeatView();
-                    // Shows the GUI
-                    selectSeatView.setVisible(true);
-                    selectSeatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                    terminalView.setVisible(false);
-                    break;
-                }
-
-            }
         });
     }
 

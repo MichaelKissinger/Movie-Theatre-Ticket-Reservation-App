@@ -16,13 +16,17 @@ public class SelectSeatView extends JFrame implements ActionListener {
 
     private JButton doneButton;
 
-    private JLabel titleText, screen;
+    private JLabel titleText, screen, blankLabel;
 
-    private JTextArea display;
+    private JTextArea display, showPrice;
 
-    public SelectSeatView() {
+    private double price;
+
+    public SelectSeatView(double price) {
 
         selectedSeats = new ArrayList<String>();
+        this.price = price;
+
         setSize(400, 600);
         setTitle("Theatre Seating Page");
 
@@ -65,11 +69,18 @@ public class SelectSeatView extends JFrame implements ActionListener {
             seatPanel.add(seatButtonList.get(i));
         }
 
+        bottomPanel.setLayout(new GridLayout(4, 1));
         display = new JTextArea(1, 15);
         display.setLineWrap(true);
         bottomPanel.add(display);
 
-        doneButton = new JButton("Done");
+        blankLabel = new JLabel(" ");
+        bottomPanel.add(blankLabel);
+
+        showPrice = new JTextArea(1, 8);
+        bottomPanel.add(showPrice);
+
+        doneButton = new JButton("Purchase");
         bottomPanel.add(doneButton);
 
         displayPanel.add("North", textPanel);
@@ -101,6 +112,7 @@ public class SelectSeatView extends JFrame implements ActionListener {
         }
 
         display.setText(seatString);
+        showPrice.setText("$ " + (this.price * selectedSeats.size()));
     }
 
     public void actionPerformed(ActionEvent e) {

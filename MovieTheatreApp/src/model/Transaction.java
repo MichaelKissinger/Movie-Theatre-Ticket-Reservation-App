@@ -10,7 +10,7 @@ public class Transaction
     ArrayList<Ticket> tickets;
     double totalCost;
     Date purchaseDate;
-    Card paymentCard;
+    CreditCard paymentCreditCard;
 
     // Revisit after creating User
     public Transaction(User user)
@@ -39,13 +39,13 @@ public class Transaction
                 ", tickets=" + tickets +
                 ", totalCost=" + totalCost +
                 ", purchaseDate=" + purchaseDate +
-                ", paymentCard=" + paymentCard +
+                ", paymentCard=" + paymentCreditCard +
                 '}';
     }
 
     public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
     {
-        setPaymentCard(new Card(name, number, expMonth, expYear, cvv));
+        setPaymentCard(new CreditCard(name, number, expMonth, expYear, cvv));
     }
 
     public int getTransactionId() {
@@ -88,12 +88,12 @@ public class Transaction
         this.purchaseDate = purchaseDate;
     }
 
-    public Card getPaymentCard() {
-        return paymentCard;
+    public CreditCard getPaymentCard() {
+        return paymentCreditCard;
     }
 
-    public void setPaymentCard(Card paymentCard) {
-        this.paymentCard = paymentCard;
+    public void setPaymentCard(CreditCard paymentCreditCard) {
+        this.paymentCreditCard = paymentCreditCard;
     }
 
 

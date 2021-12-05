@@ -1,6 +1,6 @@
 package model;
 
-public class Card {
+public class CreditCard {
     int cardId;
     int userId;
     String cardHolderName;
@@ -9,7 +9,7 @@ public class Card {
     int expiryYear;
     int cvv;
 
-    public Card(String name, int number, int expMonth, int expYear, int cvv)
+    public CreditCard(String name, int number, int expMonth, int expYear, int cvv)
     {
         setCardHolderName(name);
         setCardNumber(number);
