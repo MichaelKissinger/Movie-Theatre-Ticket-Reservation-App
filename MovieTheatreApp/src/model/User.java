@@ -19,7 +19,6 @@ public class User
 
     // TO_DO: ADD/ REMOVE CREDIT AND TRANSACTION METHODS!!!
 
-
     public int getUserId() {
         return userId;
     }
@@ -50,5 +49,13 @@ public class User
 
     public void setPreviousPurchases(ArrayList<Transaction> previousPurchases) {
         this.previousPurchases = previousPurchases;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                '}' + '\n';
     }
 }

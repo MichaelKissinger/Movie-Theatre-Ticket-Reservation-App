@@ -16,6 +16,7 @@ public class Seat {
         setReserved(false);
         setRow(row);
         setCol(col);
+        setShowingId(id);
     }
 
     public int getShowingId() {

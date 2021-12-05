@@ -13,7 +13,6 @@ public class Movie {
 
     //private JDBCConnect myJDBC;
 
-
     public Movie(int movieId, String title, String synopsis)
     {
         //myJDBC = new JDBCConnect();
@@ -22,7 +21,6 @@ public class Movie {
         setTitle(title);
         setDescription(synopsis);
         showings = new ArrayList<Showing>();
-
     }
 
 //    public void initializeShowings() throws SQLException {
