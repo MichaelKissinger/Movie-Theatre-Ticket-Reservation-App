@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class LoginController {
 
@@ -36,7 +37,9 @@ public class LoginController {
 
             boolean auth = authenticateUser(userNameEntry, userPasswordEntry);
             if(auth){
-                User registeredUser = new RegisteredUser(1, "email", "address", userPasswordEntry);
+                User registeredUser = new RegisteredUser(1, "email", true, "name",
+                        "address", "password",
+                        true, new Date());
                 try {
                     TerminalController terminalController = new TerminalController(registeredUser);
                 } catch (SQLException ex) {

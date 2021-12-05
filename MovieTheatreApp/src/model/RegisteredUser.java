@@ -65,10 +65,6 @@ public class RegisteredUser extends User {
         this.lastPaymentDate = lastPaymentDate;
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
     @Override
     public String toString() {
         return "RegisteredUser{" +
