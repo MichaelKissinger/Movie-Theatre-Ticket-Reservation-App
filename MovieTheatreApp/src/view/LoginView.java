@@ -62,14 +62,6 @@ public class LoginView extends JFrame implements ActionListener {
 
     public void setErrorLabel(String error) { errorLabel.setText(error); }
 
-    public void authentication(Boolean authenticated) {
-        TerminalView theTerminal = new TerminalView();
-        // Shows the GUI
-        theTerminal.setVisible(true);
-        theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(false);
-    }
-
 
 
     @Override

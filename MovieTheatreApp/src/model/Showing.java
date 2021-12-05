@@ -9,7 +9,6 @@ public class Showing {
     int movieId;
     Date showTime;
     double ticketPrice;
-    int theatreId;
 
     Movie movie;
     Theatre theatre;
@@ -17,12 +16,12 @@ public class Showing {
     Seat [][] seats;
     ArrayList<Seat> selectedSeats;
 
-    public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) {
+    public Showing(int showingId, int movieId, Date showTime, double ticketPrice) {
         this.showingId = showingId;
         this.movieId = movieId;
         this.showTime = showTime;
         this.ticketPrice = ticketPrice;
-        this.theatreId = theatreId;
+        seats = new Seat[5][5];
     }
 
     public int getTicketCount() {
@@ -112,14 +111,6 @@ public class Showing {
 
     @Override
     public String toString() {
-        return "Showing{" +
-                "showingId=" + showingId +
-                ", movie=" + movie +
-                ", theatre=" + theatre +
-                ", showTime=" + showTime +
-                ", ticketPrice=" + ticketPrice +
-                ", seats=" + seats +
-                ", ticketCount=" + ticketCount +
-                '}';
+        return this.showingId + ". " + this.showTime + "            $" + this.ticketPrice;
     }
 }

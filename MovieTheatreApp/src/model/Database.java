@@ -13,17 +13,17 @@ public class Database {
     private static ArrayList<User> RegUserDB;
     private static Date date = new Date();
 
-    private JDBCConnect myJDBC;
+    //private JDBCConnect myJDBC;
 
-    public Database() throws SQLException {
-        myJDBC = new JDBCConnect();
-        myJDBC.createConnection();
-        initializeMovies();
-    }
+//    public Database() throws SQLException {
+//        myJDBC = new JDBCConnect();
+//        myJDBC.createConnection();
+//        initializeMovies();
+//    }
 
-    public void initializeMovies() throws SQLException {
-        movieDB = myJDBC.movieSetStatement();
-    }
+//    public void initializeMovies() throws SQLException {
+//        movieDB = myJDBC.movieSetStatement();
+//    }
 
     public static ArrayList<Movie> getMovieDB() {
         return movieDB;

@@ -22,7 +22,7 @@ public class LoginController {
     }
 
     public boolean authenticateUser(String username, String password) {
-        if(username.equals("jared") && password.equals("pass")) return true;
+        if(username.equals("") && password.equals("")) return true;
         else return false;
     }
 
@@ -35,7 +35,12 @@ public class LoginController {
 
             boolean auth = authenticateUser(userNameEntry, userPasswordEntry);
             if(auth){
-
+                User registeredUser = new RegisteredUser(1, "email", "address", userPasswordEntry);
+                TerminalController terminalController = new TerminalController(registeredUser);
+                loginView.setVisible(false);
+            }
+            else {
+                loginView.setErrorLabel("User not found.");
             }
         }
     }

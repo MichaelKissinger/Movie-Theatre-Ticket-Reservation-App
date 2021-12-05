@@ -20,7 +20,7 @@ public class SeatView extends JFrame implements ActionListener {
     private JTextArea display;
 
     public SeatView() {
-        setSize(600, 600);
+        setSize(400, 600);
         setTitle("Theatre Seating Page");
 
         JPanel displayPanel = new JPanel();
@@ -31,7 +31,7 @@ public class SeatView extends JFrame implements ActionListener {
         titleText = new JLabel("Please select your seat\n\n");
         textPanel.setLayout(new GridLayout(2, 1));
         textPanel.add(titleText);
-        displayPanel.add("North", textPanel);
+
 
         screen = new JLabel("MOVIE SCREEN");
         screen.setSize(60, 5);
@@ -83,7 +83,7 @@ public class SeatView extends JFrame implements ActionListener {
         seatPanel.add(rowE);
         seatPanel.add(seatE1); seatPanel.add(seatE2); seatPanel.add(seatE3); seatPanel.add(seatE4); seatPanel.add(seatE5);
 
-        displayPanel.add("Center", seatPanel);
+
 
         display = new JTextArea(1, 15);
         display.setLineWrap(true);
@@ -92,6 +92,8 @@ public class SeatView extends JFrame implements ActionListener {
         finished = new JButton("Done");
         bottomPanel.add(finished);
 
+        displayPanel.add("North", textPanel);
+        displayPanel.add("Center", seatPanel);
         displayPanel.add("South", bottomPanel);
 
         add(displayPanel);

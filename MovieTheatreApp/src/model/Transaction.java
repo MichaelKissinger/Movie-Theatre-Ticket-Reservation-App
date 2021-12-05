@@ -11,8 +11,6 @@ public class Transaction
     double totalCost;
     Date purchaseDate;
     Card paymentCard;
-    ArrayList<Seat> selectedSeats;
-
 
     // Revisit after creating User
     public Transaction(User customer)
@@ -47,7 +45,7 @@ public class Transaction
 
     public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
     {
-            setPaymentCard(new Card(name, number, expMonth, expYear, cvv));
+        setPaymentCard(new Card(name, number, expMonth, expYear, cvv));
     }
 
     public int getTransactionId() {
