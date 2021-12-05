@@ -12,22 +12,15 @@ public class RegisteredUser extends User {
 
 
 
-    public RegisteredUser(int userId, String email, String name,
+    public RegisteredUser(int userId, String email, Boolean isRegistered, String name,
                           String address, String password,
                           Boolean activeStatus, Date lastPaymentDate) {
-        super(userId, email);
+        super(userId, email, isRegistered);
         this.name = name;
         this.address = address;
         this.password = password;
         this.activeStatus = activeStatus;
         this.lastPaymentDate = lastPaymentDate;
-    }
-
-    // FOR TESTING
-    public RegisteredUser(int userId, String email, String address, String userPasswordEntry) {
-        super(userId, email);
-        this.address = address;
-        this.password = userPasswordEntry;
     }
 
     // TO-DO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
@@ -72,6 +65,10 @@ public class RegisteredUser extends User {
         this.lastPaymentDate = lastPaymentDate;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     @Override
     public String toString() {
         return "RegisteredUser{" +

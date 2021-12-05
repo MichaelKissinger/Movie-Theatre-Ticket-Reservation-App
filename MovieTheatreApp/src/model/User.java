@@ -6,15 +6,17 @@ public class User
 {
     protected int userId;
     protected String email;
-    protected ArrayList<MovieCredit> userCredit;
+    protected Boolean isRegistered;
+//    protected ArrayList<MovieCredit> userCredit;
     protected ArrayList<Transaction> previousPurchases;
 
 
-    public User(int userId, String email) {
+    public User(int userId, String email, Boolean isRegistered) {
         setUserId(userId);
         setEmail(email);
+        this.isRegistered = isRegistered;
         previousPurchases = new ArrayList<Transaction>();
-        userCredit = new ArrayList<MovieCredit>();
+//        userCredit = new ArrayList<MovieCredit>();
     }
 
     public void initializeUserCredits() {
@@ -39,13 +41,13 @@ public class User
         this.email = email;
     }
 
-    public ArrayList<MovieCredit> getUserCredit() {
-        return userCredit;
-    }
+//    public ArrayList<MovieCredit> getUserCredit() {
+//        return userCredit;
+//    }
 
-    public void setUserCredit(ArrayList<MovieCredit> userCredit) {
-        this.userCredit = userCredit;
-    }
+//    public void setUserCredit(ArrayList<MovieCredit> userCredit) {
+//        this.userCredit = userCredit;
+//    }
 
     public ArrayList<Transaction> getPreviousPurchases() {
         return previousPurchases;

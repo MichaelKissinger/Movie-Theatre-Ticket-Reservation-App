@@ -3,20 +3,20 @@ package model;
 public class Seat {
 
     int showingId;
-    boolean reserved;
-    char row;
+    String row;
     int col;
+    boolean reserved;
 
     public Seat(){
         setShowingId(1);
         setReserved(false);
     }
-    public Seat(int showingId, char row, int col)
+    public Seat(int showingId, String row, int col, boolean reserved)
     {
         setShowingId(showingId);
-        setReserved(false);
         setRow(row);
         setCol(col);
+        setReserved(reserved);
     }
 
     public int getShowingId() {
@@ -35,11 +35,11 @@ public class Seat {
         this.reserved = reserved;
     }
 
-    public char getRow() {
+    public String getRow() {
         return row;
     }
 
-    public void setRow(char row) {
+    public void setRow(String row) {
         this.row = row;
     }
 

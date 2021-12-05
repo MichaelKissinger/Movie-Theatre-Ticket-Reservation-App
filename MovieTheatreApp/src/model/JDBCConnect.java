@@ -11,7 +11,7 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,9 +69,15 @@ public class JDBCConnect {
             while (results.next()) {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
+<<<<<<< HEAD
 
 
                 User myUser = new User(userId, email);
+=======
+                Boolean isRegistered = results.getBoolean("IsRegistered");
+
+                User myUser = new User(userId, email, isRegistered);
+>>>>>>> main
                 userList.add(myUser);
             }
             myStmt.close();
@@ -90,6 +96,7 @@ public class JDBCConnect {
             while (results.next()) {
                 int userId = results.getInt("UserId");
                 String email = results.getString("Email");
+<<<<<<< HEAD
                 String name = results.getString("Name");
                 String address = results.getString("Address");
                 String password = results.getString("Password");
@@ -100,6 +107,19 @@ public class JDBCConnect {
                         address, password,
                         activeStatus, lastPaymentDate);
                         registeredUserList.add(myUser);
+=======
+                Boolean isRegistered = results.getBoolean("IsRegistered");
+                String name = results.getString("Name");
+                String address = results.getString("Address");
+                String password = results.getString("Password");
+                Boolean activeStatus = results.getBoolean("ActiveStatus");
+                Date lastPaymentDate = results.getDate("LastPaymentDate");
+
+                RegisteredUser myUser = new RegisteredUser(userId, email, isRegistered, name,
+                        address, password,
+                        activeStatus, lastPaymentDate);
+                registeredUserList.add(myUser);
+>>>>>>> main
             }
             myStmt.close();
         } catch (SQLException e) {
@@ -107,5 +127,31 @@ public class JDBCConnect {
         }
         return registeredUserList;
     }
+<<<<<<< HEAD
+=======
+
+
+
+    public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
+        ArrayList<Seat> seatList = new ArrayList<Seat>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM SEATS WHERE ShowingID = \"" + showingId + "\";");
+
+            while (results.next()) {
+                String rownum = results.getString("rownum");
+                int colnum = results.getInt("colnum");
+                Boolean reserved = results.getBoolean("reserved");
+
+                Seat mySeat = new Seat(showingId, rownum, colnum, reserved);
+                seatList.add(mySeat);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seatList;
+    }
+>>>>>>> main
 }
 
