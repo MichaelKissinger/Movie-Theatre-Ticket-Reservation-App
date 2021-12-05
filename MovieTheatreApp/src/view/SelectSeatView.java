@@ -20,14 +20,14 @@ public class SelectSeatView extends JFrame implements ActionListener {
 
     private JTextArea display;
 
-    public SelectSeatView(ArrayList<Seat> showingSeatList) {
+    public SelectSeatView() {
 
         selectedSeats = new ArrayList<String>();
         setSize(400, 600);
         setTitle("Theatre Seating Page");
 
         seatButtonList = new ArrayList<JButton>();
-        for(int i=0; i < showingSeatList.size(); i++){
+        for(int i=0; i < 25; i++){
             seatButtonList.add(new JButton(String.valueOf((char)((i / 5) + 65)) + ((i % 5) + 1)));
         }
         for(JButton button: seatButtonList){
