@@ -25,14 +25,11 @@ public class GuestView extends JFrame implements ActionListener {
 
         inputPanel.add(guestLabel);
 
-
         inputField = new JTextField(10);
 
         inputPanel.add(inputField);
 
         displayPanel.add("North", buttonPanel);
-
-
 
         enterButton = new JButton("ENTER");
         inputPanel.add(enterButton);
@@ -41,20 +38,14 @@ public class GuestView extends JFrame implements ActionListener {
 
         add(displayPanel);
 
-        enterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String userNameEntry = inputField.getText();
+    }
 
-                TerminalView theTerminal = new TerminalView();
+    public void addEnterListener(ActionListener listener) {
+        enterButton.addActionListener(listener);
+    }
 
-                // Shows the GUI
-                theTerminal.setVisible(true);
-                theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                setVisible(false);
-            }
-        });
-
+    public String getEmail(){
+        return inputField.getText();
     }
 
     @Override

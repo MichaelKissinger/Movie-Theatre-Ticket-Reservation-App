@@ -2,7 +2,8 @@ package controller;
 
 import model.Showing;
 import model.User;
-import view.RUTransactionView;
+import view.PaymentView;
+import view.TransactionConfirmationView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,20 +21,40 @@ public class TransactionController {
 
         if(this.user.getRegistered()){
             this.createTransaction();
-            RUTransactionView ruTransactionView = new RUTransactionView();
-            ruTransactionView.setVisible(true);
-            ruTransactionView.addReturnButtonListener(e -> {
+            TransactionConfirmationView transactionConfirmationView = new TransactionConfirmationView();
+            transactionConfirmationView.setVisible(true);
+            transactionConfirmationView.addReturnButtonListener(e -> {
                 try {
                     TerminalController terminalController = new TerminalController(user);
+                    transactionConfirmationView.setVisible(false);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
             });
         }
+        else {
+            PaymentView paymentView = new PaymentView();
+            paymentView.setVisible(true);
+            paymentView.addPurchaseButtonListener(e -> {
+                paymentView.setVisible(false);
+                TransactionConfirmationView transactionConfirmationView = new TransactionConfirmationView();
+                transactionConfirmationView.setVisible(true);
+                transactionConfirmationView.addReturnButtonListener(event -> {
+                    try {
+                        TerminalController terminalController = new TerminalController(user);
+                        transactionConfirmationView.setVisible(false);
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            });
+        }
     }
 
     public void createTransaction() {
-
+        // TO_DO:
+        // Create Transaction Object and Push to DB
+        // Iterate through purchasedSeatsIndex and get seat from showing and update transaction ID
     }
 
 

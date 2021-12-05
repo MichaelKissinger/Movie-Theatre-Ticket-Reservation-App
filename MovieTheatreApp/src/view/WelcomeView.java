@@ -28,25 +28,15 @@ public class WelcomeView extends JFrame implements ActionListener {
 
         add(displayPanel);
 
-        continueAsGuestButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GuestView theTerminal = new GuestView();
-
-                // Shows the GUI
-                theTerminal.setVisible(true);
-                theTerminal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                setVisible(false);
-
-            }
-        });
     }
 
     public void addLoginButtonListener(ActionListener listenerForLoginButton) {
         loginButton.addActionListener(listenerForLoginButton);
     }
 
-    //public void addGuestButtonListener(ActionListener listenerForGuestButton) { }
+    public void addGuestButtonListener(ActionListener listenerForGuestButton) {
+        continueAsGuestButton.addActionListener(listenerForGuestButton);
+    }
 
 
     @Override

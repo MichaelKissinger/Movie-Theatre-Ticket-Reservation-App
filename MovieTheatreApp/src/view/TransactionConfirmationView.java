@@ -7,11 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RUTransactionView extends JFrame {
+public class TransactionConfirmationView extends JFrame {
     JLabel thanksLabel, infoLabel;
     JButton returnButton;
 
-    public RUTransactionView() {
+    public TransactionConfirmationView() {
 
         setSize(800, 650);
         setTitle("Theater Terminal Page");

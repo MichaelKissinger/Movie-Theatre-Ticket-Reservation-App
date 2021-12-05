@@ -16,19 +16,19 @@ public class WelcomeController {
 
         this.welcomeView = theTerminal;
 
-        this.welcomeView.addLoginButtonListener(new LoginButtonListener());
-
-
-
-    }
-
-    class LoginButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
+        this.welcomeView.addLoginButtonListener(e -> {
             LoginController loginController = new LoginController();
             welcomeView.setVisible(false);
-        }
+        });
+
+        this.welcomeView.addGuestButtonListener(e -> {
+            GuestController guestController = new GuestController();
+            welcomeView.setVisible(false);
+        });
+
+
+
+
     }
 
 }
