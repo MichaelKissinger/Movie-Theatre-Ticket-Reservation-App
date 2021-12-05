@@ -7,28 +7,32 @@ public class Transaction
 {
     int transactionId;
     User user;
-    ArrayList<Ticket> tickets;
     double totalCost;
     Date purchaseDate;
     CreditCard paymentCreditCard;
+    ArrayList<Seat> purchasedSeats;
+    JDBCConnect myJDBC;
 
-    // Revisit after creating User
+    //Constructor for an initializing existing Transaction from DB.
+    public Transaction(int transactionId, User user, double totalCost, Date purchaseDate, CreditCard paymentCreditCard, ArrayList<Seat> purchasedSeats)
+    {
+        this.transactionId = transactionId;
+        this.user = user;
+        this.totalCost = totalCost;
+        this.purchaseDate = purchaseDate;
+        this.paymentCreditCard = paymentCreditCard;
+        this.purchasedSeats = purchasedSeats;
+    }
+
+    // Constructor for initializing a new Transaction and creating it in the DB
     public Transaction(User user)
     {
         setUser(user);
         totalCost = 0;
-        tickets = new ArrayList<Ticket>();
         purchaseDate = new Date();
-    }
 
-    public void addTicket(Ticket t)
-    {
-        tickets.add(t);
-        this.updateCost(t);
-    }
-    public void updateCost(Ticket t)
-    {
-      totalCost += t.getShowing().getTicketPrice();
+        // CREATE TRANSACTION IN THE DB AND GET THE ID
+        // this.transactionId = transactionId;
     }
 
     @Override
@@ -36,7 +40,6 @@ public class Transaction
         return "Transaction{" +
                 "transactionId=" + transactionId +
                 ", user=" + user +
-                ", tickets=" + tickets +
                 ", totalCost=" + totalCost +
                 ", purchaseDate=" + purchaseDate +
                 ", paymentCard=" + paymentCreditCard +
@@ -45,7 +48,7 @@ public class Transaction
 
     public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
     {
-        setPaymentCard(new CreditCard(name, number, expMonth, expYear, cvv));
+        //setPaymentCard(new CreditCard(name, number, expMonth, expYear, cvv));
     }
 
     public int getTransactionId() {
@@ -64,12 +67,12 @@ public class Transaction
         this.user = user;
     }
 
-    public ArrayList<Ticket> getTickets() {
-        return tickets;
+    public ArrayList<Seat> getPurchasedSeats() {
+        return purchasedSeats;
     }
 
-    public void setTickets(ArrayList<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setPurchasedSeats(ArrayList<Seat> purchasedSeats) {
+        this.purchasedSeats = purchasedSeats;
     }
 
     public double getTotalCost() {
