@@ -52,22 +52,42 @@ CREATE TABLE USER(
     Password varchar(15),
     ActiveStatus BOOL,
     LastPaymentDate DATETIME,
-    Card varchar(16),
     PRIMARY KEY(UserID));
     
-Insert INTO USER(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate, Card)
+Insert INTO USER(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate)
 Values
-(True, "Kody", "CALGARY SOMEWHERE", "kodykou@ucalgary.ca", "fakepassword", True, "2020-12-20 00:00:00", "1000200030004000"),
-(True, "Jared", "CALGARY SOMEWHEREELSE", "JARED@uc.ca", "fakepassword1", True, "2021-12-20 00:00:00", "4321123489891122"),
-(True, "Mike", "Calgarylowercased", "mikek@ucalgary.ca", "fakepassword2", True, "2021-10-20 00:00:00","2000400080009000"),
-(True, "Nic", "calgary4thspelling", "nickl@ucalgary.ca", "fakepassword3", False, NULL, "1000300020004000"),
-(False, "", "", "nonregistereduser@ucalgary.ca", "", False, NULL, Null );
+(True, "Kody", "CALGARY SOMEWHERE", "kodykou@ucalgary.ca", "fakepassword", True, "2020-12-20 00:00:00"),
+(True, "Jared", "CALGARY SOMEWHEREELSE", "JARED@uc.ca", "fakepassword1", True, "2021-12-20 00:00:00"),
+(True, "Mike", "Calgarylowercased", "mikek@ucalgary.ca", "fakepassword2", True, "2021-10-20 00:00:00"),
+(True, "Nic", "calgary4thspelling", "nickl@ucalgary.ca", "fakepassword3", False, NULL),
+(False, "", "", "nonregistereduser@ucalgary.ca", "", False, NULL);
 
 UPDATE USER SET ActiveStatus = 
 Case
 When (current_timestamp <( SELECT DATE_ADD(LastPaymentDate, INTERVAL 1 YEAR))) THEN true 
 Else false 
 END;
+
+CREATE TABLE CREDITCARD(
+	CardID int not null auto_increment,
+    UserID int,
+    CardHolderName varchar(50),
+    cardNumber varchar(16) not null,
+    expiryMonth int, 
+    expiryYear int,
+    cvv int,
+    Primary key (CardID),
+    FOREIGN KEY (UserID) References User(UserID)
+);
+INSERT INTO CREDITCARD(UserID, CardHolderName, CardNumber, expiryMonth, expiryYear, cvv)
+VALUES
+(1, "YINGCHENG KOU", "1000200030004000", 08, 23, 999),
+(2, "jared", "4321123489891122", 12, 21, 888),
+(3, "Mike",  "2000400080009000", 10, 22, 222),
+(4, "Nic", "1000300020004000", 09, 23, 986);
+
+
+
 
     
 CREATE TABLE TRANSACTION(
