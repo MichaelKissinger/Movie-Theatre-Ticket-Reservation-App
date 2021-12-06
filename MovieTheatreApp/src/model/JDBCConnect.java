@@ -154,6 +154,25 @@ public class JDBCConnect {
         return creditList;
     }
 
+    public void addUserToDB(String email, Boolean isRegistered,
+                            String name, String address, String password,
+                            Boolean activeStatus, Date lastPaymentDate) throws SQLException {
+        String query = "INSERT INTO USER " +
+                "(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate) " +
+                "values (?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setBoolean(1, isRegistered);
+        preparedStmt.setString (2, name);
+        preparedStmt.setString (3, address);
+        preparedStmt.setString (4, email);
+        preparedStmt.setString (5, password);
+        preparedStmt.setBoolean (6, activeStatus);
+        preparedStmt.setDate (7, (java.sql.Date) lastPaymentDate);
+
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
+
 
 
 

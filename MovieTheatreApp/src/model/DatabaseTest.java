@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DatabaseTest {
 
@@ -8,15 +9,32 @@ public class DatabaseTest {
 //        Database myDatabase = new Database();
 
 
-        System.out.println(Database.getMovieDB());
+//        System.out.println(Database.getMovieDB());
+//
+//        for (Movie m: Database.getMovieDB()) {
+//            System.out.println(m.getShowings());
+//        }
+//
+//        System.out.println(Database.getUserDB());
+//
+//        System.out.println(Database.getRegisteredUserDB());
 
-        for (Movie m: Database.getMovieDB()) {
-            System.out.println(m.getShowings());
-        }
+        String email = "nonregistereduser@ucalgary.ca";
 
-        System.out.println(Database.getUserDB());
+        ArrayList<User> myUserDB = Database.getUserDB();
 
-        System.out.println(Database.getRegisteredUserDB());
+            for (User u: Database.getUserDB()) {
+                if (u.getEmail().equals(email)){
+                    System.out.println(u);
+
+                } else {
+                    System.out.println("Does not Exist");
+
+                }
+            }
+
+
+
 
 
     }

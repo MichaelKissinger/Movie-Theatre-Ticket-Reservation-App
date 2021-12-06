@@ -13,20 +13,17 @@ public class Database {
     private static ArrayList<User> userDB;
     private static ArrayList<RegisteredUser> registeredUserDB;
 
-
-//    private JDBCConnect myJDBC;
-
-    public Database() throws SQLException {
-        myJDBC = new JDBCConnect();
-        myJDBC.createConnection();
-        initializeMovies();
-        initializeUsers();
-        initializeRegisteredUsers();
-    }
+//    public Database() throws SQLException {
+//        myJDBC = new JDBCConnect();
+//        myJDBC.createConnection();
+//        initializeMovies();
+//        initializeUsers();
+//        initializeRegisteredUsers();
+//    }
 
     private static JDBCConnect myJDBC;
 
-//    private Database() throws SQLException { }
+    private Database() throws SQLException { }
 
     private static void connectJDBC() {
         if(myJDBC == null){
@@ -71,5 +68,33 @@ public class Database {
         }
         return registeredUserDB;
     }
+
+    public static void addUser(String email) throws SQLException {
+        connectJDBC();
+        Boolean isRegistered = false;
+        String name = "";
+        String address = "";
+        String password = "";
+        Boolean activeStatus = false;
+        Date lastPaymentDate = null;
+        myJDBC.addUserToDB(email, isRegistered,
+                name, address, password,
+                activeStatus, lastPaymentDate);
+        userDB = myJDBC.userSetStatement();
+    }
+
+//    public static void registerUser(String email) throws SQLException {
+//        connectJDBC();
+//        Boolean isRegistered = false;
+//        String name = "";
+//        String address = "";
+//        String password = "";
+//        Boolean activeStatus = false;
+//        Date lastPaymentDate = null;
+//        myJDBC.registerUserInDB(email, isRegistered,
+//                name, address, password,
+//                activeStatus, lastPaymentDate);
+//        userDB = myJDBC.userSetStatement();
+//    }
 
 }
