@@ -36,7 +36,7 @@ public class SelectedSeatController {
     }
 
     public int getSeatIndex(String seat){
-        return ((seat.charAt(0) - 'A') * 5) + Character.getNumericValue(seat.charAt(1));
+        return ((seat.charAt(0) - 'A') * 5) + Character.getNumericValue(seat.charAt(1))-1;
     }
 
 
