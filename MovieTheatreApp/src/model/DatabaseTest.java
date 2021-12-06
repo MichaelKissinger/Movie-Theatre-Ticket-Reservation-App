@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class DatabaseTest {
         String address = "1234 Fake street NW";
         String password = "SoSneaky123";
 
-        Database.registerUser(ordinaryUser.getUserId(), name, address, password);
+        Database.registerUser(ordinaryUser.getUserId(), name, address, password, new Date(System.currentTimeMillis()));
         RegisteredUser regUser = LoginChecker.AuthenticateRegisteredUser(email, password);
 //
         System.out.println(regUser);

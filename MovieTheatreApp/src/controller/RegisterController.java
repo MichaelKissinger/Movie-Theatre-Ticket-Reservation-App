@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.sql.Date;
 
 public class RegisterController {
     private User user;
@@ -50,12 +52,10 @@ public class RegisterController {
                 errCheck = false;
             }
 
-            System.out.println(registerView.getCard().length());
             try{
                 if(registerView.getCard().length()!=16){
                     throw(new NumberFormatException());
                 }
-                System.out.println("first if out ");
                 for(int i =0; i <registerView.getCard().length(); i++){
                     int z =Integer.parseInt(registerView.getCard().substring(i,i+1));
                 }
@@ -85,18 +85,18 @@ public class RegisterController {
                         cardholderName,card, month, year, cvv);
                 //TODO authenticate creditcard
                 //TODO make transaction
-
+//java.util.Calendar.getInstance().getTime()
+                Date lastPaymentDate = new Date(System.currentTimeMillis());
                 try {
                     RegisteredUser newUser = new RegisteredUser(user.getUserId(),
                             user.getEmail(), true, name, address, password,
-                            true,java.util.Calendar.getInstance().getTime());
-                    System.out.println(newUser.toString());
+                            true, lastPaymentDate);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-
+                System.out.println(new Date(System.currentTimeMillis()));
                 try {
-                    Database.registerUser(user.getUserId(), name, address, password);
+                    Database.registerUser(user.getUserId(), name, address, password, lastPaymentDate);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -105,14 +105,17 @@ public class RegisterController {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-
+                try {
+                    TerminalController terminalController = new TerminalController(regUser);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 registerView.setVisible(false);
             }
-
         });
         registerView.addCancelButtonListener(e->{
             try{
-                TerminalController terminalController = new TerminalController(this.regUser);
+                TerminalController terminalController = new TerminalController(this.user);
                 registerView.setVisible(false);
             } catch(SQLException err){
                 err.printStackTrace();

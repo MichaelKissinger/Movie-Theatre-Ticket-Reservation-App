@@ -83,10 +83,9 @@ public class Database {
         userDB = myJDBC.userSetStatement();
     }
 
-    public static void registerUser(int userId, String name, String address, String password) throws SQLException {
+    public static void registerUser(int userId, String name, String address, String password, Date lastPaymentDate)
+            throws SQLException {
         connectJDBC();
-        //TODO fix this to set current date
-        Date lastPaymentDate = null;
         myJDBC.updateRegUserInDB(userId, true,
                 name, address, password,
                 true, lastPaymentDate);
