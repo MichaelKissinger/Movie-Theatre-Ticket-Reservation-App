@@ -3,33 +3,24 @@ package model;
 import java.sql.SQLException;
 
 public class LoginChecker {
-    Database database;
-    String username;
-    String password;
 
-    public LoginChecker(String username, String password) throws SQLException {
-        database = new Database();
-        this.username = username;
-        this.password = password;
+    private LoginChecker() {}
+
+    public static RegisteredUser AuthenticateRegisteredUser(String email, String password) throws SQLException {
+        for(RegisteredUser user: Database.getRegisteredUserDB()) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)){
+                return user;
+            }
+        }
+        return null;
     }
 
-//    public boolean checkUsernamePassword() {
-//        Boolean usernameCheck = false;
-//        Boolean passwordCheck = false;
-//        for(User a: database.getUsers()) {
-//            if (a.getUserName().equals(username)){
-//                usernameCheck = true;
-//            }
-//            if (a.getPassword().equals(password)){
-//                passwordCheck = true;
-//                break;
-//            }
-//        }
-//        if (usernameCheck && passwordCheck) {
-//            return true;
-//
-//        } else {
-//            return false;
-//        }
-//    }
+    public static User AuthenticateOrdinaryUser(String email) throws SQLException {
+        for(User user: Database.getUserDB()) {
+            if (user.getEmail().equals(email)){
+                return user;
+            }
+        }
+        return null;
+    }
 }

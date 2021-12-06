@@ -11,7 +11,8 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+//            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,7 +118,8 @@ public class JDBCConnect {
             while (results.next()) {
                 String rownum = results.getString("rownum");
                 int colnum = results.getInt("colnum");
-                int transactionID = results.getInt("TransactionID");
+//                int transactionID = results.getInt("TransactionID");
+                int transactionID = 0;
 
                 Seat mySeat = new Seat(showingId, rownum, colnum, transactionID);
                 seatList.add(mySeat);
@@ -152,9 +154,41 @@ public class JDBCConnect {
         return creditList;
     }
 
+    public void addUserToDB(String email, Boolean isRegistered,
+                            String name, String address, String password,
+                            Boolean activeStatus, Date lastPaymentDate) throws SQLException {
+        String query = "INSERT INTO USER " +
+                "(IsRegistered, Name, Address, Email, Password, ActiveStatus, LastPaymentDate) " +
+                "values (?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setBoolean(1, isRegistered);
+        preparedStmt.setString (2, name);
+        preparedStmt.setString (3, address);
+        preparedStmt.setString (4, email);
+        preparedStmt.setString (5, password);
+        preparedStmt.setBoolean (6, activeStatus);
+        preparedStmt.setDate (7, (java.sql.Date) lastPaymentDate);
 
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
 
+    public void updateRegUserInDB(int userId, Boolean isRegistered,
+                            String name, String address, String password,
+                            Boolean activeStatus, Date lastPaymentDate) throws SQLException {
+        String query = "UPDATE USER SET IsRegistered = ?, Name = ?, Address = ?, Password = ?, ActiveStatus = ?, LastPaymentDate = ? WHERE UserID = ?";
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setBoolean(1, isRegistered);
+        preparedStmt.setString (2, name);
+        preparedStmt.setString (3, address);
+        preparedStmt.setString (4, password);
+        preparedStmt.setBoolean (5, activeStatus);
+        preparedStmt.setDate (6, (java.sql.Date) lastPaymentDate);
+        preparedStmt.setInt (7, userId);
 
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
 
 }
 

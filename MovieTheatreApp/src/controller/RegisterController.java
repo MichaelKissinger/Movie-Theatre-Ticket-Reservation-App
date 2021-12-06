@@ -1,8 +1,6 @@
 package controller;
 
-import model.CreditCard;
-import model.RegisteredUser;
-import model.User;
+import model.*;
 import view.RegisterView;
 
 import javax.swing.*;
@@ -14,6 +12,7 @@ import java.util.Date;
 
 public class RegisterController {
     private User user;
+    private RegisteredUser regUser;
 
     public RegisterController(User user){
         this.user = user;
@@ -95,8 +94,17 @@ public class RegisterController {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-                //TODO UPDATE THE USER DATABASE BASED ON INFO ABOVE HERE
 
+                try {
+                    Database.registerUser(user.getUserId(), name, address, password);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                try {
+                    regUser = LoginChecker.AuthenticateRegisteredUser(user.getEmail(), password);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
 
                 registerView.setVisible(false);
             }
@@ -104,7 +112,7 @@ public class RegisterController {
         });
         registerView.addCancelButtonListener(e->{
             try{
-                TerminalController terminalController = new TerminalController(this.user);
+                TerminalController terminalController = new TerminalController(this.regUser);
                 registerView.setVisible(false);
             } catch(SQLException err){
                 err.printStackTrace();

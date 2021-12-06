@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GuestView extends JFrame implements ActionListener {
+public class GuestView extends JFrame {
 
     private JTextField inputField;
     private JButton enterButton;
@@ -48,8 +48,4 @@ public class GuestView extends JFrame implements ActionListener {
         return inputField.getText();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }

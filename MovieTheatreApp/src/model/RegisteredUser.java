@@ -24,7 +24,8 @@ public class RegisteredUser extends User {
         this.lastPaymentDate = lastPaymentDate;
     }
 
-    // TO-DO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
+    //TODO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
+
 
     public String getName() {
         return name;
