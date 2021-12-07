@@ -63,6 +63,10 @@ public class CancelSeatController {
 
         cancelSeatView.addCancelButtonListener(e->{
             ArrayList<Seat> cancelledSeats = cancelSeatView.getCancelledSeats();
+            if (cancelledSeats==null){
+                cancelSeatView.displayErrorMessage("Please select seats to cancel");
+                return;
+            }
             if (user.getRegistered()){
                 cancelPolicy = new RegisteredCancelPolicy();
             }else{
