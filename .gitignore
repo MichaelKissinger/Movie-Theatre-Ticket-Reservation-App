@@ -1,1 +1,3 @@
-MovieTheatreApp/out/*
+MovieTheatreApp/out/
+MovieTheatreApp/.idea/
+.idea/
