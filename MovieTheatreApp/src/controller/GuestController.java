@@ -23,9 +23,6 @@ public class GuestController {
             String email = guestView.getEmail();
             try {
                 ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
-                //TODO figure this out?? debug
-//                ordinaryUser.retrieveUserTransactions();
-//                ordinaryUser.retrieveUserCredits();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -41,13 +38,18 @@ public class GuestController {
                 // ASSIGN NEW USER TO ordinaryUSER
                 try {
                     ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
-                    ordinaryUser.retrieveUserTransactions();
-                    ordinaryUser.retrieveUserCredits();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
 
             }
+            try {
+                ordinaryUser.retrieveUserTransactions();
+                ordinaryUser.retrieveUserCredits();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+
             try {
                 TerminalController terminalController = new TerminalController(ordinaryUser);
                 guestView.setVisible(false);
