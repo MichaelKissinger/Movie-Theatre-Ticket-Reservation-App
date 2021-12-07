@@ -72,8 +72,9 @@ public class CancelSeatController {
             }else{
                 cancelPolicy = new GuestCancelPolicy();
             }
-            cancelPolicy.cancelTicket(cancelledSeats, transaction);
+            cancelPolicy.cancelTicket(cancelledSeats, transaction, user);
             cancelSeatView.setVisible(false);
+
             CancelSuccessController  cancelSuccessController= new CancelSuccessController(user);
 
 

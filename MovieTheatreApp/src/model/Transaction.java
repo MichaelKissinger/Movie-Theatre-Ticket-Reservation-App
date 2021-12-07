@@ -47,17 +47,19 @@ public class Transaction
         this.user = user;
         this.totalCost = totalCost;
         this.paymentCreditCard = paymentCreditCard;
-
+        database = Database.getDatabase();
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         this.transactionId = myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard, showingId);
-
+        setShowing(showingId);
+        setPurchaseDate(new Date());
     }
     public Showing getShowing(){
         return showing;
     }
 
     public void setUser(int userId) throws SQLException {
+
         for (User u: database.getUserDB()) {
             if (userId == u.getUserId()) {
                 this.user = u;
