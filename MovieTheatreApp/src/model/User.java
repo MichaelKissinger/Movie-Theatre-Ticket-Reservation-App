@@ -29,6 +29,10 @@ public class User
 
     // TO_DO: ADD/ REMOVE CREDIT AND TRANSACTION METHODS!!!
 
+    public CreditCard getCreditCard() {
+        return null;
+    }
+
     public int getUserId() {
         return userId;
     }

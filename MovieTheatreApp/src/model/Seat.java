@@ -45,5 +45,15 @@ public class Seat {
     public void setCol(int col) {
         this.col = col;
     }
+
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "showingId=" + showingId +
+                ", row='" + row + '\'' +
+                ", col=" + col +
+                ", transactionID=" + transactionID +
+                '}' + '\n';
+    }
 }
 

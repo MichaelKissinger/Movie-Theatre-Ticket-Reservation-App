@@ -2,21 +2,35 @@ package model;
 
 public class CreditCard {
     int cardId;
-    int userId;
     String cardHolderName;
     String cardNumber;
     int expiryMonth;
     int expiryYear;
     int cvv;
 
-    public CreditCard(String name, String number, int expMonth, int expYear, int cvv)
+    // For already existing cards
+    public CreditCard(int cardId, String name, String number, int expMonth, int expYear, int cvv)
     {
+        setCardId(cardId);
         setCardHolderName(name);
         setCardNumber(number);
         setExpiryMonth(expMonth);
         setExpiryYear(expYear);
         setCvv(cvv);
     }
+
+    // for new credit cards
+    public CreditCard(String name, String number, int expMonth, int expYear, int cvv)
+    {
+        setCardId(cardId);
+        setCardHolderName(name);
+        setCardNumber(number);
+        setExpiryMonth(expMonth);
+        setExpiryYear(expYear);
+        setCvv(cvv);
+    }
+
+
 
     public int getCardId() {
         return cardId;
