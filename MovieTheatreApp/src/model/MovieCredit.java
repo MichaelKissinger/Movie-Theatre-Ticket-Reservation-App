@@ -2,6 +2,14 @@ package model;
 
 import java.util.Calendar;
 import java.util.Date;
+
+
+/**
+ * MovieCredit class hold all the information for a user's credit that
+ * they would have from cancelling movie tickets.
+ * All the information can be access through getter and setter methods,
+ * and displayed with the toString method.
+ */
 public class MovieCredit
 {
     // CONSIDER: make user able to pay with existing credit- checks credit list for a credit with sufficient funds for the payment at hand

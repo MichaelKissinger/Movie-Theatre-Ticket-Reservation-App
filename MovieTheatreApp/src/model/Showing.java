@@ -5,6 +5,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Showing class can be used to access any information for the showings for each movie.
+ * This class is populated from the database, and can be accessed with getter and setter methods.
+ * It can also be displayed with the toString method.
+ */
 public class Showing {
 
     private int showingId;

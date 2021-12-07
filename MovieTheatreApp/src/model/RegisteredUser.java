@@ -4,6 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+/**
+ * RegisteredUser class can be used to access any information for the registered users.
+ * This class is populated from the database, and can be accessed with getter and setter methods.
+ * It can also be displayed with the toString method.
+ */
 public class RegisteredUser extends User {
     private String name;
     private String address;

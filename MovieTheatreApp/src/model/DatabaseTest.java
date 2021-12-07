@@ -5,6 +5,11 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+/**
+ * DatabaseTest is only a sandbox class for testing various functionality
+ * in the database.
+ */
 public class DatabaseTest {
 
     public static void main(String[] args) throws SQLException {

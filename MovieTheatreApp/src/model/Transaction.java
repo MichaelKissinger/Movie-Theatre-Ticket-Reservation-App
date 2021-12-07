@@ -5,6 +5,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Transaction class can be used to access any information for the transactions.
+ * This class is populated from the database, and can be accessed with getter and setter methods.
+ * It can also be displayed with the toString method.
+ */
 public class Transaction
 {
     int transactionId;

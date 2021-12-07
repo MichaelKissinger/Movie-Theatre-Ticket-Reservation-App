@@ -69,14 +69,13 @@ public class CancelSeatController {
                 cancelPolicy = new GuestCancelPolicy();
             }
             cancelPolicy.cancelTicket(cancelledSeats, transaction);
-
+            cancelSeatView.setVisible(false);
             CancelSuccessController  cancelSuccessController= new CancelSuccessController(user);
 
 
         });
 
         cancelSeatView.addBackButtonListener(e->{
-            //TODO implement terminalview here
             try {
                 TerminalController terminalController = new TerminalController(user);
                 cancelSeatView.setVisible(false);
