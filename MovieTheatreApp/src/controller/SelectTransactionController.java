@@ -44,6 +44,10 @@ public class SelectTransactionController {
         selectTransactionView.addProceedButtonListener(e->{
 
             selectedTransaction = selectTransactionView.getSelectedTransaction();
+            if(selectedTransaction == null){
+                selectTransactionView.displayErrorMessage("Please select a transaction");
+                return;
+            }
             if(selectedTransaction.getPurchasedSeats().size()==0){
                 selectTransactionView.displayErrorMessage("All seats in this transaction have been cancelled");
                 return;
@@ -55,6 +59,15 @@ public class SelectTransactionController {
 
         selectTransactionView.addCancelAllButtonListener(e->{
             selectedTransaction = selectTransactionView.getSelectedTransaction();
+            if(selectedTransaction == null){
+                selectTransactionView.displayErrorMessage("Please select a transaction");
+                return;
+            }
+
+            if(selectedTransaction.getPurchasedSeats().size()==0){
+                selectTransactionView.displayErrorMessage("All seats in this transaction have been cancelled");
+                return;
+            }
             if (user.getRegistered()){
                 cancelPolicy = new RegisteredCancelPolicy();
             }else{

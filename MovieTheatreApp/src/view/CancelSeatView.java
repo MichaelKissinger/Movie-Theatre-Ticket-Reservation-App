@@ -77,6 +77,10 @@ public class CancelSeatView extends JFrame implements ActionListener{
 
     public ArrayList<Seat> getCancelledSeats(){
         ArrayList<Seat> cancelledSeats = new ArrayList();
+        if(selectedSeats.size()==0){
+            return null;
+        }
+
         for (String i: selectedSeats){
             for(int j = 0; j<transaction.getPurchasedSeats().size(); j++){
                 if(i.equals((
@@ -89,6 +93,8 @@ public class CancelSeatView extends JFrame implements ActionListener{
         }
         return cancelledSeats;
     }
-
+    public void displayErrorMessage(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage);
+    }
 
 }
