@@ -8,95 +8,83 @@ import java.util.Date;
 
 public class Database {
 
-    private static ArrayList<Movie> movieDB;
-    private static ArrayList<Seat> seatDB;
-    private static ArrayList<User> userDB;
-    private static ArrayList<RegisteredUser> registeredUserDB;
-    private static ArrayList<Transaction> transactionDB;
-    private static ArrayList<Showing> showingDB;
+    private static Database database;
+    private ArrayList<Movie> movieDB;
+    private ArrayList<Seat> seatDB;
+    private ArrayList<User> userDB;
+    private ArrayList<RegisteredUser> registeredUserDB;
+    private ArrayList<Transaction> transactionDB;
+    private ArrayList<Showing> showingDB;
+    private JDBCConnect myJDBC;
 
-//    public Database() throws SQLException {
-//        myJDBC = new JDBCConnect();
-//        myJDBC.createConnection();
-//        initializeMovies();
-//        initializeUsers();
-//        initializeRegisteredUsers();
-//    }
 
-    private static JDBCConnect myJDBC;
-
-    private Database() throws SQLException { }
-
-    private static void connectJDBC() {
-        if(myJDBC == null){
-            myJDBC = new JDBCConnect();
-            myJDBC.createConnection();
-        }
-
+    private Database() throws SQLException {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
     }
 
-    private static void initializeSeats() throws SQLException {
+    public static Database getDatabase() throws SQLException {
+        if(database == null){
+            database = new Database();
+        }
+        return database;
+    }
+
+    private void initializeSeats() throws SQLException {
         seatDB = myJDBC.allSeatsSetStatement();
     }
 
-    private static void initializeTransactions() throws SQLException {
+    private void initializeTransactions() throws SQLException {
         transactionDB = myJDBC.transactionSetStatement();
     }
 
-    private static void initializeMovies() throws SQLException {
+    private void initializeMovies() throws SQLException {
         movieDB = myJDBC.movieSetStatement();
     }
 
-    private static void initializeUsers() throws SQLException {
+    private void initializeUsers() throws SQLException {
         userDB = myJDBC.userSetStatement();
     }
 
-    private static void initializeRegisteredUsers() throws SQLException {
+    private void initializeRegisteredUsers() throws SQLException {
         registeredUserDB = myJDBC.registeredUserSetStatement();
     }
 
-    private static void initializeShowings() throws SQLException {
+    private void initializeShowings() throws SQLException {
         showingDB = myJDBC.allShowingsSetStatement();
     }
 
-    public static ArrayList<Movie> getMovieDB() throws SQLException {
-        connectJDBC();
+    public ArrayList<Movie> getMovieDB() throws SQLException {
         initializeMovies();
         return movieDB;
     }
 
-    public static ArrayList<Transaction> getTransactionDB() throws SQLException {
-        connectJDBC();
+    public ArrayList<Transaction> getTransactionDB() throws SQLException {
         initializeTransactions();
         return transactionDB;
     }
 
-    public static ArrayList<Seat> getSeatDB() throws SQLException {
-        connectJDBC();
+    public ArrayList<Seat> getSeatDB() throws SQLException {
         initializeSeats();
         return seatDB;
     }
 
-    public static ArrayList<User> getUserDB() throws SQLException {
-        connectJDBC();
+    public ArrayList<User> getUserDB() throws SQLException {
         initializeUsers();
         return userDB;
     }
 
-    public static ArrayList<RegisteredUser> getRegisteredUserDB() throws SQLException {
-        connectJDBC();
+    public ArrayList<RegisteredUser> getRegisteredUserDB() throws SQLException {;
         initializeRegisteredUsers();
         return registeredUserDB;
     }
 
-    public static ArrayList<Showing> getShowingDB() throws SQLException {
-        connectJDBC();
+    public ArrayList<Showing> getShowingDB() throws SQLException {
         initializeShowings();
         return showingDB;
     }
 
-    public static void addUser(String email) throws SQLException {
-        connectJDBC();
+    public void addUser(String email) throws SQLException {
         Boolean isRegistered = false;
         String name = "";
         String address = "";
@@ -109,9 +97,8 @@ public class Database {
         userDB = myJDBC.userSetStatement();
     }
 
-    public static void registerUser(int userId, String name, String address, String password, Date lastPaymentDate)
+    public void registerUser(int userId, String name, String address, String password, Date lastPaymentDate)
             throws SQLException {
-        connectJDBC();
         myJDBC.updateRegUserInDB(userId, true,
                 name, address, password,
                 true, lastPaymentDate);

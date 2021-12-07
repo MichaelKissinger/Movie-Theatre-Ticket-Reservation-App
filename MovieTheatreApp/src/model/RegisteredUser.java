@@ -31,10 +31,6 @@ public class RegisteredUser extends User {
         //TODO: update last payment date in DB
     }
 
-    public void getCreditCardFromDB() {
-        //TODO: get creditCard from DB using userId
-    }
-
     @Override
     public CreditCard getCreditCard() {
         return creditCard;

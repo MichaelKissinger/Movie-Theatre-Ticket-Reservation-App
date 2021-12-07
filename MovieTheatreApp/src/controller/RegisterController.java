@@ -96,7 +96,8 @@ public class RegisterController {
                 }
                 System.out.println(new Date(System.currentTimeMillis()));
                 try {
-                    Database.registerUser(user.getUserId(), name, address, password, lastPaymentDate);
+                    Database database = Database.getDatabase();
+                    database.registerUser(user.getUserId(), name, address, password, lastPaymentDate);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

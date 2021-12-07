@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DatabaseTest {
 
     public static void main(String[] args) throws SQLException {
-//        Database myDatabase = new Database();
+        Database database = Database.getDatabase();
 
 
 //        System.out.println(Database.getMovieDB());
@@ -60,11 +60,11 @@ public class DatabaseTest {
 //
 //        System.out.println(myTrans + "\n");
 
-        System.out.println(Database.getSeatDB());
+        System.out.println(database.getSeatDB());
 
         myJDBC.updateSeatDB(4, "C", 1);
 
-        System.out.println(Database.getSeatDB());
+        System.out.println(database.getSeatDB());
 
 
 
