@@ -80,4 +80,8 @@ public class User
                 ", email='" + email + '\'' +
                 '}' + '\n';
     }
+
+    public void retrieveCreditCard() throws SQLException {
+
+    }
 }

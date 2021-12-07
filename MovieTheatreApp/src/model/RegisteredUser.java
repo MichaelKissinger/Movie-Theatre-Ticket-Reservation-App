@@ -11,6 +11,7 @@ public class RegisteredUser extends User {
     private CreditCard creditCard;
     private Boolean activeStatus;
     private Date lastPaymentDate;
+    private JDBCConnect myJDBC;
 
 
 
@@ -37,6 +38,13 @@ public class RegisteredUser extends User {
     @Override
     public CreditCard getCreditCard() {
         return creditCard;
+    }
+
+    @Override
+    public void retrieveCreditCard() throws SQLException {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        this.creditCard = myJDBC.getCreditCardByUserId(userId);
     }
 
     public void setCreditCard(CreditCard creditCard) {
