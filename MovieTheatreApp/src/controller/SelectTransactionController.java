@@ -1,7 +1,11 @@
 package controller;
 
+import cancelPolicy.CancelPolicy;
+import cancelPolicy.GuestCancelPolicy;
+import cancelPolicy.RegisteredCancelPolicy;
 import model.Transaction;
 import model.User;
+import view.CancelSuccessView;
 import view.SelectTransactionView;
 
 import javax.swing.*;
@@ -13,6 +17,7 @@ import java.util.Date;
 public class SelectTransactionController {
     private User user;
     Transaction selectedTransaction;
+    CancelPolicy cancelPolicy;
 
 
     public SelectTransactionController(User user){
@@ -44,11 +49,14 @@ public class SelectTransactionController {
 
         selectTransactionView.addCancelAllButtonListener(e->{
             selectedTransaction = selectTransactionView.getSelectedTransaction();
-            try {
-                TerminalController terminalController = new TerminalController(user);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            if (user.getRegistered()){
+                cancelPolicy = new RegisteredCancelPolicy();
+            }else{
+                cancelPolicy = new GuestCancelPolicy();
             }
+            cancelPolicy.cancelTicket(selectedTransaction.getPurchasedSeats(), selectedTransaction);
+            CancelSuccessController cancelSuccessController = new CancelSuccessController(user);
+            selectTransactionView.setVisible(false);
 
 
         });
@@ -56,6 +64,7 @@ public class SelectTransactionController {
         selectTransactionView.addBackButtonListener(e->{
             try {
                 TerminalController terminalController = new TerminalController(user);
+                selectTransactionView.setVisible(false);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

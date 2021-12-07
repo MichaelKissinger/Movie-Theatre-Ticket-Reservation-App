@@ -12,8 +12,8 @@ public class JDBCConnect {
         try {
             //You to enter your own SQL  username and password below to make this work!!
 
-             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
-            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
+//             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
             //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
 //             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
@@ -181,6 +181,8 @@ public class JDBCConnect {
         return seatList;
     }
 
+
+
     public ArrayList<MovieCredit> creditSetStatement(int userId) throws SQLException {
         ArrayList<MovieCredit> creditList = new ArrayList<MovieCredit>();
         try {
@@ -203,6 +205,32 @@ public class JDBCConnect {
         }
         return creditList;
     }
+
+    //TODO: debug this
+//    public ArrayList<Transaction> transactionsStatement(int id) throws SQLException {
+//        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+//        try {
+//            Statement myStmt = dbConnect.createStatement();
+//            ResultSet results = myStmt.executeQuery("SELECT * FROM Transaction WHERE UserID = \"" + id + "\";");
+//
+//            while (results.next()) {
+//                int transactionId = results.getInt("TransactionID");
+//                int userId = results.getInt("UserID");
+//                double cost = results.getDouble("Cost");
+//                Date purchaseDate = results.getDate("PurchaseDate");
+//                int cardId = results.getInt("CardID");
+//                int showingId = results.getInt("ShowingID");
+//
+//
+//                Transaction myTransaction = new Transaction(transactionId, userId, cost, purchaseDate, cardId, showingId);
+//                transactionList.add(myTransaction);
+//            }
+//            myStmt.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return transactionList;
+//    }
 
     public void addUserToDB(String email, Boolean isRegistered,
                             String name, String address, String password,

@@ -10,6 +10,7 @@ import model.User;
 import view.CancelSeatView;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CancelSeatController {
@@ -19,6 +20,7 @@ public class CancelSeatController {
     CancelPolicy cancelPolicy;
 
     public CancelSeatController(User user, Transaction transaction){
+        this.user= user;
         CancelSeatView cancelSeatView =
                 new CancelSeatView(transaction.getPurchasedSeats(), transaction) ;
         cancelSeatView.setVisible(true);
@@ -32,18 +34,18 @@ public class CancelSeatController {
             }else{
                 cancelPolicy = new GuestCancelPolicy();
             }
-            cancelPolicy.cancelTicket(cancelledSeats, user, transaction);
-
-
-
-
-
-            //TODO search the seat in the database,
+            cancelPolicy.cancelTicket(cancelledSeats, transaction);
 
         });
 
         cancelSeatView.addBackButtonListener(e->{
             //TODO implement terminalview here
+            try {
+                TerminalController terminalController = new TerminalController(user);
+                cancelSeatView.setVisible(false);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         });
 
 

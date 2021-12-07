@@ -41,7 +41,6 @@ public class SelectedSeatController {
             else {
                 TransactionPaymentController transactionPaymentController = new TransactionPaymentController(user, showing, purchasedSeatsIndex);
             }
-
             selectSeatView.setVisible(false);
         });
 

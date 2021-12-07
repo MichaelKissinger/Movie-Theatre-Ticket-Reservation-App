@@ -1,10 +1,13 @@
 package cancelPolicy;
 
+import model.JDBCConnect;
 import model.Seat;
 import model.Transaction;
 import model.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class RegisteredCancelPolicy implements CancelPolicy{
@@ -12,28 +15,33 @@ public class RegisteredCancelPolicy implements CancelPolicy{
 
 
     @Override
-    public void cancelTicket(ArrayList<Seat> cancelledSeats, User user, Transaction transaction) {
+    public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction) {
+        JDBCConnect myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
         int numberOfTickets = cancelledSeats.size();
 
-
-        //TODO sql method call to make this seat's transaction id = 0
-
+        for(Seat seat:cancelledSeats){
+            try {
+                myJDBC.updateSeatDB(seat.getShowingId(), seat.getRow(), seat.getCol());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
         double amount = (double)numberOfTickets*transaction.getShowing().getTicketPrice();
-        String creditCode = "idk what to put";
-        //TODO change creditcode
-//        Date expiryDate = new Date().
+        String creditCode = "Refund";
 
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date(System.currentTimeMillis()));
+        c.add(Calendar.YEAR, 1);
+        Date expiryDate = c.getTime();
 
-
-
-        if (transaction.getPurchasedSeats()== null){
-            user.getPreviousPurchases().remove(transaction);
+        try {
+            myJDBC.addMovieCreditToDB(
+                    creditCode, expiryDate, amount, transaction.getUser().getUserId());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        //TODO sql method call to create MovieCredit
-
-
-
 
     }
 }
