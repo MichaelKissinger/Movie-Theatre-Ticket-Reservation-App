@@ -11,9 +11,11 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
-//            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
-//            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+
+            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
+            //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,6 +237,43 @@ public class JDBCConnect {
         preparedStmt.execute();
     }
 
+    public void addTransactionToDB(User user, double totalCost, CreditCard creditCard) throws SQLException {
+        String query = "INSERT INTO TRANSACTION " +
+                "(UserID, Cost, PurchaseDate, CardID) " +
+                "values (?, ?, ?, ?)";
+
+        //SQl Date
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setInt(1, user.getUserId());
+        preparedStmt.setFloat (2, (float)totalCost);
+        preparedStmt.setDate (3, sqlDate);
+        preparedStmt.setInt (4, creditCard.getCardId());
+
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
+
+    public void addCreditCardToDB(User user, String cardHolderName, String cardNumber, int expiryMonth, int expiryYear, int cvv) throws SQLException {
+        String query = "INSERT INTO CREDITCARD " +
+                "(UserID, CardHolderName, cardNumber, expiryMonth, expiryYear, cvv) " +
+                "values (?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setInt(1, user.getUserId());
+        preparedStmt.setString(2, cardHolderName);
+        preparedStmt.setString(3, cardNumber);
+        preparedStmt.setInt(4, expiryMonth);
+        preparedStmt.setInt(5, expiryYear);
+        preparedStmt.setInt(6, cvv);
+
+        // execute the prepared statement
+        preparedStmt.execute();
+
+    }
+
     public ArrayList<Transaction> transactionSetStatement() throws SQLException {
         ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
         try {
@@ -260,6 +299,5 @@ public class JDBCConnect {
         }
         return transactionList;
     }
-
 }
 

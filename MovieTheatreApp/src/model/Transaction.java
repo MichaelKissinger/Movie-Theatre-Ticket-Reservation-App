@@ -35,14 +35,15 @@ public class Transaction
     }
 
     // Constructor for initializing a new Transaction and creating it in the DB
-    public Transaction(User user)
-    {
-        setUser(user);
-        totalCost = 0;
-        purchaseDate = new Date();
+    public Transaction(User user, double totalCost, CreditCard paymentCreditCard) throws SQLException {
+        this.user = user;
+        this.totalCost = totalCost;
+        this.paymentCreditCard = paymentCreditCard;
 
-        // CREATE TRANSACTION IN THE DB AND GET THE ID
-        // this.transactionId = transactionId;
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard);
+
     }
 
     public void setUser(int userId) throws SQLException {
