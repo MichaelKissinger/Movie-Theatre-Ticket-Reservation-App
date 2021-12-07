@@ -7,6 +7,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+/**
+ * Allows the user to select a desired showing to purchase tickets for, this window is shown after
+ *  the user selects a movie
+ */
 public class SelectShowingView extends JFrame {
 
     JButton backButton, proceedButton;

@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The view prompting a guest user to provide an email
+ */
 public class GuestView extends JFrame {
 
     private JTextField inputField;

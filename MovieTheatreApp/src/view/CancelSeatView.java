@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This view allows users to choose seats which they've purchased for a speicific showing to cancel.
+ *  Users can select multiple seats under the transaction and press cancel to complete teh cancellation.
+ */
 public class CancelSeatView extends JFrame implements ActionListener{
     JButton backButton, cancelButton;
     ArrayList<String> selectedSeats;

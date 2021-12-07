@@ -6,6 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+/**
+ * The view which is shown when the user selects to login, prompts the user to log in by providing
+ *  an email and password
+ */
 public class LoginView extends JFrame implements ActionListener {
 
     private JTextField usernameInput;

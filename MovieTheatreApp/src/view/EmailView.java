@@ -12,6 +12,9 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+/**
+ * This view displays the promotional and transaction emails in a user's inbox
+ */
 public class EmailView extends JFrame {
 
     JButton backButton;
