@@ -17,12 +17,16 @@ public class GuestCancelPolicy implements CancelPolicy{
     @Override
     public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction) {
         JDBCConnect myJDBC = new JDBCConnect();
+
         myJDBC.createConnection();
         int numberOfTickets = cancelledSeats.size();
+        System.out.println(cancelledSeats);
+        System.out.println(transaction);
 
         for(Seat seat:cancelledSeats){
             try {
                 myJDBC.updateSeatDB(seat.getShowingId(), seat.getRow(), seat.getCol());
+                transaction.getPurchasedSeats().remove(seat);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -35,6 +39,7 @@ public class GuestCancelPolicy implements CancelPolicy{
         c.setTime(new Date(System.currentTimeMillis()));
         c.add(Calendar.YEAR, 1);
         Date expiryDate = c.getTime();
+
 
         try {
             myJDBC.addMovieCreditToDB(
