@@ -3,17 +3,20 @@ package controller;
 import model.Database;
 import model.Movie;
 import model.Showing;
-//import model.Email;
+
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DatabaseController {
 
     ArrayList<Movie> movieList;
+    Database database;
 
     public DatabaseController() throws SQLException {
         // PULL ALL MOVIES INTO MOVIE LIST
-        movieList = Database.getMovieDB();
+        database = Database.getDatabase();
+        movieList = database.getMovieDB();
     }
 
     public String displayAllMovies(){

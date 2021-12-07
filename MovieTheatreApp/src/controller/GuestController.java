@@ -5,6 +5,7 @@ import model.LoginChecker;
 import model.User;
 import view.GuestView;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -27,7 +28,8 @@ public class GuestController {
             if(ordinaryUser == null){
                 // CREATE USER HERE
                 try {
-                    Database.addUser(email);
+                    Database database = Database.getDatabase();
+                    database.addUser(email);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

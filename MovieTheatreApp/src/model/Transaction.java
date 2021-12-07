@@ -1,5 +1,6 @@
 package model;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class Transaction
     Showing showing;
 
     JDBCConnect myJDBC;
+    Database database;
 
     //Constructor for an initializing existing Transaction from DB.
     public Transaction(int transactionId, int userId, double totalCost,
@@ -29,6 +31,7 @@ public class Transaction
         this.purchaseDate = purchaseDate;
         this.creditCardId = paymentCreditCard;
         this.showingId = showingId;
+        database = Database.getDatabase();
         setUser(userId);
         setSeats(transactionId);
         setShowing(showingId);
@@ -50,7 +53,7 @@ public class Transaction
     }
 
     public void setUser(int userId) throws SQLException {
-        for (User u:Database.getUserDB()) {
+        for (User u: database.getUserDB()) {
             if (userId == u.getUserId()) {
                 this.user = u;
             }
@@ -58,7 +61,7 @@ public class Transaction
     }
 
     public void setSeats(int transactionId) throws SQLException {
-        for (Seat s:Database.getSeatDB()) {
+        for (Seat s: database.getSeatDB()) {
             if(transactionId == s.getTransactionID()){
                 this.purchasedSeats.add(s);
             }
@@ -66,7 +69,7 @@ public class Transaction
     }
 
     public void setShowing(int showingId) throws SQLException {
-        for (Showing s:Database.getShowingDB()) {
+        for (Showing s: database.getShowingDB()) {
             if(showingId == s.getShowingId()){
                 this.showing = s;
             }

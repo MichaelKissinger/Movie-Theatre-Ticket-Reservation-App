@@ -12,12 +12,12 @@ public class JDBCConnect {
         try {
             //You to enter your own SQL  username and password below to make this work!!
 
+
              dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
 //             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
             //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
 //             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -220,7 +220,6 @@ public class JDBCConnect {
                 Date purchaseDate = results.getDate("PurchaseDate");
                 int cardId = results.getInt("CardID");
                 int showingId = results.getInt("ShowingID");
-
 
                 Transaction myTransaction = new Transaction(transactionId, userId, cost, purchaseDate, cardId, showingId);
                 transactionList.add(myTransaction);

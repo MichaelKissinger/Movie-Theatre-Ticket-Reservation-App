@@ -14,25 +14,28 @@ public class User
     private JDBCConnect myJDBC;
 
     public User(int userId, String email, Boolean isRegistered) throws SQLException {
-        myJDBC = new JDBCConnect();
-        myJDBC.createConnection();
         setUserId(userId);
         setEmail(email);
         this.isRegistered = isRegistered;
 
-        //TODO add in transactions
-
-        initializeUserCredits();
-//        initializeUserTransactions();
-        //TODO DEBUG THIS
-
     }
 
-    private void initializeUserTransactions() throws SQLException{
+    // gets Overridden in RegisteredUser
+    public void retrieveCreditCard() throws SQLException {
+    }
+
+
+    private void initializeUserTransactions() throws SQLException{}
+
+    public void retrieveUserTransactions() throws SQLException{
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
         this.previousPurchases = myJDBC.transactionsStatement(userId);
     }
 
-    public void initializeUserCredits() throws SQLException {
+    public void retrieveUserCredits() throws SQLException {
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
         this.userCredit = myJDBC.creditSetStatement(userId);
     }
 
@@ -90,7 +93,5 @@ public class User
                 '}' + '\n';
     }
 
-    public void retrieveCreditCard() throws SQLException {
 
-    }
 }
