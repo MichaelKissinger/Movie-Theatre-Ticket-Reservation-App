@@ -14,7 +14,8 @@ public class CancelSeatController {
 
     public CancelSeatController(User user, int index){
         CancelSeatView cancelSeatView =
-                new CancelSeatView(user.getPreviousPurchases().get(index).getPurchasedSeats());
+                new CancelSeatView(user.getPreviousPurchases().get(index).getPurchasedSeats(),
+                        transaction);
         cancelSeatView.setVisible(true);
 
         cancelSeatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

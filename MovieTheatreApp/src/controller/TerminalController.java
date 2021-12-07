@@ -32,7 +32,11 @@ public class TerminalController {
         });
 
         terminalView.addCancelTicketListener(e->{
-
+            try {
+                SelectTransactionController selectTransactionController = new SelectTransactionController(user);
+            }catch(NullPointerException err){
+                terminalView.displayErrorMessage("No transactions found for user");
+            }
         });
 
         terminalView.addRegisterListener(e->{
@@ -66,6 +70,8 @@ public class TerminalController {
             }
 
         });
+
+
     }
 
 

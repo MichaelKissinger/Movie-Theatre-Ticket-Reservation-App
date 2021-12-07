@@ -1,17 +1,21 @@
 package view;
 
 import model.Seat;
+import model.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class CancelSeatView extends JFrame{
+public class CancelSeatView extends JFrame implements ActionListener{
     JButton backButton, cancelButton;
-    JList display;
+    ArrayList<String> selectedSeats;
 
-    public CancelSeatView(ArrayList<Seat> seats){
+
+    public CancelSeatView(ArrayList<Seat> seats, Transaction transaction){
+        selectedSeats = new ArrayList<String>();
         setSize(800, 650);
         setTitle("Select a seat to cancel");
         JPanel displayPanel = new JPanel();
@@ -27,10 +31,12 @@ public class CancelSeatView extends JFrame{
         buttonPanel.add(cancelButton);
 
         titlePanel.add(new JLabel("Please select a seat to cancel"));
-        display = new JList(seats.toArray());
-        display.setVisibleRowCount(20);
-        display.setFixedCellHeight(20);
-        display.setFixedCellWidth(500);
+        JPanel display = new JPanel(new BoxLayout(this, BoxLayout.Y_AXIS));
+        for(Seat i: seats){
+            JButton btn = new JButton(i.getCol() + i.getRow());
+            btn.addActionListener(this);
+            display.add( new JButton(seats.toString()));
+        }
 
         JScrollPane sp = new JScrollPane(display);
         displayPanel.add("Center", sp);
@@ -49,6 +55,20 @@ public class CancelSeatView extends JFrame{
     }
     public int getListIndex(){
         return display.getSelectedIndex();
+    }
+
+
+
+    public void actionPerformed(ActionEvent e){
+        for(String seat:selectedSeats) {
+            if(seat.equals(((JButton)(e.getSource())).getText())){
+                selectedSeats.remove(seat);
+            }
+            ((JButton)e.getSource()).setBackground(null);
+            return;
+        }
+        selectedSeats.add(((JButton)e.getSource()).getText());
+        ((JButton)e.getSource()).setBackground(Color.lightGray);
     }
 
 
