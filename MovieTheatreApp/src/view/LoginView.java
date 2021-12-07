@@ -21,7 +21,7 @@ public class LoginView extends JFrame implements ActionListener {
 
         inputPanel.setLayout(new GridLayout(4, 2));
 
-        loginLabel = new JLabel("Username");
+        loginLabel = new JLabel("Email");
         passwordLabel = new JLabel("Password");
 
         inputField = new JTextField(10);

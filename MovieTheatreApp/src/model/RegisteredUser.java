@@ -8,6 +8,7 @@ public class RegisteredUser extends User {
     private String name;
     private String address;
     private String password;
+    private CreditCard creditCard;
     private Boolean activeStatus;
     private Date lastPaymentDate;
 
@@ -24,8 +25,23 @@ public class RegisteredUser extends User {
         this.lastPaymentDate = lastPaymentDate;
     }
 
-    //TODO: ADD ADD CARD, MAKE PAYMENT - > ACTIVATE/UPDATE LAST PAYMENT!!!
+    public void makeAnnualPayment() {
+        Date date = new Date();
+        //TODO: update last payment date in DB
+    }
 
+    public void getCreditCardFromDB() {
+        //TODO: get creditCard from DB using userId
+    }
+
+    @Override
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
 
     public String getName() {
         return name;

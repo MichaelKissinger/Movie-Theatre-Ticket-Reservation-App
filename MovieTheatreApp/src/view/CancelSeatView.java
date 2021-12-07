@@ -53,9 +53,6 @@ public class CancelSeatView extends JFrame implements ActionListener{
     public void addCancelButtonListener(ActionListener e){
         cancelButton.addActionListener(e);
     }
-    public int getListIndex(){
-        return display.getSelectedIndex();
-    }
 
 
 

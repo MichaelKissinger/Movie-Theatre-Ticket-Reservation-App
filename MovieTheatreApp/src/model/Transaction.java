@@ -1,38 +1,73 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Transaction
 {
     int transactionId;
-    User user;
+    int userId;
     double totalCost;
     Date purchaseDate;
+    int creditCardId;
+    int showingId;
+
+    User user;
     CreditCard paymentCreditCard;
-    ArrayList<Seat> purchasedSeats;
+    ArrayList<Seat> purchasedSeats = new ArrayList<Seat>();
+    Showing showing;
+
     JDBCConnect myJDBC;
 
     //Constructor for an initializing existing Transaction from DB.
-    public Transaction(int transactionId, User user, double totalCost, Date purchaseDate, CreditCard paymentCreditCard, ArrayList<Seat> purchasedSeats)
-    {
+    public Transaction(int transactionId, int userId, double totalCost,
+                       Date purchaseDate, int paymentCreditCard, int showingId) throws SQLException {
         this.transactionId = transactionId;
-        this.user = user;
+        this.userId = userId;
         this.totalCost = totalCost;
         this.purchaseDate = purchaseDate;
-        this.paymentCreditCard = paymentCreditCard;
-        this.purchasedSeats = purchasedSeats;
+        this.creditCardId = paymentCreditCard;
+        this.showingId = showingId;
+        setUser(userId);
+        setSeats(transactionId);
+        setShowing(showingId);
     }
 
     // Constructor for initializing a new Transaction and creating it in the DB
-    public Transaction(User user)
-    {
-        setUser(user);
-        totalCost = 0;
-        purchaseDate = new Date();
+    public Transaction(User user, double totalCost, CreditCard paymentCreditCard) throws SQLException {
+        this.user = user;
+        this.totalCost = totalCost;
+        this.paymentCreditCard = paymentCreditCard;
 
-        // CREATE TRANSACTION IN THE DB AND GET THE ID
-        // this.transactionId = transactionId;
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard);
+
+    }
+
+    public void setUser(int userId) throws SQLException {
+        for (User u:Database.getUserDB()) {
+            if (userId == u.getUserId()) {
+                this.user = u;
+            }
+        }
+    }
+
+    public void setSeats(int transactionId) throws SQLException {
+        for (Seat s:Database.getSeatDB()) {
+            if(transactionId == s.getTransactionID()){
+                this.purchasedSeats.add(s);
+            }
+        }
+    }
+
+    public void setShowing(int showingId) throws SQLException {
+        for (Showing s:Database.getShowingDB()) {
+            if(showingId == s.getShowingId()){
+                this.showing = s;
+            }
+        }
     }
 
     @Override
@@ -43,7 +78,8 @@ public class Transaction
                 ", totalCost=" + totalCost +
                 ", purchaseDate=" + purchaseDate +
                 ", paymentCard=" + paymentCreditCard +
-                '}';
+                ", purchased Seats=" + purchasedSeats +
+                '}' + '\n';
     }
 
     public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
