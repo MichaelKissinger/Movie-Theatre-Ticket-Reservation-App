@@ -21,7 +21,6 @@ public class JDBCConnect {
             //dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }

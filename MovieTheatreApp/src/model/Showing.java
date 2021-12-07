@@ -60,12 +60,6 @@ public class Showing {
         // if show time is less than 4 weeks away or has more than 0.1 of tickets perchansed make
         // it available to public
         this.availableToPublic = timeUntilShow < 2419200 || ((double)count / 25.0) > 0.1;
-        System.out.println(this.showingId + ":     ");
-        System.out.println(this.availableToPublic);
-        System.out.println("count:  " + count);
-        System.out.println("% seats: " + ((double)count / 25.0));
-        System.out.println("time until: " + timeUntilShow);
-
     }
 
     public boolean isAvailableToPublic() {

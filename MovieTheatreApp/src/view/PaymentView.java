@@ -11,6 +11,9 @@ public class PaymentView extends JFrame {
     JTextArea holderNameInput, numberInput, expiryMonthInput, expiryYearInput, cvvInput;
     JButton purchaseButton;
 
+    /**
+     * The view presented to a guest user after the user has selected seats of a showing to purchase
+     */
     public PaymentView() {
 
         setSize(800, 650);
