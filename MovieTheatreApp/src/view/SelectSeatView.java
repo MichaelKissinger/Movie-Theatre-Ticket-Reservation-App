@@ -9,6 +9,12 @@ package view;
         import java.awt.event.ActionListener;
         import java.util.ArrayList;
 
+/**
+ * This view is presented to the user after the user has selected a showing to purchase tickets for
+ *  Allows users to purchase multiple tickets, seats which are already sold will not be available for
+ *  selection and appear red.
+ *
+ */
 public class SelectSeatView extends JFrame implements ActionListener {
 
     private ArrayList<JButton> seatButtonList;

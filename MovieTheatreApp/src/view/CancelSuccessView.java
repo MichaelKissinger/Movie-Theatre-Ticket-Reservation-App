@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * This view is shown after a ticket cancellation is complete and successful
+ */
 public class CancelSuccessView extends JFrame {
     JLabel confirmLabel;
     JButton returnButton;

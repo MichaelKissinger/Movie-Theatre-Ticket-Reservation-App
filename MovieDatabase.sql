@@ -133,6 +133,22 @@ Values
 ("Error compensation", "2024-12-25 00:00:00", 50.00, 1),
 ("Refund", "2023-12-25 00:00:00", 12.00, 3);
 
+DROP TABLE IF EXISTS  MESSAGE;
+CREATE TABLE MESSAGE(
+	MessageID int NOT NULL AUTO_INCREMENT,
+    UserID int ,
+	Message varchar(200) ,
+	SubjectLine varchar(50),
+    SentDate DATETIME,
+    ReadStatus boolean,
+    PRIMARY KEY(messageID),
+    FOREIGN KEY(UserID) REFERENCES USER(UserID)
+);
+INSERT INTO MESSAGE(userID, message, subjectLine, sentDate, readStatus)
+ VALUES(1, "Check out SpiderMan Far From Home on the big screen! Coming to a theatre near you on December.17th, 2021! Tickets out now!", "Announcement", "2021-12-06 00:00:00", false),
+ (2, "Check out SpiderMan Far From Home on the big screen! Coming to a theatre near you on December.17th, 2021! Tickets out now!", "Announcement", "2021-12-06 00:00:00", false),
+ (3, "Check out SpiderMan Far From Home on the big screen! Coming to a theatre near you on December.17th, 2021! Tickets out now!", "Announcement", "2021-12-06 00:00:00", false),
+ (4, "Check out SpiderMan Far From Home on the big screen! Coming to a theatre near you on December.17th, 2021! Tickets out now!", "Announcement", "2021-12-06 00:00:00", false);
     
 INSERT INTO Seats(ShowingID, rownum, colnum, TransactionID)
 VALUES(1, 'A',1, null),

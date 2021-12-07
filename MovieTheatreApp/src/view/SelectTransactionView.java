@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This is the window which lets users to select a transaction to cancel tickets from.
+ *  Allows users to cancel selected seats in this transaction by proceeding to the next view
+ *  or cancel all seats within this transaction
+ */
 public class SelectTransactionView extends JFrame{
     JButton backButton, cancelAllButton, cancelOneButton;
     JList display;
