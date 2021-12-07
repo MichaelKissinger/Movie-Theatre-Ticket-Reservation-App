@@ -27,7 +27,7 @@ public class User
     public void retrieveUserTransactions() throws SQLException{
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
-        this.previousPurchases = myJDBC.transactionsStatement(userId);
+        this.previousPurchases = myJDBC.transactionsSetStatement(userId);
     }
 
     public void retrieveUserCredits() throws SQLException {

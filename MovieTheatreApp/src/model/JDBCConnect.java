@@ -206,7 +206,7 @@ public class JDBCConnect {
     }
 
     //TODO: debug this
-    public ArrayList<Transaction> transactionsStatement(int id) throws SQLException {
+    public ArrayList<Transaction> transactionsSetStatement(int id) throws SQLException {
         ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
         try {
             Statement myStmt = dbConnect.createStatement();
