@@ -1,11 +1,14 @@
 package model;
 
+import java.sql.SQLException;
+
 public class Seat {
 
     int showingId;
     String row;
     int col;
     int transactionID;
+    JDBCConnect myJDBC;
 
     public Seat(int showingId, String row, int col, int transactionID) {
         this.showingId = showingId;
@@ -26,8 +29,12 @@ public class Seat {
         return transactionID;
     }
 
-    public void setTransactionID(int transactionID) {
+    public void setTransactionID(int transactionID) throws SQLException {
         this.transactionID = transactionID;
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        myJDBC.updateSeatTransactionId(transactionID, showingId, row, col);
+
     }
 
     public String getRow() {

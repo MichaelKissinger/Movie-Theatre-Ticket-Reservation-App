@@ -24,13 +24,22 @@ public class TransactionPaymentController {
         PaymentView paymentView = new PaymentView();
         paymentView.setVisible(true);
         paymentView.addPurchaseButtonListener(e -> {
-            paymentCard = new CreditCard(paymentView.getCardHolderName(),
-                    paymentView.getCardNumber(),
-                    paymentView.getCardExpiryMonth(),
-                    paymentView.getCardExpiryYear(),
-                    paymentView.getCardCVV());
+            try {
+                paymentCard = new CreditCard(user.getUserId(),
+                        paymentView.getCardHolderName(),
+                        paymentView.getCardNumber(),
+                        paymentView.getCardExpiryMonth(),
+                        paymentView.getCardExpiryYear(),
+                        paymentView.getCardCVV());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
 
-            TransactionController transactionController = new TransactionController(this.user, this.showing, this.purchasedSeatsIndex, this.paymentCard);
+            try {
+                TransactionController transactionController = new TransactionController(this.user, this.showing, this.purchasedSeatsIndex, this.paymentCard);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             paymentView.setVisible(false);
 
             });

@@ -22,11 +22,11 @@ public class TerminalView extends JFrame implements ActionListener {
 
         buttonPanel.setLayout(new GridLayout(2, 3));
 
-        searchButton = new JButton("Search for a Movie");
-        buyTicketButton = new JButton("Buy Movie Ticket");
-        cancelTicketButton = new JButton("Cancel A Movie ticket");
+        searchButton = new JButton("Search for a movie");
+        buyTicketButton = new JButton("Buy a movie ticket");
+        cancelTicketButton = new JButton("Cancel a movie ticket");
         registerButton = new JButton("Register");
-        viewEmailButton = new JButton("View Email");
+        viewEmailButton = new JButton("View email");
         QuitButton = new JButton("Quit application");
 
         QuitButton.addActionListener(this);

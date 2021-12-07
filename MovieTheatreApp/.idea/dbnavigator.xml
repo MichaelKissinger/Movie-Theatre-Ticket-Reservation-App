@@ -17,21 +17,25 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="windows-1252" />
+      <charset value="UTF-8" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="03fa3040-3022-4876-a06b-008737d9c7b8">
+        <schema name="MOVIESYSTEM" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="03fa3040-3022-4876-a06b-008737d9c7b8">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="a0ccc4cb-c737-46d6-8092-a2422e36257f">
-      <console name="Connection 1" type="STANDARD" schema="" session="Main" />
+      <console name="Connection 1" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -49,6 +53,9 @@
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.TICKETS" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.CARD" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="03fa3040-3022-4876-a06b-008737d9c7b8" dataset="MOVIESYSTEM.SEATS" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a0ccc4cb-c737-46d6-8092-a2422e36257f" dataset="moviesystem.transaction" active-filter-id="83bc99b9-2ffb-4019-beb8-a126c970c09d">
+      <filter id="83bc99b9-2ffb-4019-beb8-a126c970c09d" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -169,7 +176,7 @@
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="8.0" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

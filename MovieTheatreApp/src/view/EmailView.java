@@ -1,6 +1,7 @@
 package view;
 
-import model.Email;
+//import model.Email;
+import model.Message;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,11 +16,11 @@ public class EmailView extends JFrame {
     JButton backButton;
     JTextArea message;
     JTextField subjectline;
-    JList<Email> emailDisplay;
+    JList<Message> emailDisplay;
 
 
     @SuppressWarnings("rawtypes")
-    public EmailView(ArrayList<Email>emails)
+    public EmailView(ArrayList<Message>emails)
     {
 
         setSize(800, 650);

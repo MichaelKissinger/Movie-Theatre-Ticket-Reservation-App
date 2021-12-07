@@ -7,6 +7,7 @@ import model.User;
 import view.SelectSeatView;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SelectedSeatController {
@@ -31,7 +32,11 @@ public class SelectedSeatController {
                 purchasedSeatsIndex.add(getSeatIndex(seat));
             }
             if(user.getRegistered()){
-                TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex, user.getCreditCard());
+                try {
+                    TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex, user.getCreditCard());
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
             else {
                 TransactionPaymentController transactionPaymentController = new TransactionPaymentController(user, showing, purchasedSeatsIndex);

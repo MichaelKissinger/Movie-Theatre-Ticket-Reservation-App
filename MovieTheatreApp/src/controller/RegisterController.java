@@ -81,8 +81,8 @@ public class RegisterController {
                 registerView.alert("Please enter a cvv number");
             }
             if(errCheck==true) {
-                CreditCard creditCard = new CreditCard(
-                        cardholderName,card, month, year, cvv);
+//                CreditCard creditCard = new CreditCard(
+//                        cardholderName,card, month, year, cvv);
                 //TODO authenticate creditcard
                 //TODO make transaction
 //java.util.Calendar.getInstance().getTime()
