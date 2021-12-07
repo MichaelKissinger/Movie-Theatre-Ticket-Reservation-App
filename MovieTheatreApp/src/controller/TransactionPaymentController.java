@@ -6,6 +6,7 @@ import model.User;
 import view.PaymentView;
 import view.TransactionConfirmationView;
 
+import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class TransactionPaymentController {
 
         PaymentView paymentView = new PaymentView();
         paymentView.setVisible(true);
+        paymentView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         paymentView.addPurchaseButtonListener(e -> {
             try {
                 paymentCard = new CreditCard(user.getUserId(),
