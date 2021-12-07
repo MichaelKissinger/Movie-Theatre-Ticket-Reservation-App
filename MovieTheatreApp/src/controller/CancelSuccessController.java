@@ -6,6 +6,10 @@ import view.CancelSuccessView;
 import javax.swing.*;
 import java.sql.SQLException;
 
+/**
+ * CancelSuccessController class is used to control the cancel success view.
+ * It also connects to the model to pass all required information.
+ */
 public class CancelSuccessController {
     User user;
 

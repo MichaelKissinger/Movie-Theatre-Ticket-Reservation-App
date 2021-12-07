@@ -47,6 +47,10 @@ import java.util.ArrayList;
 //
 //}
 
+/**
+ * CancelSeatController class is used to control the cancel seat view.
+ * It also connects to the model to pass all required information.
+ */
 public class CancelSeatController {
     private User user;
     Transaction transaction;

@@ -11,6 +11,10 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * TransactionController class is used to control the transaction view.
+ * It also connects to the model to pass all required information.
+ */
 public class TransactionController {
 
     private User user;
@@ -48,6 +52,7 @@ public class TransactionController {
         showing.setAvailability();
         transaction.setSeats(user.getUserId());
         transaction.createReceipt();
+        user.retrieveUserTransactions();
     }
 
 

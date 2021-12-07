@@ -9,6 +9,10 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * SelectShowingController class is used to control the showings view.
+ * It also connects to the model to pass all required information.
+ */
 public class SelectShowingController {
 
     private User user;

@@ -10,6 +10,10 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * SelectedSeatController class is used to control the seat view.
+ * It also connects to the model to pass all required information.
+ */
 public class SelectedSeatController {
 
     private User user;

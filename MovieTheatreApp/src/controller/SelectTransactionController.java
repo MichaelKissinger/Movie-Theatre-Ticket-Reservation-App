@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * SelectTransactionController class is used to control the transaction view.
+ * It also connects to the model to pass all required information.
+ */
 public class SelectTransactionController {
     private User user;
     Transaction selectedTransaction;

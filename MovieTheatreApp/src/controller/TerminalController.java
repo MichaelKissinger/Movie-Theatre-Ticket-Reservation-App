@@ -6,6 +6,10 @@ import view.*;
 import javax.swing.*;
 import java.sql.SQLException;
 
+/**
+ * TerminalController class is used to control the terminal view.
+ * It also connects to the model to pass all required information.
+ */
 public class TerminalController {
     TerminalView terminalView;
     DatabaseController databaseController;

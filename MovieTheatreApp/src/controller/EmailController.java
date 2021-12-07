@@ -7,7 +7,10 @@ import javax.swing.*;
 import java.sql.SQLException;
 
 
-
+/**
+ * EmailController class is used to control the email view.
+ * It also connects to the model to pass all required information.
+ */
 public class EmailController
 {
     private User user;

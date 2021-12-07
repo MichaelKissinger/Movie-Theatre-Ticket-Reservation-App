@@ -7,6 +7,10 @@ import view.SelectMovieView;
 import javax.swing.*;
 import java.sql.SQLException;
 
+/**
+ * SelectMovieController class is used to control the select movie view.
+ * It also connects to the model to pass all required information.
+ */
 public class SelectMovieController {
     private User user;
     private Movie movie;
