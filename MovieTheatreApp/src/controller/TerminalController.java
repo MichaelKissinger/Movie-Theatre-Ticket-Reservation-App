@@ -39,9 +39,10 @@ public class TerminalController {
 
         terminalView.addCancelTicketListener(e->{
             try{
-                terminalView.setVisible(false);
+//                terminalView.setVisible(false);
             SelectTransactionController selectTransactionController =
-                    new SelectTransactionController(user);}
+                    new SelectTransactionController(user);
+                terminalView.setVisible(false);}
             catch(NullPointerException err){
                 terminalView.displayErrorMessage("There are no tickets under your email");
             }
