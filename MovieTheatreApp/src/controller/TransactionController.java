@@ -48,6 +48,7 @@ public class TransactionController {
         showing.setAvailability();
         transaction.setSeats(user.getUserId());
         transaction.createReceipt();
+        user.retrieveUserTransactions();
     }
 
 
