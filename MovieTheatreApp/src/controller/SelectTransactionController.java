@@ -48,6 +48,7 @@ public class SelectTransactionController {
                 selectTransactionView.displayErrorMessage("All seats in this transaction have been cancelled");
                 return;
             }
+            selectTransactionView.setVisible(false);
             CancelSeatController cancelSeatController =
                     new CancelSeatController(user, selectedTransaction);
         });
@@ -60,15 +61,15 @@ public class SelectTransactionController {
                 cancelPolicy = new GuestCancelPolicy();
             }
             cancelPolicy.cancelTicket(selectedTransaction.getPurchasedSeats(), selectedTransaction);
-
-            CancelSuccessController cancelSuccessController = new CancelSuccessController(user);
             selectTransactionView.setVisible(false);
+            CancelSuccessController cancelSuccessController = new CancelSuccessController(user);
 
 
         });
 
         selectTransactionView.addBackButtonListener(e->{
             try {
+                selectTransactionView.setVisible(false);
                 TerminalController terminalController = new TerminalController(user);
                 selectTransactionView.setVisible(false);
             } catch (SQLException ex) {

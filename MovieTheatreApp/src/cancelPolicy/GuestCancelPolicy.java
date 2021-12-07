@@ -26,11 +26,11 @@ public class GuestCancelPolicy implements CancelPolicy{
         for(Seat seat:cancelledSeats){
             try {
                 myJDBC.updateSeatDB(seat.getShowingId(), seat.getRow(), seat.getCol());
-                transaction.getPurchasedSeats().remove(seat);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+        transaction.getPurchasedSeats().remove(cancelledSeats);
 
         double amount = (double)numberOfTickets*transaction.getShowing().getTicketPrice()*0.85;
         String creditCode = "Refund";
