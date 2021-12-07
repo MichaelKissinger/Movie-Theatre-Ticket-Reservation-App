@@ -1,17 +1,22 @@
 package model;
 
+import java.sql.SQLException;
+
 public class CreditCard {
     int cardId;
+    int userId;
     String cardHolderName;
     String cardNumber;
     int expiryMonth;
     int expiryYear;
     int cvv;
+    JDBCConnect myJDBC;
 
     // For already existing cards
-    public CreditCard(int cardId, String name, String number, int expMonth, int expYear, int cvv)
+    public CreditCard(int cardId, int userId, String name, String number, int expMonth, int expYear, int cvv)
     {
         setCardId(cardId);
+        setUserId(userId);
         setCardHolderName(name);
         setCardNumber(number);
         setExpiryMonth(expMonth);
@@ -20,17 +25,27 @@ public class CreditCard {
     }
 
     // for new credit cards
-    public CreditCard(String name, String number, int expMonth, int expYear, int cvv)
-    {
-        setCardId(cardId);
+    public CreditCard(int userId, String name, String number, int expMonth, int expYear, int cvv) throws SQLException {
+        setUserId(userId);
         setCardHolderName(name);
         setCardNumber(number);
         setExpiryMonth(expMonth);
         setExpiryYear(expYear);
         setCvv(cvv);
+
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        this.cardId = myJDBC.addCreditCardToDB(userId, cardHolderName, cardNumber, expiryMonth, expiryYear, cvv);
+
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public int getCardId() {
         return cardId;
