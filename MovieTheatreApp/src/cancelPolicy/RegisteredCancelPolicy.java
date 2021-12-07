@@ -1,9 +1,6 @@
 package cancelPolicy;
 
-import model.JDBCConnect;
-import model.Seat;
-import model.Transaction;
-import model.User;
+import model.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,12 +14,16 @@ public class RegisteredCancelPolicy implements CancelPolicy{
     @Override
     public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction) {
         JDBCConnect myJDBC = new JDBCConnect();
+
         myJDBC.createConnection();
         int numberOfTickets = cancelledSeats.size();
+        System.out.println(cancelledSeats);
+        System.out.println(transaction);
 
         for(Seat seat:cancelledSeats){
             try {
                 myJDBC.updateSeatDB(seat.getShowingId(), seat.getRow(), seat.getCol());
+                transaction.getPurchasedSeats().remove(seat);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -35,6 +36,7 @@ public class RegisteredCancelPolicy implements CancelPolicy{
         c.setTime(new Date(System.currentTimeMillis()));
         c.add(Calendar.YEAR, 1);
         Date expiryDate = c.getTime();
+
 
         try {
             myJDBC.addMovieCreditToDB(

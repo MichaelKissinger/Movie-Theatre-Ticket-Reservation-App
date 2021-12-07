@@ -70,6 +70,9 @@ public class CancelSeatController {
             }
             cancelPolicy.cancelTicket(cancelledSeats, transaction);
 
+            CancelSuccessController  cancelSuccessController= new CancelSuccessController(user);
+
+
         });
 
         cancelSeatView.addBackButtonListener(e->{

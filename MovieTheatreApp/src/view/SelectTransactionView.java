@@ -64,8 +64,8 @@ public class SelectTransactionView extends JFrame{
         return display.getSelectedIndex();
     }
 
-    public static void main(String[] args) {
-        SelectTransactionView test = new SelectTransactionView(null);
+    public void displayErrorMessage(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage);
     }
 
 
