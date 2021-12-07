@@ -78,6 +78,7 @@ public class Transaction
                 ", purchaseDate=" + purchaseDate +
                 ", paymentCard=" + paymentCreditCard +
                 ", purchased Seats=" + purchasedSeats +
+                ", showing=" + showing +
                 '}' + '\n';
     }
 
