@@ -4,15 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class LoginView extends JFrame implements ActionListener {
 
-    private JTextField inputField, inputField2;
+    private JTextField usernameInput;
+    private JPasswordField passwordInput;
     private JButton enterButton;
     private JLabel loginLabel, passwordLabel, blankLabel, errorLabel;
 
     public LoginView() {
-        setSize(400, 300);
+        setSize(600, 300);
         setTitle("Theatre Log In Page");
 
         JPanel displayPanel = new JPanel();
@@ -24,8 +26,8 @@ public class LoginView extends JFrame implements ActionListener {
         loginLabel = new JLabel("Email");
         passwordLabel = new JLabel("Password");
 
-        inputField = new JTextField(10);
-        inputField2 = new JTextField(10);
+        usernameInput = new JTextField(20);
+        passwordInput = new JPasswordField(20);
 
         enterButton = new JButton("ENTER");
 
@@ -35,8 +37,8 @@ public class LoginView extends JFrame implements ActionListener {
 
         inputPanel.add(loginLabel);
         inputPanel.add(passwordLabel);
-        inputPanel.add(inputField);
-        inputPanel.add(inputField2);
+        inputPanel.add(usernameInput);
+        inputPanel.add(passwordInput);
         inputPanel.add(enterButton);
         inputPanel.add(blankLabel);
         inputPanel.add(errorLabel);
@@ -53,11 +55,11 @@ public class LoginView extends JFrame implements ActionListener {
     }
 
     public String getUsername(){
-        return inputField.getText();
+        return usernameInput.getText();
     }
 
     public String getPassword(){
-        return inputField2.getText();
+        return new String(passwordInput.getPassword());
     }
 
     public void setErrorLabel(String error) { errorLabel.setText(error); }

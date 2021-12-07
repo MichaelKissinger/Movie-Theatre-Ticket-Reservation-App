@@ -45,13 +45,13 @@ public class TerminalView extends JFrame implements ActionListener {
 
         displayPanel.add("Center", display);
 
-        inputField = new JTextField(10);
-
+        inputField = new JTextField(20);
         inputPanel.add(inputField);
+        inputField.setVisible(false);
 
         enterButton = new JButton("ENTER");
-
         inputPanel.add(enterButton);
+        enterButton.setVisible(false);
 
         displayPanel.add("South", inputPanel);
 
@@ -60,6 +60,11 @@ public class TerminalView extends JFrame implements ActionListener {
 
     public void setVisible() {
         setVisible(true);
+    }
+
+    public void setSearchVisibility(boolean visible){
+        inputField.setVisible(visible);
+        enterButton.setVisible(visible);
     }
 
     public int getIntegerInput() {
