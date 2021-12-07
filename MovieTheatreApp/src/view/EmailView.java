@@ -1,6 +1,6 @@
 package view;
 
-import model.Email;
+//import model.Email;
 import model.Message;
 
 import java.awt.*;
