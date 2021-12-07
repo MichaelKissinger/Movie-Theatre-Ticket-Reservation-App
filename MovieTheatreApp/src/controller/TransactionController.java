@@ -36,7 +36,6 @@ public class TransactionController {
         });
     }
 
-
     public void createTransaction() throws SQLException {
 
         double totalCost = showing.getTicketPrice() * purchasedSeatsIndex.size();
