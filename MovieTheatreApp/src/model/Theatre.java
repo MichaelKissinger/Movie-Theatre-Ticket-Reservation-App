@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//TODO is this method implemented anywhere?? if not we can delete.
 public class Theatre {
 
     int theatreId;

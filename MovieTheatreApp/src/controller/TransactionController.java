@@ -45,9 +45,9 @@ public class TransactionController {
         for(int index: purchasedSeatsIndex){
             showing.getSeats().get(index).setTransactionID(transaction.getTransactionId());
         }
-
         showing.setAvailability();
-
+        transaction.setSeats(user.getUserId());
+        transaction.createReceipt();
     }
 
 

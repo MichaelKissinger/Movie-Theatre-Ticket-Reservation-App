@@ -5,6 +5,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Transaction class can be used to access any information for the transactions.
+ * This class is populated from the database, and can be accessed with getter and setter methods.
+ * It can also be displayed with the toString method.
+ */
 public class Transaction
 {
     int transactionId;
@@ -42,17 +47,19 @@ public class Transaction
         this.user = user;
         this.totalCost = totalCost;
         this.paymentCreditCard = paymentCreditCard;
-
+        database = Database.getDatabase();
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         this.transactionId = myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard, showingId);
-
+        setShowing(showingId);
+        setPurchaseDate(new Date());
     }
     public Showing getShowing(){
         return showing;
     }
 
     public void setUser(int userId) throws SQLException {
+
         for (User u: database.getUserDB()) {
             if (userId == u.getUserId()) {
                 this.user = u;
@@ -76,17 +83,45 @@ public class Transaction
         }
     }
 
+    public void createReceipt() throws SQLException {
+        String subjectLine = "Reciept";
+        String message = this.toString();
+        myJDBC.addMessageToDB(user, message, subjectLine);
+    }
+
     @Override
     public String toString() {
-        return "Transaction{" +
-                "transactionId=" + transactionId +
-                ", user=" + user +
-                ", totalCost=" + totalCost +
-                ", purchaseDate=" + purchaseDate +
-                ", paymentCard=" + paymentCreditCard +
-                ", purchased Seats=" + purchasedSeats +
-                ", showing=" + showing +
-                '}' + '\n';
+
+        String seats = " ";
+
+        for (Seat s: purchasedSeats)
+        {
+            seats += s.getRow()+s.getCol() + "  ";
+        }
+        try {
+            return "Transaction #: " + transactionId +"      " +
+                    "Total Cost: " + totalCost +"      " +
+                    "Purchase Date: " + purchaseDate + "      " +
+                    "Movie Title: " + getMovieTitle() + "      " +
+                    "Showing Time: " + showing.getShowTime() + "      " +
+                    "Seats: " + seats;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getMovieTitle() throws SQLException {
+        String title = " ";
+        ArrayList<Movie> movies = database.getMovieDB();
+        for (Movie m: movies)
+        {
+            if (m.getMovieId() == showing.getMovieId())
+            {
+                title = m.getTitle();
+            }
+        }
+        return title;
     }
 
     public void getPayment(String name, int number, int expMonth, int expYear, int cvv)

@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 public interface CancelPolicy {
 
-    public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction);
+    public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction, User user);
 }

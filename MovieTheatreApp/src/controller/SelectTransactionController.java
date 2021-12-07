@@ -44,31 +44,45 @@ public class SelectTransactionController {
         selectTransactionView.addProceedButtonListener(e->{
 
             selectedTransaction = selectTransactionView.getSelectedTransaction();
+            if(selectedTransaction == null){
+                selectTransactionView.displayErrorMessage("Please select a transaction");
+                return;
+            }
             if(selectedTransaction.getPurchasedSeats().size()==0){
                 selectTransactionView.displayErrorMessage("All seats in this transaction have been cancelled");
                 return;
             }
+            selectTransactionView.setVisible(false);
             CancelSeatController cancelSeatController =
                     new CancelSeatController(user, selectedTransaction);
         });
 
         selectTransactionView.addCancelAllButtonListener(e->{
             selectedTransaction = selectTransactionView.getSelectedTransaction();
+            if(selectedTransaction == null){
+                selectTransactionView.displayErrorMessage("Please select a transaction");
+                return;
+            }
+
+            if(selectedTransaction.getPurchasedSeats().size()==0){
+                selectTransactionView.displayErrorMessage("All seats in this transaction have been cancelled");
+                return;
+            }
             if (user.getRegistered()){
                 cancelPolicy = new RegisteredCancelPolicy();
             }else{
                 cancelPolicy = new GuestCancelPolicy();
             }
-            cancelPolicy.cancelTicket(selectedTransaction.getPurchasedSeats(), selectedTransaction);
-
-            CancelSuccessController cancelSuccessController = new CancelSuccessController(user);
+            cancelPolicy.cancelTicket(selectedTransaction.getPurchasedSeats(), selectedTransaction, user);
             selectTransactionView.setVisible(false);
+            CancelSuccessController cancelSuccessController = new CancelSuccessController(user);
 
 
         });
 
         selectTransactionView.addBackButtonListener(e->{
             try {
+                selectTransactionView.setVisible(false);
                 TerminalController terminalController = new TerminalController(user);
                 selectTransactionView.setVisible(false);
             } catch (SQLException ex) {

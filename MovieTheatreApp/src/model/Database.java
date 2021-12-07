@@ -1,11 +1,20 @@
 package model;
 
 import javax.xml.crypto.Data;
+import java.net.IDN;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+
+/**
+ * Database class implements a singleton method.
+ * From this class all calls to the MySQL database can be made
+ * and the database populates the java object arrays here.
+ * These arrays can then be used in other java classes
+ * to access the objects.
+ */
 public class Database {
 
     private static Database database;
@@ -16,6 +25,7 @@ public class Database {
     private ArrayList<Transaction> transactionDB;
     private ArrayList<Showing> showingDB;
     private JDBCConnect myJDBC;
+    private ArrayList<MovieCredit> creditList;
 
 
     private Database() throws SQLException {
@@ -105,4 +115,18 @@ public class Database {
         initializeRegisteredUsers();
     }
 
+    public ArrayList<Message> getUserMessages (User user) throws SQLException
+    {
+        ArrayList<Message> userMessages = myJDBC.userMessageSetStatement(user);
+        return  userMessages;
+    }
+
+    public void markAsRead(Message m) throws SQLException {
+        int id = m.getMessageID();
+        myJDBC.updateMessage(id);
+    }
+
+    public void addMessage(User user, String message, String subjectLine) throws SQLException {
+        myJDBC.addMessageToDB(user, message, subjectLine);
+    }
 }

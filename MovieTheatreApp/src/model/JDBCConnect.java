@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * JDBC class is the main JDBC connection to the MySQL database. Using SQL queries we
+ * can receive, update, add, and delete information from the database.
+ */
 public class JDBCConnect {
 
     private Connection dbConnect;
@@ -12,12 +16,11 @@ public class JDBCConnect {
         try {
             //You to enter your own SQL  username and password below to make this work!!
 
+            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
+            //dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+              dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
 
-             //dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
-//             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
-              dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
-//             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
-            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -441,7 +444,7 @@ public class JDBCConnect {
 
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setString(1, creditCode);
-        preparedStmt.setDate(2, (java.sql.Date) expiryDate);
+        preparedStmt.setTimestamp(2, (new java.sql.Timestamp(expiryDate.getTime())));
         preparedStmt.setDouble(3, amount);
         preparedStmt.setInt(4, userId);
 
@@ -492,6 +495,7 @@ public class JDBCConnect {
     }
 
     public void updateMessage(int messageId) throws SQLException {
+
         String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
         PreparedStatement myStmt = dbConnect.prepareStatement(query);
         myStmt.setBoolean(1, true);

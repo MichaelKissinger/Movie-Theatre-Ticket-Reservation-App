@@ -39,6 +39,7 @@ public class TerminalController {
 
         terminalView.addCancelTicketListener(e->{
             try{
+                terminalView.setVisible(false);
             SelectTransactionController selectTransactionController =
                     new SelectTransactionController(user);}
             catch(NullPointerException err){
@@ -59,6 +60,12 @@ public class TerminalController {
         });
 
         terminalView.addViewEmailListener(e->{
+            try {
+                EmailController email = new EmailController(user, databaseController);
+                terminalView.setVisible(false);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
 
         });
 

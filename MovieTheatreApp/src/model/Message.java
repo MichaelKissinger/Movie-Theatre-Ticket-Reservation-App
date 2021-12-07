@@ -3,6 +3,12 @@ package model;
 
 import java.util.Date;
 
+/**
+ * Message class is used to store and allow access to the
+ * message for each user.
+ * Has constructor methods as well as
+ * all required getters and setters.
+ */
 public class Message {
 
     private int messageID;
@@ -70,6 +76,19 @@ public class Message {
 
     public void setReadStatus(Boolean readStatus) {
         this.readStatus = readStatus;
+    }
+
+    @Override
+    public String toString() {
+        String read;
+        if (readStatus == true)
+        {
+            read = "Read";
+        }
+        else
+            read = "Unread";
+
+        return sentDate + "      " +subjectLine + "      " + read;
     }
 }
 

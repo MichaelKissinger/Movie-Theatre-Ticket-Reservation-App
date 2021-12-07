@@ -2,6 +2,11 @@ package model;
 
 import java.sql.SQLException;
 
+/**
+ * Seat class can be used to access any information for the seats for any given showing.
+ * This class is populated from the database, and can be accessed with getter and setter methods.
+ * It can also be displayed with the toString method.
+ */
 public class Seat {
 
     int showingId;

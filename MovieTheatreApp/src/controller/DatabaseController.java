@@ -1,8 +1,6 @@
 package controller;
 
-import model.Database;
-import model.Movie;
-import model.Showing;
+import model.*;
 
 import javax.xml.crypto.Data;
 import java.sql.SQLException;
@@ -64,4 +62,20 @@ public class DatabaseController {
     public ArrayList<Movie> getMovieList() {
         return movieList;
     }
+
+
+    public ArrayList<Message> getUserMail(User user) throws SQLException {
+        ArrayList<Message> userMail = database.getUserMessages(user);
+        return  userMail;
+    }
+
+    public void updateReadStatus(Message m) throws SQLException {
+        database.markAsRead(m);
+    }
+
+    public void addMessageToDB (User user, String message, String subjectLine) throws SQLException {
+        database.addMessage(user, message, subjectLine);
+
+    }
+
 }
