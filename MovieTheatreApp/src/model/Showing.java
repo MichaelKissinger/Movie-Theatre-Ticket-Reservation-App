@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class Showing {
 
+
     private int showingId;
 
     public int getMovieId() {
@@ -27,8 +28,7 @@ public class Showing {
     private double ticketPrice;
     private int theatreId;
     private ArrayList<Seat> seats;
-
-
+    private boolean availableToPublic;
     private JDBCConnect myJDBC;
 
     public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) throws SQLException {
@@ -39,12 +39,35 @@ public class Showing {
         this.showTime = showTime;
         this.ticketPrice = ticketPrice;
         this.theatreId = theatreId;
-
         initializeSeats();
+        setAvailability();
     }
 
     public void initializeSeats() throws SQLException {
         seats = myJDBC.seatSetStatement(showingId);
+    }
+
+    public void setAvailability() {
+        int count = 0;
+        for(Seat seat: seats){
+            if(seat.getTransactionID() != 0){
+                count++;
+            }
+        }
+        Date now = new Date();
+        long timeUntilShow = (showTime.getTime() - now.getTime()) / 1000;
+
+        // if show time is less than 4 weeks away or has more than 0.1 of tickets perchansed make
+        // it available to public
+        this.availableToPublic = timeUntilShow < 2419200 || ((double)count / 25.0) > 0.1;
+    }
+
+    public boolean isAvailableToPublic() {
+        return availableToPublic;
+    }
+
+    public void setAvailableToPublic(boolean availableToPublic) {
+        this.availableToPublic = availableToPublic;
     }
 
     public ArrayList<Seat> getSeats() {

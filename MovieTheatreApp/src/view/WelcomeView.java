@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The first page the user
+ */
 public class WelcomeView extends JFrame implements ActionListener {
     private JButton continueAsGuestButton;
     private JButton loginButton;

@@ -5,6 +5,10 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 
+/**
+ * The view presented to guest users after the user selects to register an account,
+ *  registered users can not enter this page
+ */
 public class RegisterView extends JFrame {
     private JTextField name;
     private JTextField address;

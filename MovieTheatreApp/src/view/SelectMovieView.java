@@ -7,6 +7,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+/**
+ * Allows the users to select a desired movie based on a list of movies provided.
+ *  the user can proceed by pressing proceed, and return to the terminal window by pressing back
+ */
 public class SelectMovieView extends JFrame {
 
     JButton backButton, proceedButton;

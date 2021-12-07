@@ -4,6 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * The main termianl screen of the movie system, this screens is presented after a registered user logs in
+ *  or when a guest user provides their email.
+ *  Allows the user to proceed to purchase tickets, cancel tickets, browse their announcements, or register for
+ *  an account.
+ */
 public class TerminalView extends JFrame implements ActionListener {
 
     JButton searchButton, buyTicketButton, cancelTicketButton, registerButton, viewEmailButton, QuitButton, enterButton;
@@ -49,7 +55,7 @@ public class TerminalView extends JFrame implements ActionListener {
         inputPanel.add(inputField);
         inputField.setVisible(false);
 
-        enterButton = new JButton("ENTER");
+        enterButton = new JButton("SEARCH");
         inputPanel.add(enterButton);
         enterButton.setVisible(false);
 

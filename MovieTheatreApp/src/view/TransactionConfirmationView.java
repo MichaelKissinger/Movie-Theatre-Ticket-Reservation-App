@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * The success screen after a purchase ticket transaction is successful and complete.
+ */
 public class TransactionConfirmationView extends JFrame {
     JLabel thanksLabel, infoLabel;
     JButton returnButton;

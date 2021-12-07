@@ -39,7 +39,6 @@ public class TerminalController {
 
         terminalView.addCancelTicketListener(e->{
             try{
-//                terminalView.setVisible(false);
             SelectTransactionController selectTransactionController =
                     new SelectTransactionController(user);
                 terminalView.setVisible(false);}

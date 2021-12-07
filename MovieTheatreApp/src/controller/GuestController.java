@@ -5,6 +5,7 @@ import model.LoginChecker;
 import model.User;
 import view.GuestView;
 
+import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class GuestController {
     public GuestController() {
         GuestView guestView = new GuestView();
         guestView.setVisible(true);
+        guestView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         guestView.addEnterListener(e -> {
             String email = guestView.getEmail();
