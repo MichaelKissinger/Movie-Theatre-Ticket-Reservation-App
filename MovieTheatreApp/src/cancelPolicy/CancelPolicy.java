@@ -1,8 +1,12 @@
 package cancelPolicy;
 
+import model.Seat;
+import model.Transaction;
 import model.User;
+
+import java.util.ArrayList;
 
 public interface CancelPolicy {
 
-    public void cancelTicket(User user, int transactionIndex, int seatIndex);
+    public void cancelTicket(ArrayList<Seat> cancelledSeats, User user, Transaction transaction);
 }

@@ -11,7 +11,9 @@ import java.util.ArrayList;
 public class SelectTransactionView extends JFrame{
     JButton backButton, cancelAllButton, cancelOneButton;
     JList display;
+    ArrayList<Transaction> transactions;
     public SelectTransactionView(ArrayList<Transaction> transactions){
+        this.transactions = transactions;
         setSize(800, 650);
         setTitle("Select a transaction to cancel");
 
@@ -55,7 +57,10 @@ public class SelectTransactionView extends JFrame{
         backButton.addActionListener(e);
     }
 
-    public int getListIndex(){
+    public Transaction getSelectedTransaction(){
+        return transactions.get(this.getSelectedIndex());
+    }
+    public int getSelectedIndex(){
         return display.getSelectedIndex();
     }
 

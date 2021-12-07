@@ -12,9 +12,13 @@ import java.util.ArrayList;
 public class CancelSeatView extends JFrame implements ActionListener{
     JButton backButton, cancelButton;
     ArrayList<String> selectedSeats;
+    ArrayList<Seat> seats;
+    Transaction transaction;
 
 
     public CancelSeatView(ArrayList<Seat> seats, Transaction transaction){
+        this.transaction=transaction;
+        this.seats = seats;
         selectedSeats = new ArrayList<String>();
         setSize(800, 650);
         setTitle("Select a seat to cancel");
@@ -33,7 +37,7 @@ public class CancelSeatView extends JFrame implements ActionListener{
         titlePanel.add(new JLabel("Please select a seat to cancel"));
         JPanel display = new JPanel(new BoxLayout(this, BoxLayout.Y_AXIS));
         for(Seat i: seats){
-            JButton btn = new JButton(i.getCol() + i.getRow());
+            JButton btn = new JButton( i.getRow() + i.getCol() );
             btn.addActionListener(this);
             display.add( new JButton(seats.toString()));
         }
@@ -66,6 +70,21 @@ public class CancelSeatView extends JFrame implements ActionListener{
         }
         selectedSeats.add(((JButton)e.getSource()).getText());
         ((JButton)e.getSource()).setBackground(Color.lightGray);
+    }
+
+    public ArrayList<Seat> getCancelledSeats(){
+        ArrayList<Seat> cancelledSeats = new ArrayList();
+        for (String i: selectedSeats){
+            for(int j = 0; j<transaction.getPurchasedSeats().size(); j++){
+                if(i.equals((
+                        transaction.getPurchasedSeats().get(j).getRow() +
+                                transaction.getPurchasedSeats().get(j).getCol()))){
+                    cancelledSeats.add(transaction.getPurchasedSeats().get(j));
+
+                }
+            }
+        }
+        return cancelledSeats;
     }
 
 
