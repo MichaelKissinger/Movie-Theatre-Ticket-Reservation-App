@@ -12,8 +12,8 @@ public class JDBCConnect {
         try {
             //You to enter your own SQL  username and password below to make this work!!
 
-//             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
-             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
+             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+//             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
             //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
 //             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
@@ -207,30 +207,30 @@ public class JDBCConnect {
     }
 
     //TODO: debug this
-//    public ArrayList<Transaction> transactionsStatement(int id) throws SQLException {
-//        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
-//        try {
-//            Statement myStmt = dbConnect.createStatement();
-//            ResultSet results = myStmt.executeQuery("SELECT * FROM Transaction WHERE UserID = \"" + id + "\";");
-//
-//            while (results.next()) {
-//                int transactionId = results.getInt("TransactionID");
-//                int userId = results.getInt("UserID");
-//                double cost = results.getDouble("Cost");
-//                Date purchaseDate = results.getDate("PurchaseDate");
-//                int cardId = results.getInt("CardID");
-//                int showingId = results.getInt("ShowingID");
-//
-//
-//                Transaction myTransaction = new Transaction(transactionId, userId, cost, purchaseDate, cardId, showingId);
-//                transactionList.add(myTransaction);
-//            }
-//            myStmt.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return transactionList;
-//    }
+    public ArrayList<Transaction> transactionsStatement(int id) throws SQLException {
+        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM Transaction WHERE UserID = \"" + id + "\";");
+
+            while (results.next()) {
+                int transactionId = results.getInt("TransactionID");
+                int userId = results.getInt("UserID");
+                double cost = results.getDouble("Cost");
+                Date purchaseDate = results.getDate("PurchaseDate");
+                int cardId = results.getInt("CardID");
+                int showingId = results.getInt("ShowingID");
+
+
+                Transaction myTransaction = new Transaction(transactionId, userId, cost, purchaseDate, cardId, showingId);
+                transactionList.add(myTransaction);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactionList;
+    }
 
     public void addUserToDB(String email, Boolean isRegistered,
                             String name, String address, String password,
@@ -249,6 +249,7 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
     }
 
     public void updateRegUserInDB(int userId, Boolean isRegistered,
@@ -266,6 +267,7 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
     }
 
     public int addTransactionToDB(User user, double totalCost, CreditCard creditCard, int showingId) throws SQLException {
@@ -290,9 +292,10 @@ public class JDBCConnect {
         if (affectedRows == 0) {
             throw new SQLException("Creating transaction failed, no rows affected.");
         }
-
+        preparedStmt.close();
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
+
                 return generatedKeys.getInt(1);
             }
             else {
@@ -321,8 +324,10 @@ public class JDBCConnect {
             throw new SQLException("Creating creditCard failed, no rows affected.");
         }
 
+        preparedStmt.close();
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
+
                 return generatedKeys.getInt(1);
             }
             else {
@@ -387,6 +392,7 @@ public class JDBCConnect {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \"" + showingId + "\" AND rownum = \"" + row + "\"AND colnum = \"" + col + "\";";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
         preparedStmt.setObject(1, null);
+        preparedStmt.close();
     }
 
 
@@ -399,6 +405,7 @@ public class JDBCConnect {
         preparedStmt.setInt (4, col);
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
     }
 
 
@@ -421,6 +428,8 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
+
     }
 
 
@@ -441,9 +450,10 @@ public class JDBCConnect {
         if (affectedRows == 0) {
             throw new SQLException("Adding movie credit to database failed, no rows affected.");
         }
-
+        preparedStmt.close();
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
+
                 return generatedKeys.getInt(1);
             } else {
                 throw new SQLException("Adding movie credit to database failed, no ID obtained.");
@@ -487,6 +497,7 @@ public class JDBCConnect {
 
         // execute the prepared statement
         myStmt.execute();
+        myStmt.close();
 
     }
 

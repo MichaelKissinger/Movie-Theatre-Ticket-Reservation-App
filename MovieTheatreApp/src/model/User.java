@@ -28,9 +28,9 @@ public class User
 
     }
 
-//    private void initializeUserTransactions() throws SQLException{
-//        this.previousPurchases = myJDBC.transactionsStatement(userId);
-//    }
+    private void initializeUserTransactions() throws SQLException{
+        this.previousPurchases = myJDBC.transactionsStatement(userId);
+    }
 
     public void initializeUserCredits() throws SQLException {
         this.userCredit = myJDBC.creditSetStatement(userId);
