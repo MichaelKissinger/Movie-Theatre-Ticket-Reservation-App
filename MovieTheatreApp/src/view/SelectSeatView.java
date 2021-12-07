@@ -123,7 +123,6 @@ public class SelectSeatView extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-
         for(String seat: selectedSeats){
             if(seat.equals(((JButton)e.getSource()).getText())){
                 selectedSeats.remove(seat);
