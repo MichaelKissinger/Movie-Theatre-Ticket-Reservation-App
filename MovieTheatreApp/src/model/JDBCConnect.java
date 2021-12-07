@@ -347,6 +347,15 @@ public class JDBCConnect {
         return userMessageList;
     }
 
+    public void updateMessage(int messageId) throws SQLException {
+        String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
+        PreparedStatement myStmt = dbConnect.prepareStatement(query);
+        myStmt.setBoolean(1, true);
+        myStmt.setInt(2, messageID);
+
+        // execute the prepared statement
+        myStmt.execute();
+    }
 
 }
 
