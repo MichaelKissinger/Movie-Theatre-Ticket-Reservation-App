@@ -20,8 +20,17 @@ public class User
         setEmail(email);
         this.isRegistered = isRegistered;
 
+        //TODO add in transactions
+
         initializeUserCredits();
+//        initializeUserTransactions();
+        //TODO DEBUG THIS
+
     }
+
+//    private void initializeUserTransactions() throws SQLException{
+//        this.previousPurchases = myJDBC.transactionsStatement(userId);
+//    }
 
     public void initializeUserCredits() throws SQLException {
         this.userCredit = myJDBC.creditSetStatement(userId);

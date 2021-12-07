@@ -45,6 +45,9 @@ public class Transaction
         this.transactionId = myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard, showingId);
 
     }
+    public Showing getShowing(){
+        return showing;
+    }
 
     public void setUser(int userId) throws SQLException {
         for (User u:Database.getUserDB()) {
@@ -79,6 +82,7 @@ public class Transaction
                 ", purchaseDate=" + purchaseDate +
                 ", paymentCard=" + paymentCreditCard +
                 ", purchased Seats=" + purchasedSeats +
+                ", showing=" + showing +
                 '}' + '\n';
     }
 

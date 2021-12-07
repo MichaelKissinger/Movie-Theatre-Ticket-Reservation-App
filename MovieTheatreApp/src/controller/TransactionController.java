@@ -22,7 +22,7 @@ public class TransactionController {
         this.showing = showing;
         this.purchasedSeatsIndex = purchasedSeatsIndex;
         this.paymentCard = paymentCard;
-        this.createTransaction();
+//        this.createTransaction();
 
         TransactionConfirmationView transactionConfirmationView = new TransactionConfirmationView();
         transactionConfirmationView.setVisible(true);
@@ -36,8 +36,8 @@ public class TransactionController {
         });
     }
 
-    public void createTransaction() throws SQLException {
 
+    public void createTransaction() throws SQLException {
         double totalCost = showing.getTicketPrice() * purchasedSeatsIndex.size();
         Transaction transaction = new Transaction(user, totalCost, paymentCard, showing.getShowingId());
 
@@ -46,6 +46,7 @@ public class TransactionController {
         }
 
     }
+
 
 
 

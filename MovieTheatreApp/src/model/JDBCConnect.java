@@ -14,8 +14,9 @@ public class JDBCConnect {
 
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
-            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
+            //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+            //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,6 +180,8 @@ public class JDBCConnect {
         return seatList;
     }
 
+
+
     public ArrayList<MovieCredit> creditSetStatement(int userId) throws SQLException {
         ArrayList<MovieCredit> creditList = new ArrayList<MovieCredit>();
         try {
@@ -201,6 +204,32 @@ public class JDBCConnect {
         }
         return creditList;
     }
+
+    //TODO: debug this
+//    public ArrayList<Transaction> transactionsStatement(int id) throws SQLException {
+//        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+//        try {
+//            Statement myStmt = dbConnect.createStatement();
+//            ResultSet results = myStmt.executeQuery("SELECT * FROM Transaction WHERE UserID = \"" + id + "\";");
+//
+//            while (results.next()) {
+//                int transactionId = results.getInt("TransactionID");
+//                int userId = results.getInt("UserID");
+//                double cost = results.getDouble("Cost");
+//                Date purchaseDate = results.getDate("PurchaseDate");
+//                int cardId = results.getInt("CardID");
+//                int showingId = results.getInt("ShowingID");
+//
+//
+//                Transaction myTransaction = new Transaction(transactionId, userId, cost, purchaseDate, cardId, showingId);
+//                transactionList.add(myTransaction);
+//            }
+//            myStmt.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return transactionList;
+//    }
 
     public void addUserToDB(String email, Boolean isRegistered,
                             String name, String address, String password,
@@ -299,7 +328,6 @@ public class JDBCConnect {
                 throw new SQLException("Creating creditCard failed, no ID obtained.");
             }
         }
-
     }
 
     public CreditCard getCreditCardByUserId(int userId) throws SQLException {
@@ -353,6 +381,14 @@ public class JDBCConnect {
         return transactionList;
     }
 
+
+    public void updateSeatDB(int showingId, String row, int col) throws SQLException {
+        String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \"" + showingId + "\" AND rownum = \"" + row + "\"AND colnum = \"" + col + "\";";
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setObject(1, null);
+    }
+
+
     public void updateSeatTransactionId(int transactionId, int showingId, String row, int col) throws SQLException {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = ? AND rownum = ? AND colnum = ?";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
@@ -360,9 +396,97 @@ public class JDBCConnect {
         preparedStmt.setInt (2, showingId);
         preparedStmt.setString (3, row);
         preparedStmt.setInt (4, col);
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
+
+
+
+    public void addMessageToDB(User user, String message, String subjectLine) throws SQLException {
+        String query = "INSERT INTO MESSAGE " +
+                "(userID, Message, SubjectLine, SentDate, ReadStatus) " +
+                "values (?, ?, ?, ?, ?)";
+
+        //SQl Date
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setInt(1, user.getUserId());
+        preparedStmt.setString (2, message);
+        preparedStmt.setString (3, subjectLine);
+        preparedStmt.setDate (4, sqlDate);
+        preparedStmt.setBoolean (5, false);
 
         // execute the prepared statement
         preparedStmt.execute();
+    }
+
+
+    public int addMovieCreditToDB(String creditCode, Date expiryDate,
+                                  double amount, int userId) throws SQLException {
+        String query = "INSERT INTO MovieCredits (CreditCode, ExpiryDate, Amount, UserID) " +
+                "values (?, ?, ?, ?)";
+
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStmt.setString(1, creditCode);
+        preparedStmt.setDate(2, (java.sql.Date) expiryDate);
+        preparedStmt.setDouble(3, amount);
+        preparedStmt.setInt(4, userId);
+
+        // execute the prepared statement
+        int affectedRows = preparedStmt.executeUpdate();
+
+        if (affectedRows == 0) {
+            throw new SQLException("Adding movie credit to database failed, no rows affected.");
+        }
+
+        try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Adding movie credit to database failed, no ID obtained.");
+            }
+        }
+    }
+
+
+    public ArrayList<Message> userMessageSetStatement(User user) throws SQLException {
+        ArrayList<Message> userMessageList = new ArrayList<Message>();
+        int id = user.getUserId();
+        try {
+           String query = "SELECT * FROM MESSAGE WHERE UserID = ?";
+            PreparedStatement myStmt = this.dbConnect.prepareStatement(query);
+            myStmt.setInt(1, id);
+            ResultSet results = myStmt.executeQuery();
+            while (results.next()) {
+                if (results.getInt("UserID") == id) {
+                    Message foundMessage = new Message();
+                    foundMessage.setUserID(id);
+                    foundMessage.setMessageID(results.getInt("MessageID"));
+                    foundMessage.setMessage(results.getString("Message"));
+                    foundMessage.setSubjectLine(results.getString("SubjectLine"));
+                    foundMessage.setSentDate(results.getDate("SentDate"));
+                    foundMessage.setReadStatus(results.getBoolean("ReadStatus"));
+                    userMessageList.add(foundMessage);
+                }
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userMessageList;
+    }
+
+    public void updateMessage(int messageId) throws SQLException {
+        String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
+        PreparedStatement myStmt = dbConnect.prepareStatement(query);
+        myStmt.setBoolean(1, true);
+        myStmt.setInt(2, messageId);
+
+        // execute the prepared statement
+        myStmt.execute();
+
     }
 
 }

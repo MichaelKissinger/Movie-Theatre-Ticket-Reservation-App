@@ -32,6 +32,12 @@ public class TerminalController {
         });
 
         terminalView.addCancelTicketListener(e->{
+            try{
+            SelectTransactionController selectTransactionController =
+                    new SelectTransactionController(user);}
+            catch(NullPointerException err){
+                terminalView.displayErrorMessage("There are no tickets under your email");
+            }
 
         });
 

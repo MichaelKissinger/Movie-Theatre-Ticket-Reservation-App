@@ -1,34 +1,47 @@
 package cancelPolicy;
 
+import model.JDBCConnect;
 import model.Seat;
 import model.Transaction;
 import model.User;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 public class GuestCancelPolicy implements CancelPolicy{
 
+
+
     @Override
-    public void cancelTicket(User user, int transactionIndex, int seatIndex) {
-        Transaction transaction = user.getPreviousPurchases().get(transactionIndex);
-        Seat seat = user.getPreviousPurchases().get(transactionIndex).getPurchasedSeats().get(seatIndex);
-        double price = (double) (transaction.getTotalCost()/transaction.getPurchasedSeats().size());
+    public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction) {
+        JDBCConnect myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        int numberOfTickets = cancelledSeats.size();
 
-
-        //TODO sql method call to make this seat's transaction id = 0
-
-
-
-        transaction.setTotalCost(transaction.getTotalCost()/transaction.getPurchasedSeats().size()
-                *(transaction.getPurchasedSeats().size()-1));
-        transaction.getPurchasedSeats().remove(seat);
-
-
-        if (transaction.getPurchasedSeats()== null){
-            user.getPreviousPurchases().remove(transaction);
+        for(Seat seat:cancelledSeats){
+            try {
+                myJDBC.updateSeatDB(seat.getShowingId(), seat.getRow(), seat.getCol());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        //TODO sql method call to create MovieCredit
 
+        double amount = (double)numberOfTickets*transaction.getShowing().getTicketPrice()*0.85;
+        String creditCode = "Refund";
 
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date(System.currentTimeMillis()));
+        c.add(Calendar.YEAR, 1);
+        Date expiryDate = c.getTime();
 
+        try {
+            myJDBC.addMovieCreditToDB(
+                    creditCode, expiryDate, amount, transaction.getUser().getUserId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

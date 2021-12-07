@@ -1,3 +1,4 @@
+
 package model;
 
 import java.util.Date;
@@ -19,6 +20,9 @@ public class Message {
         setSentDate(sentDate);
         setReadStatus(false);
     }
+
+    public Message()
+    {}
 
     public int getMessageID() {
         return messageID;
@@ -68,3 +72,4 @@ public class Message {
         this.readStatus = readStatus;
     }
 }
+
