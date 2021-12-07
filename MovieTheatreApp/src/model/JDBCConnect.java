@@ -502,7 +502,6 @@ public class JDBCConnect {
         // execute the prepared statement
         myStmt.execute();
         myStmt.close();
-
     }
 
 }
