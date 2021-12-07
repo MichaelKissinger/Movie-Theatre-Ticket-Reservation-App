@@ -351,7 +351,7 @@ public class JDBCConnect {
         String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
         PreparedStatement myStmt = dbConnect.prepareStatement(query);
         myStmt.setBoolean(1, true);
-        myStmt.setInt(2, messageID);
+        myStmt.setInt(2, messageId);
 
         // execute the prepared statement
         myStmt.execute();
