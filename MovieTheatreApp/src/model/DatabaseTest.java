@@ -56,9 +56,16 @@ public class DatabaseTest {
 //
 //        System.out.println(mySeats);
 
-        ArrayList<Transaction> myTrans = Database.getTransactionDB();
+//        ArrayList<Transaction> myTrans = Database.getTransactionDB();
+//
+//        System.out.println(myTrans + "\n");
 
-        System.out.println(myTrans + "\n");
+        System.out.println(Database.getSeatDB());
+
+        myJDBC.updateSeatDB(4, "C", 1);
+
+        System.out.println(Database.getSeatDB());
+
 
 
 

@@ -36,18 +36,18 @@ public class TransactionController {
         });
     }
 
+    public void createTransaction() {
+        //Transaction transaction = new Transaction(user);
 
-//    public void createTransaction() {
-//        Transaction transaction = new Transaction(user);
-//
-//        for(int index: purchasedSeatsIndex){
-//            //showing.getSeats().get(index).setTransactionID();
-//            return;
-//        }
-//        // TODO
-//        // Create Transaction Object and Push to DB
-//        // Iterate through purchasedSeatsIndex and get seat from showing and update transaction ID
-//    }
+        for(int index: purchasedSeatsIndex){
+            //showing.getSeats().get(index).setTransactionID();
+            return;
+        }
+        // TO_DO:
+        // Create Transaction Object and Push to DB
+        // Iterate through purchasedSeatsIndex and get seat from showing and update transaction ID
+    }
+
 
 
 

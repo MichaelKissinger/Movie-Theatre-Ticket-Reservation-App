@@ -15,7 +15,7 @@ public class JDBCConnect {
              dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
             //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
-            // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
+//             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -299,5 +299,16 @@ public class JDBCConnect {
         }
         return transactionList;
     }
+
+    public void updateSeatDB(int showingId, String row, int col) throws SQLException {
+        String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \""+ showingId +"\" AND rownum = \"" +  row + "\"AND colnum = \"" + col+ "\";";
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setObject(1, null);
+
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
+
+
 }
 
