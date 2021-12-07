@@ -1,7 +1,7 @@
 package controller;
 
 import model.User;
-import model.Email;
+import model.Message;
 import view.EmailView;
 import javax.swing.*;
 import java.sql.SQLException;
@@ -10,13 +10,14 @@ import java.sql.SQLException;
 public class EmailController
 {
     private User user;
-    private Email email;
+    private Message email;
     DatabaseController dbc;
 
     public EmailController(User user, DatabaseController dbc) {
 
         this.user = user;
-        //EmailView view = new EmailView(dbc.getEmail)
+        EmailView view = new EmailView(dbc.getEmailList(user));
+
     }
 
 }

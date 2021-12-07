@@ -38,7 +38,7 @@ public class TransactionController {
 
 
     public void createTransaction() {
-        Transaction transaction = new Transaction(user);
+        //Transaction transaction = new Transaction(user);
 
         for(int index: purchasedSeatsIndex){
             //showing.getSeats().get(index).setTransactionID();
