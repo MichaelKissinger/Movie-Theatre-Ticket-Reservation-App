@@ -1,5 +1,6 @@
 package model;
 
+import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,19 +21,19 @@ public class DatabaseTest {
 //
 //        System.out.println(Database.getRegisteredUserDB());
 
-        String email = "mike@hotmail.com";
-
-        User ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
-        System.out.println(ordinaryUser);
+//        String email = "mike@hotmail.com";
 //
-        String name = "Michael";
-        String address = "1234 Fake street NW";
-        String password = "SoSneaky123";
-
-        Database.registerUser(ordinaryUser.getUserId(), name, address, password, new Date(System.currentTimeMillis()));
-        RegisteredUser regUser = LoginChecker.AuthenticateRegisteredUser(email, password);
+//        User ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
+//        System.out.println(ordinaryUser);
+////
+//        String name = "Michael";
+//        String address = "1234 Fake street NW";
+//        String password = "SoSneaky123";
 //
-        System.out.println(regUser);
+//        Database.registerUser(ordinaryUser.getUserId(), name, address, password, new Date(System.currentTimeMillis()));
+//        RegisteredUser regUser = LoginChecker.AuthenticateRegisteredUser(email, password);
+////
+//        System.out.println(regUser);
 
 //        ArrayList<User> myUserDB = Database.getUserDB();
 //
@@ -45,6 +46,19 @@ public class DatabaseTest {
 //
 //                }
 //            }
+
+        JDBCConnect myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+
+//        int showingId = 1;
+//
+//        ArrayList<Seat> mySeats = myJDBC.allSeatsSetStatement();
+//
+//        System.out.println(mySeats);
+
+        ArrayList<Transaction> myTrans = Database.getTransactionDB();
+
+        System.out.println(myTrans + "\n");
 
 
 
