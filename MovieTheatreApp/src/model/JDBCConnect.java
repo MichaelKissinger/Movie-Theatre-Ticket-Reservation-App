@@ -323,10 +323,10 @@ public class JDBCConnect {
             throw new SQLException("Creating creditCard failed, no rows affected.");
         }
 
-        preparedStmt.close();
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-
+                preparedStmt.close();
                 return generatedKeys.getInt(1);
             }
             else {
@@ -449,10 +449,10 @@ public class JDBCConnect {
         if (affectedRows == 0) {
             throw new SQLException("Adding movie credit to database failed, no rows affected.");
         }
-        preparedStmt.close();
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-
+                preparedStmt.close();
                 return generatedKeys.getInt(1);
             } else {
                 throw new SQLException("Adding movie credit to database failed, no ID obtained.");
