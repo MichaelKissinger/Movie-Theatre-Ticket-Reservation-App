@@ -29,7 +29,6 @@ public class User
     public void retrieveCreditCard() throws SQLException {
     }
 
-
     private void initializeUserTransactions() throws SQLException{}
 
     public void retrieveUserTransactions() throws SQLException{
@@ -73,14 +72,6 @@ public class User
     public void setRegistered(Boolean registered) {
         isRegistered = registered;
     }
-
-    //    public ArrayList<MovieCredit> getUserCredit() {
-//        return userCredit;
-//    }
-
-//    public void setUserCredit(ArrayList<MovieCredit> userCredit) {
-//        this.userCredit = userCredit;
-//    }
 
     public ArrayList<Transaction> getPreviousPurchases() {
         return previousPurchases;

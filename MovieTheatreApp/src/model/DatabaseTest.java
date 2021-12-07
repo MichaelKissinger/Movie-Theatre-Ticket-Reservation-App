@@ -66,11 +66,23 @@ public class DatabaseTest {
 //        System.out.println(myTrans + "\n");
 
 
-        System.out.println(database.getSeatDB());
+//        System.out.println(database.getSeatDB());
+//
+//        myJDBC.updateSeatDB(4, "C", 2);
+//
+//        System.out.println(database.getSeatDB());
 
-        myJDBC.updateSeatDB(4, "C", 2);
-
-        System.out.println(database.getSeatDB());
+//        ArrayList<Movie> movies = database.getMovieDB();
+//
+//        System.out.println(movies);
+//
+//        for (Movie m: movies)
+//        {
+//            if (m.getMovieId() == showing.getMovieId())
+//            {
+//                title = m.getTitle();
+//            }
+//        }
 
 //        int id = 1;
 //        System.out.println(Database.getTransactionDB());
