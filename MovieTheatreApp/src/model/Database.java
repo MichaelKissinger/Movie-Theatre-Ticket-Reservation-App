@@ -1,6 +1,7 @@
 package model;
 
 import javax.xml.crypto.Data;
+import java.net.IDN;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -105,4 +106,18 @@ public class Database {
         initializeRegisteredUsers();
     }
 
+    public ArrayList<Message> getUserMessages (User user) throws SQLException
+    {
+        ArrayList<Message> userMessages = myJDBC.userMessageSetStatement(user);
+        return  userMessages;
+    }
+
+    public void markAsRead(Message m) throws SQLException {
+        int id = m.getMessageID();
+        myJDBC.updateMessage(id);
+    }
+
+    public void addMessage(User user, String message, String subjectLine) throws SQLException {
+        myJDBC.addMessageToDB(user, message, subjectLine);
+    }
 }

@@ -8,6 +8,15 @@ import java.util.Date;
 public class Showing {
 
     private int showingId;
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
     private int movieId;
     private Date showTime;
     private double ticketPrice;
@@ -69,5 +78,6 @@ public class Showing {
     public String toString() {
         return this.showingId + ". " + this.showTime + "            $" + this.ticketPrice;
     }
+
 
 }

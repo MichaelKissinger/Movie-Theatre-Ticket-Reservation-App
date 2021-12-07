@@ -14,8 +14,8 @@ public class JDBCConnect {
 
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
             // dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
-            //  dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
+            //dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
+              dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Hydrogen97!");
 
 
         } catch (Exception e) {
@@ -478,14 +478,17 @@ public class JDBCConnect {
     }
 
     public void updateMessage(int messageId) throws SQLException {
-        String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
-        PreparedStatement myStmt = dbConnect.prepareStatement(query);
-        myStmt.setBoolean(1, true);
-        myStmt.setInt(2, messageId);
+        try {
+            String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
+            PreparedStatement myStmt = dbConnect.prepareStatement(query);
+            myStmt.setBoolean(1, true);
+            myStmt.setInt(2, messageId);
 
-        // execute the prepared statement
-        myStmt.execute();
-
+            // execute the prepared statement
+            myStmt.execute();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

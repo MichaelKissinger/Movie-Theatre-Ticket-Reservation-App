@@ -71,5 +71,18 @@ public class Message {
     public void setReadStatus(Boolean readStatus) {
         this.readStatus = readStatus;
     }
+
+    @Override
+    public String toString() {
+        String read;
+        if (readStatus == true)
+        {
+            read = "Read";
+        }
+        else
+            read = "Unread";
+
+        return sentDate + "      " +subjectLine + "      " + read;
+    }
 }
 

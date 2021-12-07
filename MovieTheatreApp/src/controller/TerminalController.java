@@ -53,6 +53,12 @@ public class TerminalController {
         });
 
         terminalView.addViewEmailListener(e->{
+            try {
+                EmailController email = new EmailController(user, databaseController);
+                terminalView.setVisible(false);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
 
         });
 

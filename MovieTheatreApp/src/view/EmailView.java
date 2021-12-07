@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class EmailView extends JFrame {
 
@@ -20,8 +21,7 @@ public class EmailView extends JFrame {
 
 
     @SuppressWarnings("rawtypes")
-    public EmailView(ArrayList<Message>emails)
-    {
+    public EmailView(ArrayList<Message> emails) {
 
         setSize(800, 650);
         setTitle("Account Mail");
@@ -31,7 +31,7 @@ public class EmailView extends JFrame {
         getContentPane().add(southPanel, BorderLayout.SOUTH);
         southPanel.setLayout(new BorderLayout(0, 0));
 
-        JButton backButton = new JButton("Back");
+        backButton = new JButton("Back");
         southPanel.add(backButton, BorderLayout.EAST);
 
         JPanel northPanel = new JPanel();
@@ -42,11 +42,13 @@ public class EmailView extends JFrame {
         pageLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
         northPanel.add(pageLabel);
 
-        JPanel centerPanel= new JPanel();
+        JPanel centerPanel = new JPanel();
         getContentPane().add(centerPanel, BorderLayout.CENTER);
         centerPanel.setLayout(new BorderLayout(0, 0));
 
         emailDisplay = new JList(emails.toArray());
+
+
         emailDisplay.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
         centerPanel.add(emailDisplay, BorderLayout.CENTER);
 
@@ -68,7 +70,7 @@ public class EmailView extends JFrame {
         message = new JTextArea();
         message.setColumns(80);
         message.setRows(8);
-        messagePanel.add(messagePanel);
+        messagePanel.add(message);
 
 
     }
@@ -77,7 +79,25 @@ public class EmailView extends JFrame {
         return emailDisplay.getSelectedIndex();
     }
 
-    public void addBackButtonListener(ActionListener listener){
+    public void addBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
+    }
+
+    public void addListSelectionListener(ListSelectionListener listener) {
+        emailDisplay.addListSelectionListener(listener);
+    }
+
+    public void set() {
+        message.setText(emailDisplay.getSelectedValue().getMessage());
+        subjectline.setText(emailDisplay.getSelectedValue().getSubjectLine());
+    }
+
+    public Message returnSelected() {
+        Message m = emailDisplay.getSelectedValue();
+        return m;
+    }
+
+    public boolean changingMessage() {
+        return (!emailDisplay.getValueIsAdjusting());
     }
 }

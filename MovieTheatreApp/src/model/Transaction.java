@@ -76,17 +76,45 @@ public class Transaction
         }
     }
 
+    public void createReceipt() throws SQLException {
+        String subjectLine = "Reciept";
+        String message = this.toString();
+        myJDBC.addMessageToDB(user, message, subjectLine);
+    }
+
     @Override
     public String toString() {
-        return "Transaction{" +
-                "transactionId=" + transactionId +
-                ", user=" + user +
-                ", totalCost=" + totalCost +
-                ", purchaseDate=" + purchaseDate +
-                ", paymentCard=" + paymentCreditCard +
-                ", purchased Seats=" + purchasedSeats +
-                ", showing=" + showing +
-                '}' + '\n';
+
+        String seats = " ";
+
+        for (Seat s: purchasedSeats)
+        {
+            seats += s.getRow()+s.getCol() + "  ";
+        }
+        try {
+            return "Transaction #: " + transactionId +"\n" +
+                    "Total Cost: " + totalCost +"\n" +
+                    "Purchase Date: " + purchaseDate + "\n" +
+                    "Movie Title: " + getMovieTitle() +
+                    "Showing Time: " + showing.getShowTime() +"\n" +
+                    "Seats: " + seats;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getMovieTitle() throws SQLException {
+        String title = " ";
+        ArrayList<Movie> movies = database.getMovieDB();
+        for (Movie m: movies)
+        {
+            if (m.getMovieId() == showing.getMovieId())
+            {
+                title = m.getTitle();
+            }
+        }
+        return title;
     }
 
     public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
