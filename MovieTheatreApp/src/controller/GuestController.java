@@ -23,6 +23,7 @@ public class GuestController {
             String email = guestView.getEmail();
             try {
                 ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
+
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
