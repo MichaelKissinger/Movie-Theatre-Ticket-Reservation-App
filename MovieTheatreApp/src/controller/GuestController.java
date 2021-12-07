@@ -23,8 +23,8 @@ public class GuestController {
             String email = guestView.getEmail();
             try {
                 ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
-                ordinaryUser.retrieveUserTransactions();
-                ordinaryUser.retrieveUserCredits();
+                //ordinaryUser.retrieveUserTransactions();
+               // ordinaryUser.retrieveUserCredits();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

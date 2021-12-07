@@ -68,6 +68,7 @@ public class EmailView extends JFrame {
         subjectline.setColumns(80);
 
         message = new JTextArea();
+        message.setLineWrap(true);
         message.setColumns(80);
         message.setRows(8);
         messagePanel.add(message);
