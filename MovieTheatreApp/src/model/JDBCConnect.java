@@ -263,14 +263,16 @@ public class JDBCConnect {
 
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
         preparedStmt.setInt(1, user.getUserId());
-        preparedStmt.setString (2, cardHolderName);
-        preparedStmt.setString (3, cardNumber);
-        preparedStmt.setInt (4, expiryMonth);
-        preparedStmt.setInt (5, expiryYear);
-        preparedStmt.setInt (6, cvv);
+        preparedStmt.setString(2, cardHolderName);
+        preparedStmt.setString(3, cardNumber);
+        preparedStmt.setInt(4, expiryMonth);
+        preparedStmt.setInt(5, expiryYear);
+        preparedStmt.setInt(6, cvv);
 
         // execute the prepared statement
         preparedStmt.execute();
+
+    }
 
     public ArrayList<Transaction> transactionSetStatement() throws SQLException {
         ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
