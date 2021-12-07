@@ -58,6 +58,9 @@ public class SelectTransactionView extends JFrame{
     }
 
     public Transaction getSelectedTransaction(){
+        if(this.getSelectedIndex()==-1){
+            return null;
+        }
         return transactions.get(this.getSelectedIndex());
     }
     public int getSelectedIndex(){
