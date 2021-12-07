@@ -1,5 +1,6 @@
 package controller;
 
+import model.RegisteredUser;
 import model.Showing;
 import model.Transaction;
 import model.User;
@@ -29,7 +30,13 @@ public class SelectedSeatController {
             for(String seat: selectSeatView.getSelectedSeats()){
                 purchasedSeatsIndex.add(getSeatIndex(seat));
             }
-            TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex);
+            if(user.getRegistered()){
+                TransactionController transactionController = new TransactionController(user, showing, purchasedSeatsIndex, user.getCreditCard());
+            }
+            else {
+                TransactionPaymentController transactionPaymentController = new TransactionPaymentController(user, showing, purchasedSeatsIndex);
+            }
+
             selectSeatView.setVisible(false);
         });
 
