@@ -2,6 +2,12 @@ package model;
 
 import java.sql.SQLException;
 
+/**
+ * CreditCard class is used to store and allow access to the
+ * credit card information for each user.
+ * Has constructor methods for accessing existing cards, and creating new cards,
+ * also has all required getters and setters, and a toString override method.
+ */
 public class CreditCard {
     int cardId;
     int userId;

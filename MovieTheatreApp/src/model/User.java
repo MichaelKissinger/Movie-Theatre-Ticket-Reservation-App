@@ -3,6 +3,11 @@ package model;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * User class can be used to access any information for all users, registered and unregistered.
+ * This class is populated from the database, and can be accessed with getter and setter methods.
+ * It can also be displayed with the toString method.
+ */
 public class User
 {
     protected int userId;
@@ -24,10 +29,13 @@ public class User
     public void retrieveCreditCard() throws SQLException {
     }
 
+
+    private void initializeUserTransactions() throws SQLException{}
+
     public void retrieveUserTransactions() throws SQLException{
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
-        this.previousPurchases = myJDBC.transactionsStatement(userId);
+        this.previousPurchases = myJDBC.transactionsSetStatement(userId);
     }
 
     public void retrieveUserCredits() throws SQLException {

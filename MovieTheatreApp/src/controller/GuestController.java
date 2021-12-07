@@ -36,6 +36,8 @@ public class GuestController {
                 // ASSIGN NEW USER TO ordinaryUSER
                 try {
                     ordinaryUser = LoginChecker.AuthenticateOrdinaryUser(email);
+                    ordinaryUser.retrieveUserTransactions();
+                    ordinaryUser.retrieveUserCredits();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

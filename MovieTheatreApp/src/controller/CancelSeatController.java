@@ -63,17 +63,23 @@ public class CancelSeatController {
 
         cancelSeatView.addCancelButtonListener(e->{
             ArrayList<Seat> cancelledSeats = cancelSeatView.getCancelledSeats();
+            if (cancelledSeats==null){
+                cancelSeatView.displayErrorMessage("Please select seats to cancel");
+                return;
+            }
             if (user.getRegistered()){
                 cancelPolicy = new RegisteredCancelPolicy();
             }else{
                 cancelPolicy = new GuestCancelPolicy();
             }
             cancelPolicy.cancelTicket(cancelledSeats, transaction);
+            cancelSeatView.setVisible(false);
+            CancelSuccessController  cancelSuccessController= new CancelSuccessController(user);
+
 
         });
 
         cancelSeatView.addBackButtonListener(e->{
-            //TODO implement terminalview here
             try {
                 TerminalController terminalController = new TerminalController(user);
                 cancelSeatView.setVisible(false);

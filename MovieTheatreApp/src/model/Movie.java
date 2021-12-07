@@ -4,6 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Movie class is used to store and allow access to the
+ * individual movie information from the database.
+ * Has a constructor method  as well as all required getters and setters,
+ * and a toString override method.
+ */
 public class Movie {
 
     int movieId;

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 public class GuestCancelPolicy implements CancelPolicy{
 
@@ -25,6 +26,14 @@ public class GuestCancelPolicy implements CancelPolicy{
                 myJDBC.updateSeatDB(seat.getShowingId(), seat.getRow(), seat.getCol());
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+        }
+
+        Iterator<Seat> iterator = transaction.getPurchasedSeats().iterator();
+        while(iterator.hasNext()){
+            Seat seat = iterator.next();
+            if(cancelledSeats.contains(seat)){
+                iterator.remove();
             }
         }
 

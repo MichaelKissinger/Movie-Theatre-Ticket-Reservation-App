@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * JDBC class is the main JDBC connection to the MySQL database. Using SQL queries we
+ * can receive, update, add, and delete information from the database.
+ */
 public class JDBCConnect {
 
     private Connection dbConnect;
@@ -180,8 +184,6 @@ public class JDBCConnect {
         return seatList;
     }
 
-
-
     public ArrayList<MovieCredit> creditSetStatement(int userId) throws SQLException {
         ArrayList<MovieCredit> creditList = new ArrayList<MovieCredit>();
         try {
@@ -206,7 +208,7 @@ public class JDBCConnect {
     }
 
     //TODO: debug this
-    public ArrayList<Transaction> transactionsStatement(int id) throws SQLException {
+    public ArrayList<Transaction> transactionsSetStatement(int id) throws SQLException {
         ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
         try {
             Statement myStmt = dbConnect.createStatement();
@@ -247,6 +249,7 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
     }
 
     public void updateRegUserInDB(int userId, Boolean isRegistered,
@@ -264,6 +267,7 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
     }
 
     public int addTransactionToDB(User user, double totalCost, CreditCard creditCard, int showingId) throws SQLException {
@@ -291,7 +295,9 @@ public class JDBCConnect {
 
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-                return generatedKeys.getInt(1);
+                int toReturn = generatedKeys.getInt(1);
+                preparedStmt.close();
+                return toReturn;
             }
             else {
                 throw new SQLException("Creating transaction failed, no ID obtained.");
@@ -319,14 +325,18 @@ public class JDBCConnect {
             throw new SQLException("Creating creditCard failed, no rows affected.");
         }
 
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-                return generatedKeys.getInt(1);
+                int toReturn = generatedKeys.getInt(1);
+                preparedStmt.close();
+                return toReturn;
             }
             else {
                 throw new SQLException("Creating creditCard failed, no ID obtained.");
             }
         }
+
     }
 
     public CreditCard getCreditCardByUserId(int userId) throws SQLException {
@@ -385,6 +395,8 @@ public class JDBCConnect {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \"" + showingId + "\" AND rownum = \"" + row + "\"AND colnum = \"" + col + "\";";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
         preparedStmt.setObject(1, null);
+        preparedStmt.execute();
+        preparedStmt.close();
     }
 
 
@@ -397,6 +409,7 @@ public class JDBCConnect {
         preparedStmt.setInt (4, col);
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
     }
 
 
@@ -419,6 +432,8 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+        preparedStmt.close();
+
     }
 
 
@@ -429,7 +444,7 @@ public class JDBCConnect {
 
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setString(1, creditCode);
-        preparedStmt.setDate(2, (java.sql.Date) expiryDate);
+        preparedStmt.setTimestamp(2, (new java.sql.Timestamp(expiryDate.getTime())));
         preparedStmt.setDouble(3, amount);
         preparedStmt.setInt(4, userId);
 
@@ -442,7 +457,9 @@ public class JDBCConnect {
 
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-                return generatedKeys.getInt(1);
+                int toReturn = generatedKeys.getInt(1);
+                preparedStmt.close();
+                return toReturn;
             } else {
                 throw new SQLException("Adding movie credit to database failed, no ID obtained.");
             }
@@ -478,17 +495,16 @@ public class JDBCConnect {
     }
 
     public void updateMessage(int messageId) throws SQLException {
-        try {
-            String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
-            PreparedStatement myStmt = dbConnect.prepareStatement(query);
-            myStmt.setBoolean(1, true);
-            myStmt.setInt(2, messageId);
 
-            // execute the prepared statement
-            myStmt.execute();
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
+        PreparedStatement myStmt = dbConnect.prepareStatement(query);
+        myStmt.setBoolean(1, true);
+        myStmt.setInt(2, messageId);
+
+        // execute the prepared statement
+        myStmt.execute();
+        myStmt.close();
+
     }
 
 }

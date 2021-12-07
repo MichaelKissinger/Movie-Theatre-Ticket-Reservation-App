@@ -5,6 +5,11 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+/**
+ * DatabaseTest is only a sandbox class for testing various functionality
+ * in the database.
+ */
 public class DatabaseTest {
 
     public static void main(String[] args) throws SQLException {
@@ -60,11 +65,26 @@ public class DatabaseTest {
 //
 //        System.out.println(myTrans + "\n");
 
-        System.out.println(database.getSeatDB());
-
-        myJDBC.updateSeatDB(4, "C", 1);
 
         System.out.println(database.getSeatDB());
+
+        myJDBC.updateSeatDB(4, "C", 2);
+
+        System.out.println(database.getSeatDB());
+
+//        int id = 1;
+//        System.out.println(Database.getTransactionDB());
+//
+//        System.out.println(database.getSeatDB());
+//
+//
+//        myJDBC.transactionsStatement(id);
+//
+//
+//        System.out.println(Database.getTransactionDB());
+//
+//        System.out.println(database.getSeatDB());
+
 
 
 

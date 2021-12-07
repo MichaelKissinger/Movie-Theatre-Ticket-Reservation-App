@@ -20,10 +20,16 @@ public class TerminalController {
         terminalView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         terminalView.addSearchMovieListener(e -> {
-            terminalView.setFlag("Search");
+            terminalView.setSearchVisibility(true);
             terminalView.clearDisplay();
             terminalView.addText("Search for a movie and press enter: \n\n");
             terminalView.addText(databaseController.displayAllMovies());
+        });
+
+        terminalView.addEnterButtonListener(e -> {
+            String search = terminalView.getStringInput();
+            terminalView.clearDisplay();
+            terminalView.addText(databaseController.displayMovieShowingsByTitle(search));
         });
 
         terminalView.addBuyMovieTicketListener(e -> {
@@ -33,6 +39,7 @@ public class TerminalController {
 
         terminalView.addCancelTicketListener(e->{
             try{
+                terminalView.setVisible(false);
             SelectTransactionController selectTransactionController =
                     new SelectTransactionController(user);}
             catch(NullPointerException err){
@@ -62,22 +69,7 @@ public class TerminalController {
 
         });
 
-        terminalView.addEnterButtonListener(e -> {
-            String flag = terminalView.getFlag();
 
-            switch(flag){
-                case "Search": {
-                    String search = terminalView.getStringInput();
-                    terminalView.clearDisplay();
-                    terminalView.addText(databaseController.displayMovieShowingsByTitle(search));
-                }
-
-                case "" : {
-
-                }
-            }
-
-        });
     }
 
 

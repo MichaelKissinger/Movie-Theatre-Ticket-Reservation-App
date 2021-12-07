@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+
+/**
+ * Database class implements a singleton method.
+ * From this class all calls to the MySQL database can be made
+ * and the database populates the java object arrays here.
+ * These arrays can then be used in other java classes
+ * to access the objects.
+ */
 public class Database {
 
     private static Database database;

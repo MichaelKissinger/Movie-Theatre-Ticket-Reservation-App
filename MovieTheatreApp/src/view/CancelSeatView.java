@@ -35,15 +35,17 @@ public class CancelSeatView extends JFrame implements ActionListener{
         buttonPanel.add(cancelButton);
 
         titlePanel.add(new JLabel("Please select a seat to cancel"));
-        JPanel display = new JPanel(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JPanel display = new JPanel();
+//        display = new JPanel(new BorderLayout());
+        display = new JPanel(new GridLayout(seats.size(), 1));
         for(Seat i: seats){
             JButton btn = new JButton( i.getRow() + i.getCol() );
             btn.addActionListener(this);
-            display.add( new JButton(seats.toString()));
+            display.add(btn);
         }
 
-        JScrollPane sp = new JScrollPane(display);
-        displayPanel.add("Center", sp);
+//        JScrollPane sp = new JScrollPane(display);
+        displayPanel.add("Center", display);
         displayPanel.add("South", buttonPanel);
         displayPanel.add("North", titlePanel);
         add(displayPanel);
@@ -64,9 +66,10 @@ public class CancelSeatView extends JFrame implements ActionListener{
         for(String seat:selectedSeats) {
             if(seat.equals(((JButton)(e.getSource())).getText())){
                 selectedSeats.remove(seat);
+                ((JButton)e.getSource()).setBackground(null);
+                return;
             }
-            ((JButton)e.getSource()).setBackground(null);
-            return;
+
         }
         selectedSeats.add(((JButton)e.getSource()).getText());
         ((JButton)e.getSource()).setBackground(Color.lightGray);
@@ -74,6 +77,10 @@ public class CancelSeatView extends JFrame implements ActionListener{
 
     public ArrayList<Seat> getCancelledSeats(){
         ArrayList<Seat> cancelledSeats = new ArrayList();
+        if(selectedSeats.size()==0){
+            return null;
+        }
+
         for (String i: selectedSeats){
             for(int j = 0; j<transaction.getPurchasedSeats().size(); j++){
                 if(i.equals((
@@ -86,6 +93,8 @@ public class CancelSeatView extends JFrame implements ActionListener{
         }
         return cancelledSeats;
     }
-
+    public void displayErrorMessage(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage);
+    }
 
 }

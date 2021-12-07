@@ -3,6 +3,12 @@ package model;
 
 import java.util.Date;
 
+/**
+ * Message class is used to store and allow access to the
+ * message for each user.
+ * Has constructor methods as well as
+ * all required getters and setters.
+ */
 public class Message {
 
     private int messageID;
