@@ -30,8 +30,8 @@ public class LoginView extends JFrame implements ActionListener {
         loginLabel = new JLabel("Email");
         passwordLabel = new JLabel("Password");
 
-        usernameInput = new JTextField(20);
-        passwordInput = new JPasswordField(20);
+        usernameInput = new JTextField(25);
+        passwordInput = new JPasswordField(25);
 
         enterButton = new JButton("ENTER");
 

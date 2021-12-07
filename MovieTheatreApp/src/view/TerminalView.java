@@ -55,7 +55,7 @@ public class TerminalView extends JFrame implements ActionListener {
         inputPanel.add(inputField);
         inputField.setVisible(false);
 
-        enterButton = new JButton("ENTER");
+        enterButton = new JButton("SEARCH");
         inputPanel.add(enterButton);
         enterButton.setVisible(false);
 

@@ -28,7 +28,7 @@ public class GuestView extends JFrame {
 
         inputPanel.add(guestLabel);
 
-        inputField = new JTextField(10);
+        inputField = new JTextField(25);
 
         inputPanel.add(inputField);
 

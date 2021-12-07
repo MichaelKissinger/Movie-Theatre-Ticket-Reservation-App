@@ -7,18 +7,33 @@ import view.SelectShowingView;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SelectShowingController {
 
     private User user;
     private Movie movie;
     private Showing showing;
+    private ArrayList<Showing> userShowingList;
 
     public SelectShowingController(User user, Movie movie) {
         this.user = user;
         this.movie = movie;
 
-        SelectShowingView selectShowingView = new SelectShowingView(movie.getShowings());
+        if(user.getRegistered()){
+            userShowingList = movie.getShowings();
+        }
+        else {
+            userShowingList = new ArrayList<Showing>();
+            for(Showing show: movie.getShowings()){
+                if(show.isAvailableToPublic()){
+                    userShowingList.add(show);
+                }
+            }
+
+        }
+
+        SelectShowingView selectShowingView = new SelectShowingView(userShowingList);
         selectShowingView.setVisible(true);
         selectShowingView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -33,7 +48,7 @@ public class SelectShowingController {
 
         selectShowingView.addProceedButtonListener(e -> {
             int index = selectShowingView.getListIndex();
-            showing = movie.getShowings().get(index);
+            showing = userShowingList.get(index);
             SelectedSeatController selectedSeatController = new SelectedSeatController(user, showing);
             selectShowingView.setVisible(false);
 

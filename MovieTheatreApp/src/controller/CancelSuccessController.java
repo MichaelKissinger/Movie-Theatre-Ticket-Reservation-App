@@ -3,6 +3,7 @@ package controller;
 import model.User;
 import view.CancelSuccessView;
 
+import javax.swing.*;
 import java.sql.SQLException;
 
 public class CancelSuccessController {
@@ -12,6 +13,7 @@ public class CancelSuccessController {
         this.user = user;
         CancelSuccessView cancelSuccessView = new CancelSuccessView();
         cancelSuccessView.setVisible(true);
+        cancelSuccessView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         cancelSuccessView.addReturnButtonListener(e->{
             try {
                 TerminalController terminalController = new TerminalController(user);
