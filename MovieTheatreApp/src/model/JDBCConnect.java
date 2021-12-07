@@ -11,7 +11,8 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+//            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
 //            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,6 +47,29 @@ public class JDBCConnect {
             ResultSet results = myStmt.executeQuery("SELECT * FROM SHOWING WHERE MovieID = \"" + movieId + "\";");
 
             while (results.next()) {
+                int showingId = results.getInt("ShowingID");
+                Date showTime = results.getDate("ShowTime");
+                double ticketPrice = results.getDouble("TicketPrice");
+                int theatreId = results.getInt("TheatreID");
+
+                Showing myShowing = new Showing(showingId, movieId, showTime, ticketPrice, theatreId);
+                showingList.add(myShowing);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return showingList;
+    }
+
+    public ArrayList<Showing> allShowingsSetStatement() throws SQLException {
+        ArrayList<Showing> showingList = new ArrayList<Showing>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM SHOWING;");
+
+            while (results.next()) {
+                int movieId = results.getInt("MovieID");
                 int showingId = results.getInt("ShowingID");
                 Date showTime = results.getDate("ShowTime");
                 double ticketPrice = results.getDouble("TicketPrice");
@@ -118,8 +142,29 @@ public class JDBCConnect {
             while (results.next()) {
                 String rownum = results.getString("rownum");
                 int colnum = results.getInt("colnum");
-//                int transactionID = results.getInt("TransactionID");
-                int transactionID = 0;
+                int transactionID = results.getInt("TransactionID");
+
+                Seat mySeat = new Seat(showingId, rownum, colnum, transactionID);
+                seatList.add(mySeat);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seatList;
+    }
+
+    public ArrayList<Seat> allSeatsSetStatement() throws SQLException {
+        ArrayList<Seat> seatList = new ArrayList<Seat>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM SEATS;");
+
+            while (results.next()) {
+                int showingId = results.getInt("ShowingID");
+                String rownum = results.getString("rownum");
+                int colnum = results.getInt("colnum");
+                int transactionID = results.getInt("TransactionID");
 
                 Seat mySeat = new Seat(showingId, rownum, colnum, transactionID);
                 seatList.add(mySeat);
@@ -188,6 +233,32 @@ public class JDBCConnect {
 
         // execute the prepared statement
         preparedStmt.execute();
+    }
+
+    public ArrayList<Transaction> transactionSetStatement() throws SQLException {
+        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            ResultSet results = myStmt.executeQuery("SELECT * FROM TRANSACTION;");
+
+            while (results.next()) {
+
+                int transactionId  = results.getInt("TransactionID");
+                int userID = results.getInt("UserID");
+                double totalCost = results.getDouble("Cost");
+                Date purchaseDate = results.getDate("PurchaseDate");
+                int cardID = results.getInt("CardID");
+                int showingId = results.getInt("ShowingId");
+
+                Transaction myTransaction = new Transaction(transactionId, userID,
+                        totalCost, purchaseDate, cardID, showingId);
+                transactionList.add(myTransaction);
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactionList;
     }
 
 }

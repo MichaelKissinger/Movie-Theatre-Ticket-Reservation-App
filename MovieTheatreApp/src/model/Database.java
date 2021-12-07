@@ -9,9 +9,11 @@ import java.util.Date;
 public class Database {
 
     private static ArrayList<Movie> movieDB;
-    private static Seat[][] seatDB;
+    private static ArrayList<Seat> seatDB;
     private static ArrayList<User> userDB;
     private static ArrayList<RegisteredUser> registeredUserDB;
+    private static ArrayList<Transaction> transactionDB;
+    private static ArrayList<Showing> showingDB;
 
 //    public Database() throws SQLException {
 //        myJDBC = new JDBCConnect();
@@ -33,6 +35,14 @@ public class Database {
 
     }
 
+    private static void initializeSeats() throws SQLException {
+        seatDB = myJDBC.allSeatsSetStatement();
+    }
+
+    private static void initializeTransactions() throws SQLException {
+        transactionDB = myJDBC.transactionSetStatement();
+    }
+
     private static void initializeMovies() throws SQLException {
         movieDB = myJDBC.movieSetStatement();
     }
@@ -45,28 +55,44 @@ public class Database {
         registeredUserDB = myJDBC.registeredUserSetStatement();
     }
 
+    private static void initializeShowings() throws SQLException {
+        showingDB = myJDBC.allShowingsSetStatement();
+    }
+
     public static ArrayList<Movie> getMovieDB() throws SQLException {
         connectJDBC();
-        if(movieDB == null){
-            initializeMovies();
-        }
+        initializeMovies();
         return movieDB;
+    }
+
+    public static ArrayList<Transaction> getTransactionDB() throws SQLException {
+        connectJDBC();
+        initializeTransactions();
+        return transactionDB;
+    }
+
+    public static ArrayList<Seat> getSeatDB() throws SQLException {
+        connectJDBC();
+        initializeSeats();
+        return seatDB;
     }
 
     public static ArrayList<User> getUserDB() throws SQLException {
         connectJDBC();
-        if(userDB == null){
-            initializeUsers();
-        }
+        initializeUsers();
         return userDB;
     }
 
     public static ArrayList<RegisteredUser> getRegisteredUserDB() throws SQLException {
         connectJDBC();
-        if(registeredUserDB == null){
-            initializeRegisteredUsers();
-        }
+        initializeRegisteredUsers();
         return registeredUserDB;
+    }
+
+    public static ArrayList<Showing> getShowingDB() throws SQLException {
+        connectJDBC();
+        initializeShowings();
+        return showingDB;
     }
 
     public static void addUser(String email) throws SQLException {
@@ -89,7 +115,7 @@ public class Database {
         myJDBC.updateRegUserInDB(userId, true,
                 name, address, password,
                 true, lastPaymentDate);
-        registeredUserDB = myJDBC.registeredUserSetStatement();
+        initializeRegisteredUsers();
     }
 
 }
