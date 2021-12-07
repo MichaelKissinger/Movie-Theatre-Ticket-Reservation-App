@@ -33,6 +33,7 @@ public class TerminalController {
 
         terminalView.addCancelTicketListener(e->{
             try{
+                terminalView.setVisible(false);
             SelectTransactionController selectTransactionController =
                     new SelectTransactionController(user);}
             catch(NullPointerException err){
