@@ -85,19 +85,14 @@ public class RegisterController {
                 registerView.alert("Please enter a cvv number");
             }
             if(errCheck==true) {
-//                CreditCard creditCard = new CreditCard(
-//                        cardholderName,card, month, year, cvv);
-                //TODO authenticate creditcard
-                //TODO make transaction
-//java.util.Calendar.getInstance().getTime()
-                Date lastPaymentDate = new Date(System.currentTimeMillis());
                 try {
-                    RegisteredUser newUser = new RegisteredUser(user.getUserId(),
-                            user.getEmail(), true, name, address, password,
-                            true, lastPaymentDate);
+                    CreditCard creditCard = new CreditCard(user.getUserId(),
+                            cardholderName,card, month, year, cvv);
+                    user.retrieveCreditCard();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+                Date lastPaymentDate = new Date(System.currentTimeMillis());
                 System.out.println(new Date(System.currentTimeMillis()));
                 try {
                     Database database = Database.getDatabase();
@@ -107,6 +102,7 @@ public class RegisterController {
                 }
                 try {
                     regUser = LoginChecker.AuthenticateRegisteredUser(user.getEmail(), password);
+                    regUser.retrieveCreditCard();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
