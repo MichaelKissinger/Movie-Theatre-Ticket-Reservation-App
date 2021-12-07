@@ -35,14 +35,14 @@ public class Transaction
     }
 
     // Constructor for initializing a new Transaction and creating it in the DB
-    public Transaction(User user, double totalCost, CreditCard paymentCreditCard) throws SQLException {
+    public Transaction(User user, double totalCost, CreditCard paymentCreditCard, int showingId) throws SQLException {
         this.user = user;
         this.totalCost = totalCost;
         this.paymentCreditCard = paymentCreditCard;
 
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
-        myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard);
+        this.transactionId = myJDBC.addTransactionToDB(user, totalCost, paymentCreditCard, showingId);
 
     }
 

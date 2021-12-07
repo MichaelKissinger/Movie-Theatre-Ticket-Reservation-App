@@ -36,6 +36,7 @@ public class LoginController {
             }
             else {
                 try {
+                    currentUser.retrieveCreditCard();
                     TerminalController terminalController = new TerminalController(currentUser);
                     loginView.setVisible(false);
                 } catch (SQLException ex) {

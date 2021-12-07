@@ -20,6 +20,7 @@ public class User
         setEmail(email);
         this.isRegistered = isRegistered;
 
+        //TODO add in transactions
         initializeUserCredits();
     }
 
@@ -79,5 +80,9 @@ public class User
                 "userId=" + userId +
                 ", email='" + email + '\'' +
                 '}' + '\n';
+    }
+
+    public void retrieveCreditCard() throws SQLException {
+
     }
 }

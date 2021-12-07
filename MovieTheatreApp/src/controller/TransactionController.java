@@ -17,7 +17,7 @@ public class TransactionController {
     private ArrayList<Integer> purchasedSeatsIndex;
     private CreditCard paymentCard;
 
-    public TransactionController(User user, Showing showing, ArrayList<Integer> purchasedSeatsIndex, CreditCard paymentCard) {
+    public TransactionController(User user, Showing showing, ArrayList<Integer> purchasedSeatsIndex, CreditCard paymentCard) throws SQLException {
         this.user = user;
         this.showing = showing;
         this.purchasedSeatsIndex = purchasedSeatsIndex;
@@ -36,16 +36,15 @@ public class TransactionController {
         });
     }
 
-    public void createTransaction() {
-        //Transaction transaction = new Transaction(user);
+
+    public void createTransaction() throws SQLException {
+        double totalCost = showing.getTicketPrice() * purchasedSeatsIndex.size();
+        Transaction transaction = new Transaction(user, totalCost, paymentCard, showing.getShowingId());
 
         for(int index: purchasedSeatsIndex){
-            //showing.getSeats().get(index).setTransactionID();
-            return;
+            showing.getSeats().get(index).setTransactionID(transaction.getTransactionId());
         }
-        // TO_DO:
-        // Create Transaction Object and Push to DB
-        // Iterate through purchasedSeatsIndex and get seat from showing and update transaction ID
+
     }
 
 
