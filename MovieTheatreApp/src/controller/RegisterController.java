@@ -89,16 +89,6 @@ public class RegisterController {
                     ex.printStackTrace();
                 }
                 Date lastPaymentDate = new Date(System.currentTimeMillis());
-                try {
-                    RegisteredUser newUser = new RegisteredUser(user.getUserId(),
-                            user.getEmail(), true, name, address, password,
-                            true, lastPaymentDate);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-
-
-
                 System.out.println(new Date(System.currentTimeMillis()));
                 try {
                     Database database = Database.getDatabase();
@@ -108,6 +98,7 @@ public class RegisterController {
                 }
                 try {
                     regUser = LoginChecker.AuthenticateRegisteredUser(user.getEmail(), password);
+                    regUser.retrieveCreditCard();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
