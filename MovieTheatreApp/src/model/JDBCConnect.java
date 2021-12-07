@@ -289,11 +289,12 @@ public class JDBCConnect {
         if (affectedRows == 0) {
             throw new SQLException("Creating transaction failed, no rows affected.");
         }
-        preparedStmt.close();
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-
-                return generatedKeys.getInt(1);
+                int toReturn = generatedKeys.getInt(1);
+                preparedStmt.close();
+                return toReturn;
             }
             else {
                 throw new SQLException("Creating transaction failed, no ID obtained.");
@@ -321,16 +322,18 @@ public class JDBCConnect {
             throw new SQLException("Creating creditCard failed, no rows affected.");
         }
 
-        preparedStmt.close();
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-
-                return generatedKeys.getInt(1);
+                int toReturn = generatedKeys.getInt(1);
+                preparedStmt.close();
+                return toReturn;
             }
             else {
                 throw new SQLException("Creating creditCard failed, no ID obtained.");
             }
         }
+
     }
 
     public CreditCard getCreditCardByUserId(int userId) throws SQLException {
@@ -389,6 +392,7 @@ public class JDBCConnect {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \"" + showingId + "\" AND rownum = \"" + row + "\"AND colnum = \"" + col + "\";";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
         preparedStmt.setObject(1, null);
+        preparedStmt.execute();
         preparedStmt.close();
     }
 
@@ -447,11 +451,12 @@ public class JDBCConnect {
         if (affectedRows == 0) {
             throw new SQLException("Adding movie credit to database failed, no rows affected.");
         }
-        preparedStmt.close();
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-
-                return generatedKeys.getInt(1);
+                int toReturn = generatedKeys.getInt(1);
+                preparedStmt.close();
+                return toReturn;
             } else {
                 throw new SQLException("Adding movie credit to database failed, no ID obtained.");
             }
