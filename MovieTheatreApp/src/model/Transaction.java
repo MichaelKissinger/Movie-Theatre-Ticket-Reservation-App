@@ -97,11 +97,11 @@ public class Transaction
             seats += s.getRow()+s.getCol() + "  ";
         }
         try {
-            return "Transaction #: " + transactionId +"\n" +
-                    "Total Cost: " + totalCost +"\n" +
-                    "Purchase Date: " + purchaseDate + "\n" +
-                    "Movie Title: " + getMovieTitle() +
-                    "Showing Time: " + showing.getShowTime() +"\n" +
+            return "Transaction #: " + transactionId +"      " +
+                    "Total Cost: " + totalCost +"      " +
+                    "Purchase Date: " + purchaseDate + "      " +
+                    "Movie Title: " + getMovieTitle() + "      " +
+                    "Showing Time: " + showing.getShowTime() + "      " +
                     "Seats: " + seats;
         } catch (SQLException e) {
             e.printStackTrace();
