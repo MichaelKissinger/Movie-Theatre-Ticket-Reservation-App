@@ -9,13 +9,14 @@ public class Email {
     private String message;
     private Date sentDate;
     private String subject;
+    private Boolean read;
 
     public Email(String message, String subject, Date sentDate)
     {
         setMessage(message);
         setSubject(subject);
         setSentDate(sentDate);
-
+        setRead(false);
     }
 
     public int getEmailId() {
@@ -56,5 +57,13 @@ public class Email {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
     }
 }
