@@ -25,6 +25,7 @@ public class Database {
     private ArrayList<Transaction> transactionDB;
     private ArrayList<Showing> showingDB;
     private JDBCConnect myJDBC;
+    private ArrayList<MovieCredit> creditList;
 
 
     private Database() throws SQLException {

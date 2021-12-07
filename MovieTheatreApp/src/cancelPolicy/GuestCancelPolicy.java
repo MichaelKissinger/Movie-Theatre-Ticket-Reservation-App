@@ -16,7 +16,7 @@ public class GuestCancelPolicy implements CancelPolicy{
 
 
     @Override
-    public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction) {
+    public void cancelTicket(ArrayList<Seat> cancelledSeats, Transaction transaction, User user) {
         JDBCConnect myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         int numberOfTickets = cancelledSeats.size();
@@ -48,6 +48,9 @@ public class GuestCancelPolicy implements CancelPolicy{
         try {
             myJDBC.addMovieCreditToDB(
                     creditCode, expiryDate, amount, transaction.getUser().getUserId());
+            String subjectLine = "Credit Receipt";
+            String message = "Transaction Cancelled: " + transaction.getTransactionId() + "      " + "Refunded Credit: " + amount + "     " + "Credit Code: " + creditCode + "   " +  "Credit Expires on: " + expiryDate;
+            myJDBC.addMessageToDB(user, message, subjectLine);
         } catch (SQLException e) {
             e.printStackTrace();
         }
