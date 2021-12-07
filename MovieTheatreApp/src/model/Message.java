@@ -20,6 +20,9 @@ public class Message {
         setReadStatus(false);
     }
 
+    public Message()
+    {}
+
     public int getMessageID() {
         return messageID;
     }

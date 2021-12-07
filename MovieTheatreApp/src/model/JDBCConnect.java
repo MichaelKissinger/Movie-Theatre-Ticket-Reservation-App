@@ -299,5 +299,54 @@ public class JDBCConnect {
         }
         return transactionList;
     }
+
+    public void addMessageToDB(User user, String message, String subjectLine) throws SQLException {
+        String query = "INSERT INTO MESSAGE " +
+                "(userID, Message, SubjectLine, SentDate, ReadStatus) " +
+                "values (?, ?, ?, ?, ?)";
+
+        //SQl Date
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setInt(1, user.getUserId());
+        preparedStmt.setString (2, message);
+        preparedStmt.setString (3, subjectLine);
+        preparedStmt.setDate (4, sqlDate);
+        preparedStmt.setBoolean (5, false);
+
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
+
+    public ArrayList<Message> userMessageSetStatement(User user) throws SQLException {
+        ArrayList<Message> userMessageList = new ArrayList<Message>();
+        int id = user.getUserId();
+        try {
+           String query = "SELECT * FROM MESSAGE WHERE UserID = ?";
+            PreparedStatement myStmt = this.dbConnect.prepareStatement(query);
+            myStmt.setInt(1, id);
+            ResultSet results = myStmt.executeQuery();
+            while (results.next()) {
+                if (results.getInt("UserID") == id) {
+                    Message foundMessage = new Message();
+                    foundMessage.setUserID(id);
+                    foundMessage.setMessageID(results.getInt("MessageID"));
+                    foundMessage.setMessage(results.getString("Message"));
+                    foundMessage.setSubjectLine(results.getString("SubjectLine"));
+                    foundMessage.setSentDate(results.getDate("SentDate"));
+                    foundMessage.setReadStatus(results.getBoolean("ReadStatus"));
+                    userMessageList.add(foundMessage);
+                }
+            }
+            myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userMessageList;
+    }
+
+
 }
 
