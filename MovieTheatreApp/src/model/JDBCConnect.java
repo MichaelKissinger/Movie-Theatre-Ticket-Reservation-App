@@ -294,8 +294,9 @@ public class JDBCConnect {
 
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
+                int toReturn = generatedKeys.getInt(1);
                 preparedStmt.close();
-                return generatedKeys.getInt(1);
+                return toReturn;
             }
             else {
                 throw new SQLException("Creating transaction failed, no ID obtained.");
@@ -326,13 +327,15 @@ public class JDBCConnect {
 
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
+                int toReturn = generatedKeys.getInt(1);
                 preparedStmt.close();
-                return generatedKeys.getInt(1);
+                return toReturn;
             }
             else {
                 throw new SQLException("Creating creditCard failed, no ID obtained.");
             }
         }
+
     }
 
     public CreditCard getCreditCardByUserId(int userId) throws SQLException {
@@ -453,8 +456,9 @@ public class JDBCConnect {
 
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
+                int toReturn = generatedKeys.getInt(1);
                 preparedStmt.close();
-                return generatedKeys.getInt(1);
+                return toReturn;
             } else {
                 throw new SQLException("Adding movie credit to database failed, no ID obtained.");
             }
