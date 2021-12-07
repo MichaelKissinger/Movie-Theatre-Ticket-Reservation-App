@@ -11,7 +11,7 @@ public class JDBCConnect {
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Katana123!");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "kou19980126");
 //            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/MOVIESYSTEM", "root", "Teck5Taillight!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,9 +173,22 @@ public class JDBCConnect {
         preparedStmt.execute();
     }
 
+    public void updateRegUserInDB(int userId, Boolean isRegistered,
+                            String name, String address, String password,
+                            Boolean activeStatus, Date lastPaymentDate) throws SQLException {
+        String query = "UPDATE USER SET IsRegistered = ?, Name = ?, Address = ?, Password = ?, ActiveStatus = ?, LastPaymentDate = ? WHERE UserID = ?";
+        PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
+        preparedStmt.setBoolean(1, isRegistered);
+        preparedStmt.setString (2, name);
+        preparedStmt.setString (3, address);
+        preparedStmt.setString (4, password);
+        preparedStmt.setBoolean (5, activeStatus);
+        preparedStmt.setDate (6, (java.sql.Date) lastPaymentDate);
+        preparedStmt.setInt (7, userId);
 
-
-
+        // execute the prepared statement
+        preparedStmt.execute();
+    }
 
 }
 

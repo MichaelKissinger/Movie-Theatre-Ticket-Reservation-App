@@ -83,18 +83,13 @@ public class Database {
         userDB = myJDBC.userSetStatement();
     }
 
-//    public static void registerUser(String email) throws SQLException {
-//        connectJDBC();
-//        Boolean isRegistered = false;
-//        String name = "";
-//        String address = "";
-//        String password = "";
-//        Boolean activeStatus = false;
-//        Date lastPaymentDate = null;
-//        myJDBC.registerUserInDB(email, isRegistered,
-//                name, address, password,
-//                activeStatus, lastPaymentDate);
-//        userDB = myJDBC.userSetStatement();
-//    }
+    public static void registerUser(int userId, String name, String address, String password, Date lastPaymentDate)
+            throws SQLException {
+        connectJDBC();
+        myJDBC.updateRegUserInDB(userId, true,
+                name, address, password,
+                true, lastPaymentDate);
+        registeredUserDB = myJDBC.registeredUserSetStatement();
+    }
 
 }
