@@ -61,11 +61,11 @@ public class DatabaseTest {
 //        System.out.println(myTrans + "\n");
 
 
-//        System.out.println(Database.getSeatDB());
-//
-//        myJDBC.updateSeatDB(4, "C", 1);
-//
-//        System.out.println(Database.getSeatDB());
+        System.out.println(database.getSeatDB());
+
+        myJDBC.updateSeatDB(4, "C", 2);
+
+        System.out.println(database.getSeatDB());
 
 //        int id = 1;
 //        System.out.println(Database.getTransactionDB());

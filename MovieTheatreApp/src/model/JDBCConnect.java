@@ -291,10 +291,10 @@ public class JDBCConnect {
         if (affectedRows == 0) {
             throw new SQLException("Creating transaction failed, no rows affected.");
         }
-        preparedStmt.close();
+
         try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
-
+                preparedStmt.close();
                 return generatedKeys.getInt(1);
             }
             else {
@@ -391,6 +391,7 @@ public class JDBCConnect {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \"" + showingId + "\" AND rownum = \"" + row + "\"AND colnum = \"" + col + "\";";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
         preparedStmt.setObject(1, null);
+        preparedStmt.execute();
         preparedStmt.close();
     }
 
