@@ -29,12 +29,6 @@ public class RegisteredCancelPolicy implements CancelPolicy{
                 e.printStackTrace();
             }
         }
-//        for(Seat seat:cancelledSeats){
-//            if (transaction.getPurchasedSeats().contains(seat)){
-//                transaction.getPurchasedSeats().remove(seat);
-//
-//            }
-//        }
         Iterator<Seat> iterator = transaction.getPurchasedSeats().iterator();
         while(iterator.hasNext()){
             Seat seat = iterator.next();

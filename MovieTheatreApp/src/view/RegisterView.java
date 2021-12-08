@@ -92,8 +92,7 @@ public class RegisterView extends JFrame {
         JPanel cardPanel1 = new JPanel();
         cardPanel1.add(cardLabel);
         cardPanel1.add(creditCardNumber);
-//        cardPanel.add(cardLabel);
-//        cardPanel.add(creditCardNumber);
+
         basePanel.add(cardPanel1);
 
         JLabel monthLabel = new JLabel("Expiry Month");

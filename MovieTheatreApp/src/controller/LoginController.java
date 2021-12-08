@@ -14,8 +14,13 @@ import java.util.Date;
  * It also connects to the model to pass all required information.
  */
 public class LoginController {
-
+    /**
+     * The login screen
+     */
     private LoginView loginView;
+    /**
+     * the user using the program
+     */
     private User currentUser;
 
     public LoginController(){
@@ -25,6 +30,10 @@ public class LoginController {
         loginView.setVisible(true);
         loginView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        /**
+         * takes the account and password the user has entered and authenticates the user, if successful, the
+         *  program will proceed to the terminal screen
+         */
         this.loginView.addAuthenticationListener(e -> {
             String emailInput = loginView.getUsername();
             String passwordInput = loginView.getPassword();

@@ -15,7 +15,10 @@ public class WelcomeController {
 
     WelcomeView welcomeView;
 
-
+    /**
+     * Constructor for a WelcomeController object.
+     * @param theTerminal the instance of the WelcomeView
+     */
     public WelcomeController(WelcomeView theTerminal) {
 
         this.welcomeView = theTerminal;

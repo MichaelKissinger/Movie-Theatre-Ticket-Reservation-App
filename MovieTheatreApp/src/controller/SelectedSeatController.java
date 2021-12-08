@@ -15,14 +15,21 @@ import java.util.ArrayList;
  * It also connects to the model to pass all required information.
  */
 public class SelectedSeatController {
-
+    /**
+     * the user that is using the program
+     */
     private User user;
+    /**
+     * the selected showing
+     */
     private Showing showing;
+    /**
+     * The list of seats to be purchased
+     */
     private ArrayList<Integer> purchasedSeatsIndex;
 
     public SelectedSeatController(User user, Showing showing) {
 
-//        showing.
 
         this.user = user;
         this.showing = showing;
@@ -31,6 +38,8 @@ public class SelectedSeatController {
         selectSeatView.setVisible(true);
         selectSeatView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        // when finished is pressed, proceeds to making transaction by providing payment info, or if the user is a
+        // a registered user, then automatically processes the payment
         selectSeatView.addFinishedButtonListener(e -> {
             for(String seat: selectSeatView.getSelectedSeats()){
                 purchasedSeatsIndex.add(getSeatIndex(seat));
@@ -50,6 +59,11 @@ public class SelectedSeatController {
 
     }
 
+    /**
+     * Gets the indices of a seat based on its string value
+     * @param seat
+     * @return the index of the seat
+     */
     public int getSeatIndex(String seat){
         return ((seat.charAt(0) - 'A') * 5) + Character.getNumericValue(seat.charAt(1))-1;
     }

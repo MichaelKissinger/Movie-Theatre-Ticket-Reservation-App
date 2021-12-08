@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class GuestController {
 
+    //the user using the program that is not registered
     private User ordinaryUser;
 
     public GuestController() {

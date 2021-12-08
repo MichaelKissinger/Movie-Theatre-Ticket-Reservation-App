@@ -12,8 +12,17 @@ import java.sql.SQLException;
  * It also connects to the model to pass all required information.
  */
 public class SelectMovieController {
+    /**
+     * The user using the program
+     */
     private User user;
+    /**
+     * The user selected movie
+     */
     private Movie movie;
+    /**
+     * controller for the database to handle interactions with databse
+     */
     DatabaseController databaseController;
 
     public SelectMovieController(User user, DatabaseController databaseController) {
@@ -23,7 +32,7 @@ public class SelectMovieController {
         SelectMovieView selectMovieView = new SelectMovieView(databaseController.getMovieList());
         selectMovieView.setVisible(true);
         selectMovieView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        // Returns to the termina screen when back button is pressed
         selectMovieView.addBackButtonListener(e -> {
             try {
                 TerminalController terminalController = new TerminalController(this.user);
@@ -32,7 +41,7 @@ public class SelectMovieController {
             }
             selectMovieView.setVisible(false);
         });
-
+        // Proceeds to selecting a showing when a movie is selected and proceed button is pressed
         selectMovieView.addProceedButtonListener(e -> {
             int index = selectMovieView.getListIndex();
             movie = databaseController.getMovieList().get(index);

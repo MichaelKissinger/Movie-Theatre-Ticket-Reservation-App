@@ -18,7 +18,17 @@ public class CreditCard {
     int cvv;
     JDBCConnect myJDBC;
 
-    // For already existing cards
+
+    /**
+     * Constructor for Existing CreditCard objects (in the Database)
+     * @param cardId the Id number of the card
+     * @param userId the Id of the user
+     * @param name the name of the cardholder
+     * @param number the credit card number
+     * @param expMonth the expiry month of the card
+     * @param expYear the expiry year of the card
+     * @param cvv the cvv number of the card
+     */
     public CreditCard(int cardId, int userId, String name, String number, int expMonth, int expYear, int cvv)
     {
         setCardId(cardId);
@@ -31,6 +41,17 @@ public class CreditCard {
     }
 
     // for new credit cards
+
+    /**
+     * Constructor for New CreditCard objects (not currently in the Database)
+     * @param userId the Id of the user
+     * @param name the name of the cardholder
+     * @param number the credit card number
+     * @param expMonth the expiry month of the card
+     * @param expYear the expiry year of the card
+     * @param cvv the cvv number of the card
+     * @throws SQLException
+     */
     public CreditCard(int userId, String name, String number, int expMonth, int expYear, int cvv) throws SQLException {
         setUserId(userId);
         setCardHolderName(name);
@@ -102,6 +123,9 @@ public class CreditCard {
     }
 
     @Override
+    /**
+     * toString method for CreditCard objects.
+     */
     public String toString() {
         return "Card{" +
                 "cardId=" + cardId +

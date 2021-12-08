@@ -21,6 +21,12 @@ public class TransactionPaymentController {
     private ArrayList<Integer> purchasedSeatsIndex;
     private CreditCard paymentCard;
 
+    /**
+     * Constructor for TransactionPaymentController object
+     * @param user the user
+     * @param showing the showing the transaction is for
+     * @param purchasedSeatsIndex the indicies of the purchased seats for the showing
+     */
     public TransactionPaymentController(User user, Showing showing, ArrayList<Integer> purchasedSeatsIndex) {
         this.user = user;
         this.showing = showing;
