@@ -25,7 +25,10 @@ public class SelectTransactionController {
     CancelPolicy cancelPolicy;
     SelectTransactionView selectTransactionView;
 
-
+    /**
+     * Constructor for a SelectTransactionController
+     * @param user the user
+     */
     public SelectTransactionController(User user){
         this.user = user;
 

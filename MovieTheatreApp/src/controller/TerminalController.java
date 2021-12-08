@@ -15,6 +15,11 @@ public class TerminalController {
     DatabaseController databaseController;
     User user;
 
+    /**
+     * Constructor for a TerminalController object
+     * @param user the user
+     * @throws SQLException
+     */
     public TerminalController(User user) throws SQLException {
         this.user = user;
         terminalView = new TerminalView();

@@ -12,6 +12,9 @@ public class JDBCConnect {
 
     private Connection dbConnect;
 
+    /**
+     *  Creates a connection to the database.
+     */
     public void createConnection() {
         try {
             //You to enter your own SQL  username and password below to make this work!!
@@ -31,6 +34,11 @@ public class JDBCConnect {
         }
     }
 
+    /**
+     * Gets all movies from the database and returns them in an ArrayList.
+     * @return movieList the list of all movies present
+     * @throws SQLException
+     */
     public ArrayList<Movie> movieSetStatement() throws SQLException {
         ArrayList<Movie> movieList = new ArrayList<Movie>();
         try {
@@ -52,6 +60,12 @@ public class JDBCConnect {
         return movieList;
     }
 
+    /**
+     * Gets all showings from the database for a given movie and returns them in an ArrayList.
+     * @param  movieId the Id of the movie for which the showings are to be found
+     * @return showingList the list of all showings present for a given movie
+     * @throws SQLException
+     */
     public ArrayList<Showing> showingSetStatement(int movieId) throws SQLException {
         ArrayList<Showing> showingList = new ArrayList<Showing>();
         try {
@@ -74,6 +88,11 @@ public class JDBCConnect {
         return showingList;
     }
 
+    /**
+     * Gets all showings from the database and returns them in an ArrayList.
+     * @return showingList the list of all showings present
+     * @throws SQLException
+     */
     public ArrayList<Showing> allShowingsSetStatement() throws SQLException {
         ArrayList<Showing> showingList = new ArrayList<Showing>();
         try {
@@ -97,6 +116,11 @@ public class JDBCConnect {
         return showingList;
     }
 
+    /**
+     * Gets all users from the database and returns them in an ArrayList.
+     * @return userList the list of all users present
+     * @throws SQLException
+     */
     public ArrayList<User> userSetStatement() throws SQLException {
         ArrayList<User> userList = new ArrayList<User>();
         try {
@@ -117,6 +141,11 @@ public class JDBCConnect {
         return userList;
     }
 
+    /**
+     * Gets all registered users from the database and returns them in an ArrayList.
+     * @return registeredUserList the list of all registered users present
+     * @throws SQLException
+     */
     public ArrayList<RegisteredUser> registeredUserSetStatement() throws SQLException {
         ArrayList<RegisteredUser> registeredUserList = new ArrayList<RegisteredUser>();
         try {
@@ -145,6 +174,12 @@ public class JDBCConnect {
         return registeredUserList;
     }
 
+    /**
+     * Gets all seats for a particular showing from the database and returns them in an ArrayList.
+     * @param showingId the id of the desired showing
+     * @return seatList the list of all seats for the given showing
+     * @throws SQLException
+     */
     public ArrayList<Seat> seatSetStatement(int showingId) throws SQLException {
         ArrayList<Seat> seatList = new ArrayList<Seat>();
         try {
@@ -166,6 +201,11 @@ public class JDBCConnect {
         return seatList;
     }
 
+    /**
+     * Gets all seats from the database and returns them in an ArrayList.
+     * @return seatList the list of all seats present
+     * @throws SQLException
+     */
     public ArrayList<Seat> allSeatsSetStatement() throws SQLException {
         ArrayList<Seat> seatList = new ArrayList<Seat>();
         try {
@@ -188,6 +228,12 @@ public class JDBCConnect {
         return seatList;
     }
 
+    /**
+     * Gets all movie credits for a particular user from the database and returns them in an ArrayList.
+     * @param userId the id of the given user
+     * @return creditList the list of all movie credits for the given user
+     * @throws SQLException
+     */
     public ArrayList<MovieCredit> creditSetStatement(int userId) throws SQLException {
         ArrayList<MovieCredit> creditList = new ArrayList<MovieCredit>();
         try {
@@ -211,7 +257,13 @@ public class JDBCConnect {
         return creditList;
     }
 
-    //TODO: debug this
+    /**
+     /**
+     * Gets all transactions for a particular user from the database and returns them in an ArrayList.
+     * @param id the id of the given user
+     * @return transactionList the list of all transactions for the given user
+     * @throws SQLException
+     */
     public ArrayList<Transaction> transactionsSetStatement(int id) throws SQLException {
         ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
         try {
@@ -236,6 +288,17 @@ public class JDBCConnect {
         return transactionList;
     }
 
+    /**
+     *  Adds a user to the database.
+     * @param email the user's email address
+     * @param isRegistered if the user is registerd or not
+     * @param name the name of the user
+     * @param address the user's address
+     * @param password the user's password
+     * @param activeStatus if the registerd account is active
+     * @param lastPaymentDate the last payment made for the account fee
+     * @throws SQLException
+     */
     public void addUserToDB(String email, Boolean isRegistered,
                             String name, String address, String password,
                             Boolean activeStatus, Date lastPaymentDate) throws SQLException {
@@ -256,6 +319,17 @@ public class JDBCConnect {
         preparedStmt.close();
     }
 
+    /**
+     * Updates a registered user in the database.
+     * @param userId the id of the user account
+     * @param isRegistered if the user is registerd or not
+     * @param name the name of the user
+     * @param address the user's address
+     * @param password the user's password
+     * @param activeStatus if the registerd account is active
+     * @param lastPaymentDate the last payment made for the account fee
+     * @throws SQLException
+     */
     public void updateRegUserInDB(int userId, Boolean isRegistered,
                             String name, String address, String password,
                             Boolean activeStatus, Date lastPaymentDate) throws SQLException {
@@ -274,6 +348,14 @@ public class JDBCConnect {
         preparedStmt.close();
     }
 
+    /**
+     *  Adds a transaction to the database
+     * @param user the user who made the transaction
+     * @param totalCost the total cost of the transaction
+     * @param creditCard the card used on the transaction
+     * @param showingId the id of the showing the transaction was for
+     * @throws SQLException
+     */
     public int addTransactionToDB(User user, double totalCost, CreditCard creditCard, int showingId) throws SQLException {
         String query = "INSERT INTO TRANSACTION " +
                 "(UserID, Cost, PurchaseDate, CardID, ShowingID) " +
@@ -309,6 +391,16 @@ public class JDBCConnect {
         }
     }
 
+    /**
+     *  Adds a CreditCard to the database.
+     * @param userId the user of the card
+     * @param cardHolderName the name of the cardholder
+     * @param cardNumber the card number
+     * @param expiryMonth the expiration month of the card
+     * @param expiryYear the expiration year of the card
+     * @param cvv the cvv number of the card
+     * @throws SQLException
+     */
     public int addCreditCardToDB(int userId, String cardHolderName, String cardNumber, int expiryMonth, int expiryYear, int cvv) throws SQLException {
         String query = "INSERT INTO CREDITCARD " +
                 "(UserID, CardHolderName, cardNumber, expiryMonth, expiryYear, cvv) " +
@@ -343,6 +435,12 @@ public class JDBCConnect {
 
     }
 
+    /**
+     * Returns the CreditCard associated wit hthe given userId.
+     * @param userId the id of the user
+     * @return creditCard the associated CreditCard
+     * @throws SQLException
+     */
     public CreditCard getCreditCardByUserId(int userId) throws SQLException {
         CreditCard creditCard = null;
         try {
@@ -367,7 +465,11 @@ public class JDBCConnect {
     }
 
 
-
+    /**
+     * Gets all of the Transactions in the database and returns them in an ArrayList.
+     * @return transactionList the list of all Transactions present
+     * @throws SQLException
+     */
     public ArrayList<Transaction> transactionSetStatement() throws SQLException {
         ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
         try {
@@ -394,7 +496,13 @@ public class JDBCConnect {
         return transactionList;
     }
 
-
+    /**
+     * Updates a Seat object in the database.
+     * @param showingId the id of the showing the seat is for
+     * @param row the seat row
+     * @param col the seat column
+     * @throws SQLException
+     */
     public void updateSeatDB(int showingId, String row, int col) throws SQLException {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = \"" + showingId + "\" AND rownum = \"" + row + "\"AND colnum = \"" + col + "\";";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
@@ -403,7 +511,14 @@ public class JDBCConnect {
         preparedStmt.close();
     }
 
-
+    /**
+     * Updates the transactionId of a Seat object in the database.
+     * @param transactionId the new transaction id value
+     * @param showingId the id of the showing the seat is for
+     * @param row the seat row
+     * @param col the seat column
+     * @throws SQLException
+     */
     public void updateSeatTransactionId(int transactionId, int showingId, String row, int col) throws SQLException {
         String query = "UPDATE SEATS SET TransactionID = ? WHERE ShowingID = ? AND rownum = ? AND colnum = ?";
         PreparedStatement preparedStmt = dbConnect.prepareStatement(query);
@@ -417,7 +532,13 @@ public class JDBCConnect {
     }
 
 
-
+    /**
+     *  Adds a Message to the database.
+     * @param user the user who the message is for
+     * @param message the message content
+     * @param subjectLine the subject of the message
+     * @throws SQLException
+     */
     public void addMessageToDB(User user, String message, String subjectLine) throws SQLException {
         String query = "INSERT INTO MESSAGE " +
                 "(userID, Message, SubjectLine, SentDate, ReadStatus) " +
@@ -440,7 +561,14 @@ public class JDBCConnect {
 
     }
 
-
+    /**
+     * Adds a Movie Credit to the database.
+     * @param creditCode the code for the MovieCredit
+     * @param expiryDate the expiration date of the MovieCredit
+     * @param amount the amount of the MovieCredit
+     * @param userId the id of the user receiving the MovieCredit
+     * @throws SQLException
+     */
     public int addMovieCreditToDB(String creditCode, Date expiryDate,
                                   double amount, int userId) throws SQLException {
         String query = "INSERT INTO MovieCredits (CreditCode, ExpiryDate, Amount, UserID) " +
@@ -470,7 +598,12 @@ public class JDBCConnect {
         }
     }
 
-
+    /**
+     * Gets all Messages for a specific user from the database.
+     * @param user the user who's messages are to be retrieved
+     * @return userMessageList the list of the user's messages
+     * @throws SQLException
+     */
     public ArrayList<Message> userMessageSetStatement(User user) throws SQLException {
         ArrayList<Message> userMessageList = new ArrayList<Message>();
         int id = user.getUserId();
@@ -498,6 +631,11 @@ public class JDBCConnect {
         return userMessageList;
     }
 
+    /**
+     * Updates a message in the database as ;read;.
+     * @param messageId the id of the message to be updated
+     * @throws SQLException
+     */
     public void updateMessage(int messageId) throws SQLException {
 
         String query = "UPDATE MESSAGE SET ReadStatus = ? WHERE MessageID = ?";
