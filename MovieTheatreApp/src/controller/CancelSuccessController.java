@@ -18,6 +18,8 @@ public class CancelSuccessController {
         CancelSuccessView cancelSuccessView = new CancelSuccessView();
         cancelSuccessView.setVisible(true);
         cancelSuccessView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        // Adds an action listener that allows the user to return to the terminal view after back button is pressed.
         cancelSuccessView.addReturnButtonListener(e->{
             try {
                 TerminalController terminalController = new TerminalController(user);

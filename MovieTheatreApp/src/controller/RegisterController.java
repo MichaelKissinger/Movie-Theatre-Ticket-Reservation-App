@@ -17,7 +17,13 @@ import java.sql.Date;
  * It also connects to the model to pass all required information.
  */
 public class RegisterController {
+    /**
+     * the user using the program
+     */
     private User user;
+    /**
+     * The registered user after the guest user becomes registered
+     */
     private RegisteredUser regUser;
 
     public RegisterController(User user){
@@ -39,7 +45,7 @@ public class RegisterController {
             int month = 0;
             int cvv=0;
             String card="";
-
+            //checks to ensure the address, name, password, cardholder fields are not empty
             try{
                 if((registerView.getAddress().strip().equals(""))||
                         (registerView.getName().strip().equals(""))||
@@ -55,7 +61,7 @@ public class RegisterController {
                 registerView.alert("Please enter an address, name, and password");
                 errCheck = false;
             }
-
+            //checks to ensure the card provided is valid
             try{
                 if(registerView.getCard().length()!=16){
                     throw(new NumberFormatException());
@@ -68,8 +74,9 @@ public class RegisterController {
                 errCheck = false;
                 registerView.alert("Please enter a valid credit card number");
             }
+            //checks to makesure the card expiry year and month  and cvv are valid
             try{
-                if(registerView.getMonth()==0 || registerView.getYear()<=20) throw(new NumberFormatException());
+                if(registerView.getMonth()==0 || registerView.getYear()<=21) throw(new NumberFormatException());
 
                 month = registerView.getMonth();
                 year = registerView.getYear();
@@ -84,6 +91,7 @@ public class RegisterController {
                 errCheck = false;
                 registerView.alert("Please enter a cvv number");
             }
+            //if successful then creates a card object and user objects then adds it to the database.
             if(errCheck==true) {
                 try {
                     CreditCard creditCard = new CreditCard(user.getUserId(),
@@ -114,6 +122,7 @@ public class RegisterController {
                 registerView.setVisible(false);
             }
         });
+        // when the back button is pressed, returns to the previous screen
         registerView.addCancelButtonListener(e->{
             try{
                 TerminalController terminalController = new TerminalController(this.user);
