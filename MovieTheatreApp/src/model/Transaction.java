@@ -18,16 +18,22 @@ public class Transaction
     Date purchaseDate;
     int creditCardId;
     int showingId;
-
     User user;
     CreditCard paymentCreditCard;
     ArrayList<Seat> purchasedSeats = new ArrayList<Seat>();
     Showing showing;
-
     JDBCConnect myJDBC;
     Database database;
 
-    //Constructor for an initializing existing Transaction from DB.
+    /**
+     * Constructor for an initializing an existing Transaction
+     * @param userId
+     * @param totalCost
+     * @param purchaseDate
+     * @param paymentCreditCard
+     * @param showingId
+     * @throws SQLException
+     */
     public Transaction(int transactionId, int userId, double totalCost,
                        Date purchaseDate, int paymentCreditCard, int showingId) throws SQLException {
         this.transactionId = transactionId;
@@ -38,11 +44,19 @@ public class Transaction
         this.showingId = showingId;
         database = Database.getDatabase();
         setUser(userId);
-        setSeats(transactionId);
+        setSeats();
         setShowing(showingId);
     }
 
-    // Constructor for initializing a new Transaction and creating it in the DB
+    /**
+     * Constructor for initializing a new Transaction and inserting it into the DB
+     *
+     * @param user
+     * @param totalCost
+     * @param paymentCreditCard
+     * @param showingId
+     * @throws SQLException
+     */
     public Transaction(User user, double totalCost, CreditCard paymentCreditCard, int showingId) throws SQLException {
         this.user = user;
         this.totalCost = totalCost;
@@ -54,10 +68,13 @@ public class Transaction
         setShowing(showingId);
         setPurchaseDate(new Date());
     }
-    public Showing getShowing(){
-        return showing;
-    }
 
+    /**
+     * initializes user of transaction from DB using the userId
+     *
+     * @param userId
+     * @throws SQLException
+     */
     public void setUser(int userId) throws SQLException {
 
         for (User u: database.getUserDB()) {
@@ -67,7 +84,12 @@ public class Transaction
         }
     }
 
-    public void setSeats(int transactionId) throws SQLException {
+    /**
+     * initializes seats in transaction from DB using the transactionId
+     *
+     * @throws SQLException
+     */
+    public void setSeats() throws SQLException {
         for (Seat s: database.getSeatDB()) {
             if(transactionId == s.getTransactionID()){
                 this.purchasedSeats.add(s);
@@ -75,6 +97,12 @@ public class Transaction
         }
     }
 
+    /**
+     * initializes showing of transaction from DB using the showingId
+     *
+     * @param showingId
+     * @throws SQLException
+     */
     public void setShowing(int showingId) throws SQLException {
         for (Showing s: database.getShowingDB()) {
             if(showingId == s.getShowingId()){
@@ -83,12 +111,22 @@ public class Transaction
         }
     }
 
+    /**
+     * creates a receipt for a transaction and inserts it into the DB
+     *
+     * @throws SQLException
+     */
     public void createReceipt() throws SQLException {
         String subjectLine = "Receipt";
         String message = this.toString();
         myJDBC.addMessageToDB(user, message, subjectLine);
     }
 
+    /**
+     * Formats To String to contain TransactionId, Total Cost, Purchase Date, Movie Title, Showing Time and Seats purchased
+     *
+     * @return
+     */
     @Override
     public String toString() {
 
@@ -111,6 +149,11 @@ public class Transaction
         return null;
     }
 
+    /**
+     * gets movie title for toString
+     * @return String movieTitle
+     * @throws SQLException
+     */
     public String getMovieTitle() throws SQLException {
         String title = " ";
         ArrayList<Movie> movies = database.getMovieDB();
@@ -124,9 +167,10 @@ public class Transaction
         return title;
     }
 
-    public void getPayment(String name, int number, int expMonth, int expYear, int cvv)
-    {
-        //setPaymentCard(new CreditCard(name, number, expMonth, expYear, cvv));
+    // GETTERS AND SETTERS
+
+    public Showing getShowing(){
+        return showing;
     }
 
     public int getTransactionId() {

@@ -12,13 +12,22 @@ import java.util.Date;
  */
 public class MovieCredit
 {
-    // CONSIDER: make user able to pay with existing credit- checks credit list for a credit with sufficient funds for the payment at hand
+
     int movieCreditId;
     String creditCode;
     Date expiryDate;
     double amount;
     int userId;
 
+    /**
+     * Initializes MovieCredit object
+     *
+     * @param movieCreditId
+     * @param creditCode
+     * @param expiryDate
+     * @param amount
+     * @param userId
+     */
     public MovieCredit(int movieCreditId, String creditCode, Date expiryDate,
                        double amount, int userId) {
         this.movieCreditId = movieCreditId;
@@ -27,6 +36,8 @@ public class MovieCredit
         this.amount = amount;
         this.userId = userId;
     }
+
+    // GETTERS AND SETTERS AND TOSTRING
 
     public int getMovieCreditId() {
         return movieCreditId;

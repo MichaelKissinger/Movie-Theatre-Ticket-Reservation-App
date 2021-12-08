@@ -18,6 +18,13 @@ public class Message {
     private String subjectLine;
     private Boolean readStatus;
 
+    /**
+     * Constructor initializes a Message object
+     * @param userID
+     * @param message
+     * @param subjectLine
+     * @param sentDate
+     */
     public Message(int userID, String message, String subjectLine, Date sentDate)
     {
         setUserID(userID);
@@ -29,6 +36,8 @@ public class Message {
 
     public Message()
     {}
+
+    // GETTERS AND SETTERS AND TO STRING METHODS
 
     public int getMessageID() {
         return messageID;

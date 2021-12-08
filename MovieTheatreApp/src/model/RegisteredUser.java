@@ -19,8 +19,19 @@ public class RegisteredUser extends User {
     private Date lastPaymentDate;
     private JDBCConnect myJDBC;
 
-
-
+    /**
+     * initialize RegisteredUser object
+     *
+     * @param userId
+     * @param email
+     * @param isRegistered
+     * @param name
+     * @param address
+     * @param password
+     * @param activeStatus
+     * @param lastPaymentDate
+     * @throws SQLException
+     */
     public RegisteredUser(int userId, String email, Boolean isRegistered, String name,
                           String address, String password,
                           Boolean activeStatus, Date lastPaymentDate) throws SQLException {
@@ -32,21 +43,24 @@ public class RegisteredUser extends User {
         this.lastPaymentDate = lastPaymentDate;
     }
 
-    public void makeAnnualPayment() {
-        Date date = new Date();
-        //TODO: update last payment date in DB
-    }
 
-    @Override
-    public CreditCard getCreditCard() {
-        return creditCard;
-    }
-
+    /**
+     * Retrieves the credit card from the DB of the RU using their id.
+     *
+     * @throws SQLException
+     */
     @Override
     public void retrieveCreditCard() throws SQLException {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         this.creditCard = myJDBC.getCreditCardByUserId(userId);
+    }
+
+    // GETTERS AND SETTERS AND TOSTRING
+
+    @Override
+    public CreditCard getCreditCard() {
+        return creditCard;
     }
 
     public void setCreditCard(CreditCard creditCard) {

@@ -19,24 +19,42 @@ public class Movie {
 
     private JDBCConnect myJDBC;
 
+    /**
+     * Constructor that connects to JDBC and pulls its corresponding Showings
+     *
+     * @param movieId
+     * @param title
+     * @param synopsis
+     * @throws SQLException
+     */
     public Movie(int movieId, String title, String synopsis) throws SQLException {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         setMovieId(movieId);
         setTitle(title);
         setDescription(synopsis);
-
         initializeShowings();
     }
 
+    /**
+     * Pulls Showings of move based on movieId
+     * @throws SQLException
+     */
     public void initializeShowings() throws SQLException {
         showings = myJDBC.showingSetStatement(movieId);
     }
 
+    /**
+     * add a showing to the Movies showings
+     *
+     * @param theShowing
+     */
     public void addShowing(Showing theShowing)
     {
         showings.add(theShowing);
     }
+
+    // GETTERS AND SETTERS AND TOSTRING
 
     public int getMovieId() {
         return movieId;

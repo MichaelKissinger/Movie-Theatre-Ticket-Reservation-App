@@ -15,12 +15,35 @@ public class Seat {
     int transactionID;
     JDBCConnect myJDBC;
 
+    /**
+     * initialize seat object
+     *
+     * @param showingId
+     * @param row
+     * @param col
+     * @param transactionID
+     */
     public Seat(int showingId, String row, int col, int transactionID) {
         this.showingId = showingId;
         this.row = row;
         this.col = col;
         this.transactionID = transactionID;
     }
+
+    /**
+     * Set seat transactionId and update the DB
+     *
+     * @param transactionID
+     * @throws SQLException
+     */
+    public void setTransactionID(int transactionID) throws SQLException {
+        this.transactionID = transactionID;
+        myJDBC = new JDBCConnect();
+        myJDBC.createConnection();
+        myJDBC.updateSeatTransactionId(transactionID, showingId, row, col);
+    }
+
+    // GETTERS AND SETTERS AND TOSTRING
 
     public int getShowingId() {
         return showingId;
@@ -34,13 +57,6 @@ public class Seat {
         return transactionID;
     }
 
-    public void setTransactionID(int transactionID) throws SQLException {
-        this.transactionID = transactionID;
-        myJDBC = new JDBCConnect();
-        myJDBC.createConnection();
-        myJDBC.updateSeatTransactionId(transactionID, showingId, row, col);
-
-    }
 
     public String getRow() {
         return row;

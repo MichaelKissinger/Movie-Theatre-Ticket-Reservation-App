@@ -10,8 +10,19 @@ import java.sql.SQLException;
  */
 public class LoginChecker {
 
+    /**
+     * private constructor so login can not be initiated
+     */
     private LoginChecker() {}
 
+    /**
+     * Static method that authenticates a registered user
+     *
+     * @param email
+     * @param password
+     * @return user if they successfully authenticate
+     * @throws SQLException
+     */
     public static RegisteredUser AuthenticateRegisteredUser(String email, String password) throws SQLException {
         Database database = Database.getDatabase();
         for(RegisteredUser user: database.getRegisteredUserDB()) {
@@ -22,6 +33,13 @@ public class LoginChecker {
         return null;
     }
 
+    /**
+     * static method that authenticates an ordinary user
+     *
+     * @param email
+     * @return user if their email already exists in the DB
+     * @throws SQLException
+     */
     public static User AuthenticateOrdinaryUser(String email) throws SQLException {
         Database database = Database.getDatabase();
         for(User user: database.getUserDB()) {

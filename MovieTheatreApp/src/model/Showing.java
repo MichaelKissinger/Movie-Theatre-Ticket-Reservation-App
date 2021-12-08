@@ -12,17 +12,7 @@ import java.util.Date;
  */
 public class Showing {
 
-
     private int showingId;
-
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
     private int movieId;
     private Date showTime;
     private double ticketPrice;
@@ -31,6 +21,16 @@ public class Showing {
     private boolean availableToPublic;
     private JDBCConnect myJDBC;
 
+    /**
+     * initialize showing object and connect to the DB
+     *
+     * @param showingId
+     * @param movieId
+     * @param showTime
+     * @param ticketPrice
+     * @param theatreId
+     * @throws SQLException
+     */
     public Showing(int showingId, int movieId, Date showTime, double ticketPrice, int theatreId) throws SQLException {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
@@ -43,10 +43,21 @@ public class Showing {
         setAvailability();
     }
 
+    /**
+     * pull all seats that correspond to this showing
+     *
+     * @throws SQLException
+     */
     public void initializeSeats() throws SQLException {
         seats = myJDBC.seatSetStatement(showingId);
     }
 
+    /**
+     * Determine if the showing is available to the public or just to Registered Users
+     * If a showing is more than 28 days away and less tahtn 10% of seats have been purchased it is
+     * only available to RU.
+     *
+     */
     public void setAvailability() {
         int count = 0;
         for(Seat seat: seats){
@@ -60,6 +71,16 @@ public class Showing {
         // if show time is less than 4 weeks away or has more than 0.1 of tickets perchansed make
         // it available to public
         this.availableToPublic = timeUntilShow < 2419200 || ((double)count / 25.0) > 0.1;
+    }
+
+    // GETTERS AND SETTERS AND TOSTRING
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public boolean isAvailableToPublic() {

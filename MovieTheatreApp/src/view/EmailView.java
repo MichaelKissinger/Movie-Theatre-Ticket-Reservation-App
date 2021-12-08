@@ -26,7 +26,7 @@ public class EmailView extends JFrame {
     @SuppressWarnings("rawtypes")
     public EmailView(ArrayList<Message> emails) {
 
-        setSize(800, 650);
+        setSize(1000, 650);
         setTitle("Account Mail");
         getContentPane().setLayout(new BorderLayout(0, 0));
 

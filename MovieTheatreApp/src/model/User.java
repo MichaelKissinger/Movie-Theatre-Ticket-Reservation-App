@@ -15,9 +15,16 @@ public class User
     protected Boolean isRegistered;
     protected ArrayList<MovieCredit> userCredit;
     protected ArrayList<Transaction> previousPurchases;
-
     private JDBCConnect myJDBC;
 
+    /**
+     * initialize the User object
+     *
+     * @param userId
+     * @param email
+     * @param isRegistered
+     * @throws SQLException
+     */
     public User(int userId, String email, Boolean isRegistered) throws SQLException {
         setUserId(userId);
         setEmail(email);
@@ -29,21 +36,29 @@ public class User
     public void retrieveCreditCard() throws SQLException {
     }
 
-    private void initializeUserTransactions() throws SQLException{}
-
+    /**
+     * Retrieves a users previous transactions from the DB using their userId
+     *
+     * @throws SQLException
+     */
     public void retrieveUserTransactions() throws SQLException{
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         this.previousPurchases = myJDBC.transactionsSetStatement(userId);
     }
 
+    /**
+     * Retrieves a users credits from the DB using their userId
+     *
+     * @throws SQLException
+     */
     public void retrieveUserCredits() throws SQLException {
         myJDBC = new JDBCConnect();
         myJDBC.createConnection();
         this.userCredit = myJDBC.creditSetStatement(userId);
     }
 
-    // TO_DO: ADD/ REMOVE CREDIT AND TRANSACTION METHODS!!!
+    // GETTERS AND SETTERS AND TOSTRING
 
     public CreditCard getCreditCard() {
         return null;

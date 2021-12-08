@@ -50,7 +50,7 @@ public class TransactionController {
             showing.getSeats().get(index).setTransactionID(transaction.getTransactionId());
         }
         showing.setAvailability();
-        transaction.setSeats(user.getUserId());
+        transaction.setSeats();
         transaction.createReceipt();
         user.retrieveUserTransactions();
     }
