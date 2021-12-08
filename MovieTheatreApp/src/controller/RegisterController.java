@@ -12,6 +12,10 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.sql.Date;
 
+/**
+ * RegisterController class is used to control the register view.
+ * It also connects to the model to pass all required information.
+ */
 public class RegisterController {
     private User user;
     private RegisteredUser regUser;

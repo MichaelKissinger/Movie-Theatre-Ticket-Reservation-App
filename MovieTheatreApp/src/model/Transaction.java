@@ -84,7 +84,7 @@ public class Transaction
     }
 
     public void createReceipt() throws SQLException {
-        String subjectLine = "Reciept";
+        String subjectLine = "Receipt";
         String message = this.toString();
         myJDBC.addMessageToDB(user, message, subjectLine);
     }

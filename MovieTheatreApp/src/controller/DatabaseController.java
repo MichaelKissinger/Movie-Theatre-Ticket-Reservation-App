@@ -6,6 +6,10 @@ import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * CancelSuccessController class is used to control information moving in and out of the database
+ * It also connects to the model to pass all required information.
+ */
 public class DatabaseController {
 
     ArrayList<Movie> movieList;

@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * WelcomeController class is used to control the welcome view.
+ * It also connects to the model to pass all required information.
+ */
 public class WelcomeController {
 
     WelcomeView welcomeView;

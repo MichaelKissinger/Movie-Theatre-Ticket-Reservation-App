@@ -6,6 +6,10 @@ import view.*;
 import javax.swing.*;
 import java.sql.SQLException;
 
+/**
+ * TerminalController class is used to control the terminal view.
+ * It also connects to the model to pass all required information.
+ */
 public class TerminalController {
     TerminalView terminalView;
     DatabaseController databaseController;
@@ -39,9 +43,9 @@ public class TerminalController {
 
         terminalView.addCancelTicketListener(e->{
             try{
-                terminalView.setVisible(false);
             SelectTransactionController selectTransactionController =
-                    new SelectTransactionController(user);}
+                    new SelectTransactionController(user);
+                terminalView.setVisible(false);}
             catch(NullPointerException err){
                 terminalView.displayErrorMessage("There are no tickets under your email");
             }

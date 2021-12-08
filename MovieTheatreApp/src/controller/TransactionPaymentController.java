@@ -10,6 +10,10 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * TransactionPaymentController  class is used to control the transaction payment view.
+ * It also connects to the model to pass all required information.
+ */
 public class TransactionPaymentController {
 
     private User user;

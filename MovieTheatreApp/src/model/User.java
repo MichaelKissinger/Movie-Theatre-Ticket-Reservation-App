@@ -29,7 +29,6 @@ public class User
     public void retrieveCreditCard() throws SQLException {
     }
 
-
     private void initializeUserTransactions() throws SQLException{}
 
     public void retrieveUserTransactions() throws SQLException{

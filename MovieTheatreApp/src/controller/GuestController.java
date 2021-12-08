@@ -10,6 +10,10 @@ import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * GuestController  class is used to control the guest sign in view.
+ * It also connects to the model to pass all required information.
+ */
 public class GuestController {
 
     private User ordinaryUser;

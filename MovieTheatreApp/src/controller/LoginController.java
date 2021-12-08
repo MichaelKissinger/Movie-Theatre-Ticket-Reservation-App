@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Date;
 
+/**
+ * LoginController class is used to control the login view.
+ * It also connects to the model to pass all required information.
+ */
 public class LoginController {
 
     private LoginView loginView;
